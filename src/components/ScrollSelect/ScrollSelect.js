@@ -6,7 +6,7 @@ handleSubmit as placeholder for further customizations
 
 import './ScrollSelect.css'
 
-const ScrollSelect = ( { services }) => {
+const ScrollSelect = ({ services }) => {
 
     const handleSelect = (e) => {
         console.log(e.target.value);
