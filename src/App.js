@@ -1,14 +1,13 @@
 import './App.css';
 import ScrollSelect from './components/ScrollSelect/ScrollSelect';
-// import ConnexionBackEnd from './pages/ConnexionBackend/ConnexionBackEnd';
-import ConnexionBE2 from './pages/ConnexionBackend/ConnexionBE2';
+import ConnecBackEnd from './pages/ConnexionBackend/ConnecBackEnd';
 
 function App() {
   const services = ['Mars', 'M&m`s', 'Twix', 'Lizard on a stick', 'My foot in your bottom'];
   return (
     <div className="App">
       <ScrollSelect services={services}/>
-      <ConnexionBE2 />
+      <ConnecBackEnd />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import useAxios from "../../hooks/useAxios/useAxios";
 
 
 
-const ConnexionBE2 = () => {
+const ConnecBackEnd = () => {
     const [salles, setSalles] = useState();
     const method = 'get';
     const adress = 'http://localhost:3001/salles/all';
@@ -29,4 +29,4 @@ const ConnexionBE2 = () => {
     );
 }
 
-export default ConnexionBE2;
+export default ConnecBackEnd;

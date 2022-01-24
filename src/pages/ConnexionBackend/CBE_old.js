@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-const ConnexionBackEnd = () => {
+const CBE_old = () => {
     const [salles, setSalles] = useState();
 
     const getAllSalles = async () => {
@@ -49,4 +49,4 @@ const ConnexionBackEnd = () => {
     );
 }
 
-export default ConnexionBackEnd;
+export default CBE_old;
