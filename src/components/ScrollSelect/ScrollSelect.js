@@ -15,7 +15,7 @@ const ScrollSelect = ({ services }) => {
 
     return (
         <div className="scrollSelect">
-            <label for="service-select">Choose a service:</label>
+            <label htmlFor="service-select">Choose a service:</label>
 
             <select name="pets" id="servie-select" onChange={(e) => handleSelect(e)}>
                 <option value="">--Please choose an option--</option>
