@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-
 const useAxios = (method, adress, content) => {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState('');

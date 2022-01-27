@@ -5,9 +5,17 @@ import useAxios from "../../hooks/useAxios/useAxios";
 
 const ConnecBackEnd = () => {
     const [salles, setSalles] = useState();
-    const method = 'get';
+    const method = 'post';
     const adress = 'http://localhost:3001/salles/all';
-    const content = {};
+    const content = {
+        "nom": "Michel",
+        "prenom": "Jean",
+        "email": "jean.michel@gmail.com",
+        "tel": "06.12.32.36.16",
+        "password": "test",
+        "ddn": "19800620",
+        "adresse": "12 avenue des près 78000 Fontainebleau"
+    };
   
     const { response, _, loading } = useAxios(method, adress, content);
 

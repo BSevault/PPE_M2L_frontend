@@ -10,10 +10,10 @@ Pages
 		Ses réservations
 			A venir
 				Invitation participants (invite / expulse)
-			Passées (historique)			
+			Passées (historique + voir covid state)			
 		Ses participations
 			A venir (accept / delete)
-			Passées (historique)
+			Passées (historique + déclarer covid)
 		Gestion du compte
 		Paiements (historique) // le paiement se fait via téléphone / sur place de mémoire
 		
