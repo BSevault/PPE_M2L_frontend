@@ -7,7 +7,7 @@ const ConnecBackEnd = () => {
     const [salles, setSalles] = useState();
     const method = 'get';
     const adress = 'http://localhost:3001/salles/all';
-const content = {/* if post put object here */};
+    const content = {/* if post put object here */};
   
     const { response, _, loading } = useAxios(method, adress, content);
 
