@@ -1,0 +1,19 @@
+Idée plan site M2L react
+
+Pages
+	Non-authentifié
+		Acceuil
+		Authentification
+		Listing salles (avec disponibilité)
+		Salle (caractéristiques)
+	Authentifié
+		Ses réservations
+			A venir
+				Invitation participants (invite / expulse)
+			Passées (historique)			
+		Ses participations
+			A venir (accept / delete)
+			Passées (historique)
+		Gestion du compte
+		Paiements (historique) // le paiement se fait via téléphone / sur place de mémoire
+		
