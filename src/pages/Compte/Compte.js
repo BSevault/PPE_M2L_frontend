@@ -14,8 +14,8 @@ const Compte = ({ user }) => {
 
   return (
     <div className="compte">
-      {arrUser.map((data) => {
-        return <p>{data}</p>;
+      {arrUser.map((data, index) => {
+        return <p key={`compte ${index}`}>{data}</p>;
       })}
     </div>
   );
