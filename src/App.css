@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Vollkorn:ital,wght@1,700&display=swap');
+
+:root {
+    --typo_titre: 'Vollkorn', serif;
+    --typo_text: 'Open Sans', sans-serif;
+    --bg_color: #f1f1f1;
+    --gold: #fec816;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--typo_text);
+}
+
+a, li {
+    text-decoration: none;
+    list-style-type: none;
+}
+
+body {
+    background-color: var(--bg_color);
+}
