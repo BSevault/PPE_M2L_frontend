@@ -1,18 +1,42 @@
-import './App.css';
-import Navbar from './components/Navbar/Navbar';
-import ScrollSelect from './components/ScrollSelect/ScrollSelect';
-import ConnecBackEnd from './pages/ConnexionBackend/ConnecBackEnd';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Navbar from './components/Navbar/Navbar';
+import RoutesM2L from './components/Routes/RoutesM2L';
+
+import './App.css';
 
 function App() {
-  const services = ['Mars', 'M&m`s', 'Twix', 'Lizard on a stick', 'My foot in your bottom'];
+
+  const [ user, setUser ] = useState('');
+  
+  useEffect( () => {
+    const idUser = localStorage.getItem("userId");
+    
+    ( 
+      async () => {
+          if (idUser) {
+          const result = await axios.get(`http://localhost:3001/users/${idUser}`,
+          {credentials: idUser
+          });
+          const user = result.data.success[0]; 
+  
+          setUser(user);
+          // console.log(user);
+        }
+        }
+    )()
+  },[]);
+
+  console.log(user);
+
   return (
     <div className="App">
       <Router>
-        <Navbar />
+        <Navbar user={user} setUser={setUser}/>
+        <RoutesM2L user={user} setUser={setUser} />
       </Router>
-      <ScrollSelect services={services} />
-      <ConnecBackEnd />
+      
     </div>
   );
 }
