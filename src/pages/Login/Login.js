@@ -21,8 +21,6 @@ const Login = ( { setUser } ) => {
             password
         })
         .catch((error) => {
-            // console.log(error);
-            // console.log(error.response);
 
             if (error.response.status === 401) {
                 messageError.current.innerText = "Email et mot de passe invalide !";
@@ -30,7 +28,6 @@ const Login = ( { setUser } ) => {
                 inputPwd.current.value = '';
             }
         });
-        // console.log(result);
 
         if (result.data.success) {
             localStorage.setItem("userId", result.data.success.id)
