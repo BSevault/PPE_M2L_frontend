@@ -1,6 +1,6 @@
 .navbar {
     position: sticky;
-    background-color: #068D9D;
+    background-color: var(--blue);
     top: 0;
     z-index: 4;
     width: 100%;

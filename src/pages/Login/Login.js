@@ -23,7 +23,7 @@ const Login = ( { setUser } ) => {
         .catch((error) => {
 
             if (error.response.status === 401) {
-                messageError.current.innerText = "Email et mot de passe invalide !";
+                messageError.current.innerText = "⚠️ Email ou mot de passe invalide !";
                 inputEmail.current.value = '';
                 inputPwd.current.value = '';
             }
@@ -45,10 +45,11 @@ const Login = ( { setUser } ) => {
 
     return (  
         <div className="login">
-            <form action="_POST" onClick={e => {e.preventDefault()}}>
+            <h1>Se connecter à votre compte M2L</h1>
+            <form action="_POST" onClick={e => {e.preventDefault()}} id="form_login">
                 <input type="text" name="email" id="email" placeholder="Email" onChange={e => setEmail(e.target.value)} ref={inputEmail} required/>
                 <input type="password" name="password" id="password" placeholder="Password" onChange={e => setPasswordUser(e.target.value)} ref={inputPwd} required/>
-                <input type="submit" value="Login" onClick={submitLogIn}/>
+                <input type="submit" value="Login" id='submit' onClick={submitLogIn}/>
             </form>
             <p ref={messageError}></p>
         </div>

@@ -5,6 +5,7 @@
     --typo_text: 'Open Sans', sans-serif;
     --bg_color: #f1f1f1;
     --gold: #fec816;
+    --blue: #068D9D;
 }
 
 * {
@@ -17,6 +18,10 @@
 a, li {
     text-decoration: none;
     list-style-type: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--typo_titre);
 }
 
 body {
