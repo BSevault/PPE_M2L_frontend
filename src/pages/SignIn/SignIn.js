@@ -9,6 +9,7 @@ const SignIn = () => {
         {value: '', place: "Prénom", id: "prenom", type: 'text'},
         {value: '', place: "Date de naissance", id: "ddn", type: 'date'},
         {value: '', place: "Adresse", id: "adresse", type: 'text'},
+        {value: '', place: "Téléphone", id: "tel", type: 'text'},
         {value: '', place: "Email", id: "email", type: 'text'},
         {value: '', place: "Mot de passe", id: "pwd", type: 'password'},
         {value: '', place: "Retaper votre Mot de passe", id: "verif_pwd", type: 'password'}
