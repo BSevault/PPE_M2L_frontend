@@ -40,6 +40,7 @@ textarea {
   border: 2px solid var(--color_melon_light);
   border-radius: 5px;
   resize: vertical;
+  outline: none;
 }
 
 .generic-form button {
@@ -51,6 +52,10 @@ textarea {
   box-shadow: var(--color_green_light) 0px 4px 16px,
     var(--color_green_light) 0px 8px 32px;
   border-radius: 8px;
+}
+
+.generic-form #email {
+
 }
 
 @media only screen and (max-width: 768px) {
