@@ -35,7 +35,7 @@
     letter-spacing: 1px;
   }
   
-  .navbar a:after {
+  .navbar a:not(.logo):after {
     content: "";
     display: block;
     height: 2px;
