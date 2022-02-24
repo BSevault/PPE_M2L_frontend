@@ -1,0 +1,26 @@
+.item-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.item:first-child {
+    border: 1px solid black;
+}
+
+.item{
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+}
+
+.item li{
+    margin: 10px;
+    width: 100%;
+    text-align: center;
+}
