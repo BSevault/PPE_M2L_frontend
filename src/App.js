@@ -22,7 +22,6 @@ function App() {
           const user = result.data.success[0]; 
   
           setUser(user);
-          // console.log(user);
         }
         }
     )()
