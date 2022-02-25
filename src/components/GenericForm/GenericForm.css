@@ -15,6 +15,7 @@
 }
 
 .generic_form label {
+  color: rgb(70, 66, 66);
   cursor: text;
   position: absolute;
   margin: 19px;
@@ -38,6 +39,7 @@
 }
 
 .generic_form .mapped_input:focus-within label , .generic_form .mapped_input.active_input label {
+  color: black;
   cursor: text;
   font-size: 0.9em;
   transform: translateY(-32px);

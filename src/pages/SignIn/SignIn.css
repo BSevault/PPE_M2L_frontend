@@ -48,6 +48,11 @@
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
+.signin .signin_form input[type="text"] {
+    font-weight: 700;
+    color: var(--blue);
+  }
+
 .signin .signin_form p {
   margin: 15px 0;
   width: 400px;
