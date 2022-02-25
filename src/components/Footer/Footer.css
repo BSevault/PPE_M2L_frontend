@@ -1,0 +1,24 @@
+ul#footer {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #068D9D;
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px 0;
+    color: #fff; 
+    box-shadow: 
+        0 -3px 7px rgb(0 0 0 / 15%), 
+        0 -4px 8px rgb(0 0 0 / 15%), 
+        0 -5px 9px rgb(0 0 0 / 15%),
+        0 -6px 10px rgb(0 0 0 / 15%);  
+}
+
+ul#footer li a h3 {
+    color: #fff;
+}
+
+li#adress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

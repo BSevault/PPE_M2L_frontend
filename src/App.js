@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Navbar from './components/Navbar/Navbar';
 import RoutesM2L from './components/Routes/RoutesM2L';
+import Footer from './components/Footer/Footer';
 
 import './App.css';
 
@@ -35,6 +36,7 @@ function App() {
       <Router>
         <Navbar user={user} setUser={setUser}/>
         <RoutesM2L user={user} setUser={setUser} />
+        <Footer />
       </Router>
       
     </div>
