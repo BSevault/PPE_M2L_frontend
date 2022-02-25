@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Compte from "../../pages/Compte/Compte.js";
 import Home from "../../pages/Home/Home.js";
+import Legals from "../../pages/Legals/Legals.js";
 import Login from "../../pages/Login/Login.js";
 import Logout from "../../pages/Logout/Logout.js";
 import SignIn from "../../pages/SignIn/SignIn.js";
@@ -13,6 +14,7 @@ const RoutesM2L = ( { user, setUser } ) => {
       <Route path="/signin" element={<SignIn />} />
       <Route path="/logout" element={<Logout />} />
       <Route path="/compte" element={<Compte user={user} />} />
+      <Route path="/legals" element={<Legals />} />
 
       {/* <Route path="/backend" element={<ConnectDB />} /> */}
     </Routes>

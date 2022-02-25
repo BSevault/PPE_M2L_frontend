@@ -1,0 +1,24 @@
+div#legals-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+div#legals-content {
+    display: flex;
+    flex-direction: column ;
+    width: 70%;
+}
+
+div#legals-content h1{
+    text-align: center;
+    margin: 30px;
+}
+
+div#legals-content p {
+    margin: 15px;
+}
+
+div#legals-content .legals-title {
+    margin-top: 50px;
+}
