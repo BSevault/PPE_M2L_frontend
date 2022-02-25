@@ -35,20 +35,33 @@ const Login = ( { setUser } ) => {
         }
 
         setUser(result.data.success);
-        
     };
 
     if (redirect) {
         return <Navigate to="/" />;
     }
 
+    const addActiveInput = (e) => {
+        if (e.target.value != "") {
+            e.target.parentNode.classList.add("active_input");     
+        } else if(e.target.value === ""){
+            e.target.parentNode.classList.remove("active_input");     
+        }
+    }
 
+    
     return (  
         <div className="login">
             <h1>Se connecter à votre compte M2L</h1>
             <form action="_POST" onClick={e => {e.preventDefault()}} id="form_login">
-                <input type="text" name="email" id="email" placeholder="Email" onChange={e => setEmail(e.target.value)} ref={inputEmail} required/>
-                <input type="password" name="password" id="password" placeholder="Password" onChange={e => setPasswordUser(e.target.value)} ref={inputPwd} required/>
+                <div className="input_form">
+                    <label htmlFor="email">Email</label>
+                    <input type="text" name="email" id="email" onChange={e => setEmail(e.target.value)} onInput={e => addActiveInput(e)} ref={inputEmail} required/>
+                </div>
+                <div className="input_form">
+                    <label htmlFor="password">Password</label>
+                    <input type="password" name="password" id="password" onChange={e => setPasswordUser(e.target.value)} onInput={e => addActiveInput(e)} ref={inputPwd} required/>
+                </div>
                 <input type="submit" value="Login" id='submit' onClick={submitLogIn}/>
             </form>
             <p ref={messageError}></p>

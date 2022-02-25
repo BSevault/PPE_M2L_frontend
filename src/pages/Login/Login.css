@@ -5,11 +5,12 @@
     align-items: center;
     align-content: center;
     margin: 20px;
-    padding: 20px;
+    padding: 10px;
 }
 
 .login h1 {
     padding: 10px;
+    margin-bottom: 15px;
 }
 
 .login #form_login {
@@ -19,9 +20,26 @@
     align-content: center;
 }
 
+.login #form_login label {
+    position: absolute;
+    /* left: 798px;
+    top: 200px; */
+    margin: 21px;
+    z-index: 1;
+    transition: ease-out 0.5s;
+}
+
+.login #form_login .input_form:focus-within label , .login #form_login .input_form.active_input label {
+    cursor: text;
+    font-size: 0.9em;
+    transform: translateY(-30px);
+    transition: ease-in-out 0.5s;
+}
+
 .login #form_login input[type="text"], .login #form_login input[type="password"] {
+    position: relative;
     outline: none;
-    margin: 10px;
+    margin: 15px;
     padding: 5px;
     width: 300px;
     font-size: 1em;
@@ -36,7 +54,7 @@
 
 .login #form_login input[type="submit"] {
     outline: none;
-    margin-top: 30px;
+    margin-top: 10px;
     padding: 5px;
     width: 300px;
     font-size: 1em;
