@@ -11,12 +11,14 @@ const Navbar = ({ user, setUser }) => {
 
   const navLinksVisiteurs = [
     { text: "Accueil", chemin: "/" },
-    { text: "Salles", chemin: "/salles" }
+    { text: "Salles", chemin: "/salles" },
+    { text: "Produits", chemin: "/produits" }
   ];
 
   const navLinksLogged = [
     { text: "Accueil", chemin: "/" },
     { text: "Salles", chemin: "/salles" },
+    { text: "Produits", chemin: "/produits" },
     { text: "Réservations", chemin: "/reservations" },
     { text: "Réunions", chemin: "/reunions" },
     { text: "Factures", chemin: "/factures" }
