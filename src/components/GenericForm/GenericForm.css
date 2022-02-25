@@ -1,62 +1,49 @@
-.generic-form {
-  color: var(--color_text);
-  margin: 20px 20%;
+.generic_form {
+  margin: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: var(--color_green_light);
-  border: 3px double var(--color_green_light);
-  border-radius: 12px;
-  box-shadow: var(--color_green_light) 0px 4px 16px,
-    var(--color_green_light) 0px 8px 32px;
 }
 
-.generic-form .mapped-input {
+.generic_form .mapped_input {
   margin: 10px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   flex-direction: column;
 }
 
-.generic-form .form-message {
-  /* margin: 10px; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.generic_form label {
+  cursor: text;
+  position: absolute;
+  margin: 19px;
+  font-size: 1em;
+  z-index: 1;
+  transition: ease-out 0.5s;
 }
 
-.generic-form label {
-  padding: 5px;
-}
-
-.generic-form input,
-textarea {
+.generic_form input, textarea {
+  position: relative;
+  font-size: 1em;
+  margin: 10px 10px 10px 10px ;
   width: 400px;
   padding: 8px;
-  background: var(--background_color);
-  border: 2px solid var(--color_melon_light);
-  border-radius: 5px;
-  resize: vertical;
+  border: 1px solid var(--blue);
+  border-radius: 3px;
+  resize: none;
   outline: none;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  transition: ease-in-out 0.5s;
 }
 
-.generic-form button {
-  margin: 30px;
-  color: var(--color_text);
-  padding: 10px 40px;
-  background: var(--color_green);
-  border: 5px double var(--color_green_light);
-  box-shadow: var(--color_green_light) 0px 4px 16px,
-    var(--color_green_light) 0px 8px 32px;
-  border-radius: 8px;
+.generic_form .mapped_input:focus-within label , .generic_form .mapped_input.active_input label {
+  cursor: text;
+  font-size: 0.9em;
+  transform: translateY(-32px);
+  transition: ease-in-out 0.5s;
 }
 
-.generic-form #email {
-
-}
 
 @media only screen and (max-width: 768px) {
     .generic-form {

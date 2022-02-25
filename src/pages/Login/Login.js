@@ -42,7 +42,7 @@ const Login = ( { setUser } ) => {
     }
 
     const addActiveInput = (e) => {
-        if (e.target.value != "") {
+        if (e.target.value !== "") {
             e.target.parentNode.classList.add("active_input");     
         } else if(e.target.value === ""){
             e.target.parentNode.classList.remove("active_input");     
