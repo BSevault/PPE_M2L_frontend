@@ -9,11 +9,19 @@ const ConnecBackEnd = () => {
     const adress = 'http://localhost:3001/salles/all';
     const content = {/* if post put object here */};
   
-    const { response, _, loading } = useAxios(method, adress, content);
+    const { response, error, loading } = useAxios(method, adress, content);
+
+    if (error) {
+        // display something because of error
+    }
+
+    if (loading) {
+        // display something during loading
+    }
 
     useEffect(() => {
         if (response) setSalles(response.success);
-    }, [loading])
+    }, [loading, response])
 
 
     return  (

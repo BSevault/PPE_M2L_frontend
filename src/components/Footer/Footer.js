@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Footer.css"
-import pres from "../../assets/docs/Presentation_M2L.pdf"
+// import pres from "../../assets/docs/Presentation_M2L.pdf"
 
 const Footer = () => {
     return (

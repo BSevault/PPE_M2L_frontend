@@ -95,7 +95,7 @@ const SignIn = () => {
         setPwdVerifIsOk(false);
     }
 
-  });
+  }, []);
 
   return (
     <div className="signin">

@@ -6,11 +6,11 @@ import "./ItemList.css"
 const ItemList = ({ method, adress, content, keys, name }) => {
     const [items, setItems] = useState();
 
-    const { response, _, loading } = useAxios(method, adress, content);
+    const { response } = useAxios(method, adress, content);
 
     useEffect(() => {
         if (response) setItems(response.success);
-    }, [loading]);
+    }, [response]);
 
     console.log(items);
 
