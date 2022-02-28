@@ -5,9 +5,9 @@ import GenericFormSimple from '../../components/GenericFormSimple/GenericFormSim
 const Compte = ({ user }) => {
 
   const userFiltered = user;
-  delete userFiltered['id', 'is_active', 'is_admin'];
+  ['id', 'is_active', 'is_admin', 'ddn'].forEach(e => delete userFiltered[e]);
 
-  const [toSend, setToSend] = useState(user);
+  const [toSend, setToSend] = useState(userFiltered);
 
   const genericFormData = {
     "toSend": toSend,
