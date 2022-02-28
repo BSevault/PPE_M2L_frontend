@@ -1,31 +1,37 @@
-import useAxios from '../../hooks/useAxios/useAxios';
+// import useAxios from '../../hooks/useAxios/useAxios';
 import './PlanSalles.css';
 
-const PlanSalles = ( {refText} ) => {
+const PlanSalles = ( {refText, selectSalle} ) => {
 
-    const {response} = useAxios('get', 'http://localhost:3001/salles/');
+    // const {response} = useAxios('get', 'http://localhost:3001/salles/');
 
-    const selectSalle = (e) => {
-        const sallesAll = document.querySelectorAll(".salles_loc");
+    // const addData = (e, response) => {
+    //     response.success.forEach( (salle) => {
+                
+    //         if (salle.nom === e.target.textContent || salle.nom === e.target.parentNode.children[1].textContent) {
+    //             refText.current.innerText = salle.nom;
+    //         }
+    //     });
+    // }
 
-        sallesAll.forEach((salle) => {
-            salle.classList.remove("salle_active");
-        });
 
-        response.success.forEach( (salle) => {
-            console.log(salle);
-            console.log(e);
+    // const selectSalle = (e) => {
+    //     const sallesAll = document.querySelectorAll(".salles_loc");
 
-            if (salle.nom === e.target.textContent || salle.nom === e.target.value) {
-                refText.current.innerText = salle.nom;
-            }
-        });
+    //     sallesAll.forEach((salle) => {
+    //         salle.classList.remove("salle_active");
+    //     });
 
-        e.target.parentNode.classList.add("salle_active");
+    //     if (e.target.parentNode.classList.contains("salles_loc")) {
+    //         e.target.parentNode.classList.add("salle_active");
+    //         addData(e, response);
 
-        // refText.current.innerText = "coucou les loups"
-        console.log(response);
-    }
+    //     } else if (e.target.parentNode.parentNode.classList.contains("salles_loc")) {
+    //         e.target.parentNode.parentNode.classList.add("salle_active");
+    //         addData(e, response);
+    //     }
+
+    // }
 
     return (  
         <div className="plan_salles">
@@ -88,7 +94,7 @@ const PlanSalles = ( {refText} ) => {
                             <rect id="convivialite" x="16" y="106" className="salle" width="90" height="63"/>
                             <text transform="matrix(1 0 0 1 26.2995 131.75)">
                                 <tspan x="0" y="0">Restauration</tspan>
-                                <tspan x="-3.2" y="14.4">et convivialité</tspan>
+                                <tspan x="-3.2" y="14.4"> et convivialité</tspan>
                             </text>
                             <rect id="cuisine" x="16" y="78.2" className="salle" width="90" height="27"/>
                             <text transform="matrix(1 0 0 1 41.4612 94.7708)">Cuisine</text>
