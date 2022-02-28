@@ -13,23 +13,23 @@
     font-family: var(--typo_text);
     font-size: 12px;
     cursor: default;
-    fill: black;
+    fill: white;
 }
 
 .plan_svg .salle {
-  fill: #e9b715;
+  fill: var(--blue);
   transition: fill 0.5s;
 }
 
 .plan_svg .salles_loc:hover rect {
-  fill: var(--blue);
+  fill: var(--gold);
   cursor: pointer;
   transition: fill 0.5s;
 }
 
 .plan_svg .salles_loc:hover text {
   cursor: pointer;
-  fill: white;
+  fill: black;
   transition: fill 0.5s;
 }
 

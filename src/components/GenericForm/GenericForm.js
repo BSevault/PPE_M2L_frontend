@@ -17,14 +17,6 @@ const GenericForm = ({ toSend, setToSend, input, par }) => {
         }
     };
 
-    const addActiveInput = (e) => {
-        if (e.target.value !== "") {
-            e.target.parentNode.classList.add("active_input");     
-        } else if(e.target.value === ""){
-            e.target.parentNode.classList.remove("active_input");     
-        }
-    }
-
     return (
         <form className="generic_form">
             {
@@ -35,10 +27,8 @@ const GenericForm = ({ toSend, setToSend, input, par }) => {
                             type={item.type}
                             name={item.id}
                             id={item.id}
-                            // placeholder={item.place}
                             value={item.value}
                             onChange={(e) => handleChange(e)}
-                            onInput={e => addActiveInput(e)}
                             required
                         />
                     </div>

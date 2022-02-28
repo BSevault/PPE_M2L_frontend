@@ -76,7 +76,7 @@ const PlanSalles = () => {
                         <text transform="matrix(1 0 0 1 209.9474 281.5833)" className="entree_m2l">ENTREE</text>
                     </g>
                     <g id="contour_salles">
-                    <path class="contour" d="M217,262.1"/>
+                    <path className="contour" d="M217,262.1"/>
 	                    <polyline className="contour" points="217,262.1 202,262.1 115.7,262.1 65.7,262.1 15.6,262.1 15.6,18.4 128.8,18.4 128.5,206.2 
 		196.1,206.2 196.1,19 343.8,19 343.8,129 440.7,129.1 440.7,206.3 636.2,206.4 636.2,262.1 310.2,262.1 242,262.1 	"/>
 	                    <polyline className="contour" points="106.3,18.4 106.3,67.1 106.3,107.6 106.3,152.6 106.3,173.6 106.3,206.5 70.8,206.5 70.8,227.6 
