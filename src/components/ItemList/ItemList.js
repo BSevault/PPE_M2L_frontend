@@ -14,7 +14,7 @@ const ItemList = ({ name, method, adress, content, keys, headers }) => {
         if (response) setItems(response.success);
     }, [response]);
 
-    console.log(items);
+    // console.log(items);
 
     return (
         <div className={`item-list ${name}-list`}>
