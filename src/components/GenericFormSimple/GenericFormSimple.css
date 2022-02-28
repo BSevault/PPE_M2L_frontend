@@ -1,11 +1,11 @@
 .generic-form-simple {
     color: var(--color_text);
-    margin: 20px 20%;
+    margin: 40px 20%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background: var(--color_green_light);
+    background: var(--blue);
     border: 3px double var(--color_green_light);
     border-radius: 12px;
     box-shadow: var(--color_green_light) 0px 4px 16px,
@@ -46,11 +46,11 @@
     margin: 30px;
     color: var(--color_text);
     padding: 10px 40px;
-    background: var(--color_green);
-    border: 5px double var(--color_green_light);
+    /* background: var(--color_green); */
+    /* border: 5px double var(--color_green_light); */
     box-shadow: var(--color_green_light) 0px 4px 16px,
       var(--color_green_light) 0px 8px 32px;
-    border-radius: 8px;
+    /* border-radius: 8px; */
   }
   
   @media only screen and (max-width: 768px) {
