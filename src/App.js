@@ -9,35 +9,33 @@ import './App.css';
 
 function App() {
 
-  const [ user, setUser ] = useState('');
-  
-  useEffect( () => {
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
     const idUser = localStorage.getItem("userId");
-    
-    ( 
+
+    (
       async () => {
-          if (idUser) {
-          const result = await axios.get(`http://localhost:3001/users/${idUser}`,
-          {credentials: idUser
-          });
-          const user = result.data.success[0]; 
-  
+        if (idUser) {
+          const result = await axios.get(`http://localhost:3001/users/${idUser}`);
+          const user = result.data.success[0];
+
           setUser(user);
         }
-        }
+      }
     )()
-  },[]);
+  }, []);
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="App">
       <Router>
-        <Navbar user={user} setUser={setUser}/>
+        <Navbar user={user} setUser={setUser} />
         <RoutesM2L user={user} setUser={setUser} />
         <Footer />
       </Router>
-      
+
     </div>
   );
 }
