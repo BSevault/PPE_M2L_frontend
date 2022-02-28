@@ -9,14 +9,16 @@ const SignIn = () => {
 
   const signInText = useRef();
 
-  const [emailIsOk, setEmailIsOk] = useState(false);
-  const [pwdIsOk, setPwdIsOk] = useState(false);
-  const [pwdVerifIsOk, setPwdVerifIsOk] = useState(false);
+  let emailIsOk, pwdIsOk, pwdVerifIsOk = false;
+
+  // const [emailIsOk, setEmailIsOk] = useState(false);
+  // const [pwdIsOk, setPwdIsOk] = useState(false);
+  // const [pwdVerifIsOk, setPwdVerifIsOk] = useState(false);
 
   const [toSend, setToSend] = useState([
     { value: "", place: "Nom", id: "nom", type: "text" },
     { value: "", place: "Prénom", id: "prenom", type: "text" },
-    { value: "", place: "Date de naissance (jj/mm/yyyy)", id: "ddn", type: "text" },
+    { value: "", place: "Date de naissance", id: "ddn", type: "date" },
     { value: "", place: "Adresse", id: "adresse", type: "text" },
     { value: "", place: "Téléphone", id: "tel", type: "text" },
   ]);
@@ -69,10 +71,10 @@ const SignIn = () => {
 
     if (patternEmail.test(email.value)) {
       email.style.borderBottom = "solid 2px #43aa8b";
-      setEmailIsOk(true);
+      emailIsOk = true;
     } else {
       email.style.borderBottom = "solid 2px red";
-      setEmailIsOk(false);
+      emailIsOk= false;
     }
 
     const patternPwd = new RegExp(
@@ -81,39 +83,45 @@ const SignIn = () => {
 
     if (patternPwd.test(pwd.value)) {
       pwd.style.borderBottom = "solid 2px #43aa8b";
-      setPwdIsOk(true);
+      pwdIsOk = true;
     } else {
       pwd.style.borderBottom = "solid 2px red";
-      setPwdIsOk(false);
+      pwdIsOk = false;
     }
 
     if (pwd.value === pwdVerif.value && pwdVerif.value !== "" ) {
         pwdVerif.style.border = "solid 2px #43aa8b";
-        setPwdVerifIsOk(true);
+        pwdVerifIsOk = true;
     } else {
         pwdVerif.style.borderBottom = "solid 2px red";
-        setPwdVerifIsOk(false);
+        pwdVerifIsOk = false;
     }
-
-  }, []);
+  });
 
   return (
     <div className="signin">
       <h1>Inscription au portail M2L</h1>
 
       <div className="signin_form">
-        <GenericForm
-          toSend={toSend}
-          setToSend={setToSend}
-        />
-        <GenericForm
-          toSend={toSend2}
-          setToSend={setToSend2}
-          input={<input type="submit" onClick={signIn} value="Envoyer !" />}
-          par={<p className="signin_ok" ref={signInText}></p>}
-        />
+          <GenericForm
+            toSend={toSend}
+            setToSend={setToSend}
+          />
+          {/* <GenericForm
+            toSend={toSend2}
+            setToSend={setToSend2}
+          /> */}
+          <div>
+            <label htmlFor={toSend2[0].id} className='input-label'>{`${toSend2[0].place}`}</label>
+            <input type={toSend2[0].type} value="Envoyer !" />
+            <label htmlFor={toSend2[1].id} className='input-label'>{`${toSend2[1].place}`}</label>
+            <input type={toSend2[1].type} value="Envoyer !" />
+            <label htmlFor={toSend2[2].id} className='input-label'>{`${toSend2[2].place}`}</label>
+            <input type={toSend2[2].type} value="Envoyer !" />
+            <input type="submit" onClick={signIn} value="Envoyer !" />
+            <p className="signin_ok" ref={signInText}></p>
+          </div>
       </div>
-
     </div>
   );
 };
