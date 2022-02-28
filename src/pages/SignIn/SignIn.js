@@ -16,7 +16,7 @@ const SignIn = () => {
   const [toSend, setToSend] = useState([
     { value: "", place: "Nom", id: "nom", type: "text" },
     { value: "", place: "Prénom", id: "prenom", type: "text" },
-    { value: "", place: "Date de naissance (jj/mm/yyyy)", id: "ddn", type: "text" },
+    { value: "", place: "Date de naissance (jj/mm/yyyy)", id: "ddn", type: "date" },
     { value: "", place: "Adresse", id: "adresse", type: "text" },
     { value: "", place: "Téléphone", id: "tel", type: "text" },
   ]);
@@ -95,7 +95,7 @@ const SignIn = () => {
         setPwdVerifIsOk(false);
     }
 
-  }, []);
+  });
 
   return (
     <div className="signin">
