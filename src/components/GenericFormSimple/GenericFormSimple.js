@@ -1,7 +1,14 @@
 
+<<<<<<< HEAD
 import './GenericFormSimple.css';
 
 const GenericFormSimple = ({ props, handleSubmit }) => {
+=======
+import { useState } from 'react';
+import './GenericFormSimple.css';
+
+const GenericFormSimple = ({ props }) => {
+>>>>>>> 7810980a5ffafd06e7009d5eb59508ae24fa2f8d
     const { toSend, setToSend } = props;
     const items = Object.keys(toSend);
 
@@ -10,7 +17,11 @@ const GenericFormSimple = ({ props, handleSubmit }) => {
     };
 
     return (
+<<<<<<< HEAD
         <form className="generic-form-simple" onSubmit={handleSubmit}>
+=======
+        <form className="generic-form-simple">
+>>>>>>> 7810980a5ffafd06e7009d5eb59508ae24fa2f8d
             {
                 items.map((item, index) => (
                     <div className="mapped-input" key={`formKey-${index}`}>
@@ -27,7 +38,11 @@ const GenericFormSimple = ({ props, handleSubmit }) => {
                     </div>
                 ))
             }
+<<<<<<< HEAD
             <button type='submit'>Envoyer !</button >
+=======
+            <button type='submit' onClick={() => (console.log('clické!'))}>Envoyer !</button >
+>>>>>>> 7810980a5ffafd06e7009d5eb59508ae24fa2f8d
         </form>
     );
 }
