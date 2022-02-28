@@ -10,7 +10,13 @@
     border: 1px solid black;
 }
 
-.item{
+.item-list .headers {
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+.item-list .item{
     display: flex;
     justify-content: center;
     width: 85%;
@@ -19,9 +25,8 @@
     border-left: 1px solid black;
 }
 
-.item li{
+.item-list .item li{
     margin: 10px;
     width: 100%;
-    text-align: center;
-    text-align: left;
+    text-align: center; 
 }
