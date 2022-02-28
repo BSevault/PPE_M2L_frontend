@@ -14,7 +14,7 @@ const GenericFormSimple = ({ props, handleSubmit, messageSuccess, messageError }
             {
                 items.map((item, index) => (
                     <div className="mapped-input" key={`formKey-${index}`}>
-                        <label htmlFor={item} className='input-label'>{`Votre ${item}:`}</label>
+                        <label htmlFor={item} className='input-label'>{`${item}:`}</label>
                         <input
                             type='text'
                             name={item}
