@@ -26,6 +26,7 @@ const useAxios = (method, adress, content) => {
 
     useEffect(() => {
         fetchData();
+        console.log("blabla");
     }, []);
 
     // console.log(response);
