@@ -25,7 +25,12 @@ const Contact = () => {
             <div id="contact-form" >
             <GenericForm toSend={toSend}
             setToSend={setToSend} 
-            input={<textarea placeholder="Message" name="message" rows='10' cols='5' required />}
+            input={
+               <div className="mapped_input">
+                    <label for="message" className="input-label">Message</label>
+                    <textarea id="message" name="message" rows='10' cols='5' required />
+               </div>
+            }
             par={ <input type="submit" value="Envoyer" onClick={sendMessage} /> }
             />
             </div>
