@@ -14,9 +14,6 @@ const Compte = ({ user }) => {
   const method = 'put';
   const adress = `localhost:3001/users/${user.id}`;
 
-  console.log(adress);
-  console.log(user);
-
   const genericFormData = {
     "toSend": toSend,
     "setToSend": setToSend,
