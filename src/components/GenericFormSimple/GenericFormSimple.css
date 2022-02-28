@@ -43,7 +43,7 @@
   }
   
   .generic-form-simple button {
-    margin: 30px;
+    margin: 20px;
     color: var(--color_text);
     padding: 10px 40px;
     /* background: var(--color_green); */
@@ -52,6 +52,18 @@
       var(--color_green_light) 0px 8px 32px;
     /* border-radius: 8px; */
   }
+
+  .submit-message {
+      margin-bottom: 20px;
+  }
+
+  .submit-message .success {
+    color: greenyellow;
+}
+
+  .submit-message .error {
+    color: red;
+}
   
   @media only screen and (max-width: 768px) {
       .generic-form-simple {

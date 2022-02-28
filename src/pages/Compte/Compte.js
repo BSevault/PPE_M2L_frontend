@@ -1,5 +1,5 @@
 // import GenericFormSimple from '../../components/GenericFormSimple';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import GenericFormSimple from '../../components/GenericFormSimple/GenericFormSimple';
 import useAxios from '../../hooks/useAxios/useAxios';
 
@@ -13,9 +13,11 @@ const Compte = ({ user }) => {
   const [toSend, setToSend] = useState(userFiltered);
   const [content, setContent] = useState();
   const [adress, setAdress] = useState();
+  const [messageSuccess, setMessageSuccess] = useState('');
+  const [messageError, setMessageError] = useState('');
   
   // requête via custom hook, active uniquement à partir du moment ou "adress" est non null
-  const { result, error, loading } = useAxios('put', adress, content);
+  const { response, error } = useAxios('put', adress, content);
 
   // Données du formulaire
   const genericFormData = {
@@ -49,9 +51,16 @@ const Compte = ({ user }) => {
 
   }
 
+  // Définis si le fetch a été successful ou pas
+  useEffect(() => {
+    if (response && response.success) setMessageSuccess('Compte mis à jour !');
+    if (error) setMessageError('Une erreur est survenue, wups');
+  }, [response, error]);
+
+
   return (
     <div className="compte">
-      <GenericFormSimple props={genericFormData} handleSubmit={handleSubmit} />
+      <GenericFormSimple props={genericFormData} handleSubmit={handleSubmit} messageSuccess={messageSuccess} messageError={messageError} />
     </div>
   );
 };

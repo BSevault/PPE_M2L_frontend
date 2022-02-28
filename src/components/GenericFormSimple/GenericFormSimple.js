@@ -1,7 +1,7 @@
 
 import './GenericFormSimple.css';
 
-const GenericFormSimple = ({ props, handleSubmit }) => {
+const GenericFormSimple = ({ props, handleSubmit, messageSuccess, messageError }) => {
     const { toSend, setToSend } = props;
     const items = Object.keys(toSend);
 
@@ -28,6 +28,10 @@ const GenericFormSimple = ({ props, handleSubmit }) => {
                 ))
             }
             <button type='submit'>Envoyer !</button >
+            <div className="submit-message">
+                <p className="success">{messageSuccess}</p>
+                <p className="error">{messageError}</p>
+            </div>
         </form>
     );
 }
