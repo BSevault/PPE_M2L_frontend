@@ -7,8 +7,8 @@ const useAxios = (method, adress, content) => {
     // tant que ni réponse ni erreur, loading = true
     const [loading, setloading] = useState(true);
 
-
     const fetchData = () => {
+        console.log('fetch lancé !');
         axios({
             method: method,
             url: adress,
