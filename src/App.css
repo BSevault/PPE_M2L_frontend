@@ -36,17 +36,3 @@ h1, h2, h3, h4, h5, h6 {
 body {
     background-color: var(--bg_color);
 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-html, body, #root, .App {
-    height: 100%;
-}
->>>>>>> develop
-=======
-
-.content {
-    min-height: 79.9vh;
-}
->>>>>>> 7810980a5ffafd06e7009d5eb59508ae24fa2f8d

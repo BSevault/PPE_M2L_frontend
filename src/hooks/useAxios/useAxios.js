@@ -26,8 +26,8 @@ const useAxios = (method, adress, content) => {
     };
 
     useEffect(() => {
-        fetchData();
-    }, []);
+        if (adress) fetchData();
+    }, [adress]);
 
     // console.log(response);
     // custom hook returns value

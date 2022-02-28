@@ -1,5 +1,5 @@
 // import GenericFormSimple from '../../components/GenericFormSimple';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import GenericFormSimple from '../../components/GenericFormSimple/GenericFormSimple';
 import useAxios from '../../hooks/useAxios/useAxios';
 
@@ -10,16 +10,24 @@ const Compte = ({ user }) => {
 
 
   const [toSend, setToSend] = useState(userFiltered);
-  const [content, setContent] = useState(null);
-  const method = 'put';
-  const adress = `localhost:3001/users/${user.id}`;
+  const [content, setContent] = useState();
+  const [adress, setAdress] = useState();
+  
+  const { result, error, loading } = useAxios('put', adress, content);
 
   const genericFormData = {
     "toSend": toSend,
     "setToSend": setToSend,
   }
 
-  const updateAccount = useAxios;
+  const updateAccount = async () => {
+    // try {
+    //   await axios.put(adress, content)
+    // } catch (error) {
+    //   console.log(error.message);
+    // }
+    
+  }
 
   const handleSubmit = (e) => {
     // prevent page reloading
@@ -27,7 +35,6 @@ const Compte = ({ user }) => {
     Object.keys(toSend).forEach((key) => {
       user[key] = toSend[key];
     })
-    // console.log(user);
 
     setContent({
       "nom": user.nom,
@@ -35,17 +42,18 @@ const Compte = ({ user }) => {
       "email": user.email,
       "tel": user.tel,
       "password": "test",
-      "ddn": user.ddn,
+      "ddn": user.ddn.split('T')[0],
       "adresse": user.adresse
     });
 
-    updateAccount(method, adress, content);
+    setAdress(`http://localhost:3001/users/${user.id}`);
+
 
   }
 
-  // useEffect(() => {
-  //   if (response) setSalles(response.success);
-  // }, [response])
+  useEffect(() => {
+    if (content) updateAccount();
+  }, [content])
 
   return (
     <div className="compte">

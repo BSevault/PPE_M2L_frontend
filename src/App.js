@@ -32,13 +32,7 @@ function App() {
     <div className="App">
       <Router>
         <Navbar user={user} setUser={setUser} />
-<<<<<<< HEAD
         <RoutesM2L user={user} setUser={setUser} />
-=======
-        <div className="content">
-          <RoutesM2L user={user} setUser={setUser} />
-        </div>
->>>>>>> 7810980a5ffafd06e7009d5eb59508ae24fa2f8d
         <Footer />
       </Router>
 
