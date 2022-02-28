@@ -21,7 +21,7 @@ const ConnecBackEnd = () => {
 
     useEffect(() => {
         if (response) setSalles(response.success);
-    }, [loading, response])
+    }, [response])
 
 
     return  (
