@@ -4,12 +4,14 @@ import Home from "../../pages/Home/Home.js";
 import Legals from "../../pages/Legals/Legals.js";
 import Login from "../../pages/Login/Login.js";
 import Logout from "../../pages/Logout/Logout.js";
+import Produits from "../../pages/Produits/Produits.js";
 import SignIn from "../../pages/SignIn/SignIn.js";
 
 const RoutesM2L = ( { user, setUser } ) => {
   return (
     <Routes>
       <Route path="/" element={<Home user={user}/>} />
+      <Route path="/produits" element={<Produits />} />
       <Route path="/login" element={<Login user={user} setUser={setUser} />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/logout" element={<Logout />} />
