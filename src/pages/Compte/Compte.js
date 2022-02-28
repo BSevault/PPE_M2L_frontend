@@ -49,10 +49,6 @@ const Compte = ({ user }) => {
 
   }
 
-  // useEffect(() => {
-  //   if (content) updateAccount();
-  // }, [content])
-
   return (
     <div className="compte">
       <GenericFormSimple props={genericFormData} handleSubmit={handleSubmit} />
