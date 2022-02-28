@@ -1,6 +1,4 @@
 ul#footer {
-    position: absolute;
-    bottom: 0;
     display: flex;
     justify-content: space-evenly;
     background-color: #068D9D;

@@ -21,7 +21,7 @@ const ItemList = ({ name, method, adress, content, keys, headers }) => {
             <ul className={`item headers ${name}-headers`}>
                 {headers &&
                     headers.map((header, index) => (
-                        <li key={`${name}-key-$'index`}>{header}</li>
+                        <li key={`${name}-headers-key-${index}`}>{header}</li>
                     ))}
             </ul>
 
