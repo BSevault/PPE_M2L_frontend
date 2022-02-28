@@ -49,9 +49,9 @@ const Compte = ({ user }) => {
 
   }
 
-  useEffect(() => {
-    if (content) updateAccount();
-  }, [content])
+  // useEffect(() => {
+  //   if (content) updateAccount();
+  // }, [content])
 
   return (
     <div className="compte">
