@@ -1,7 +1,31 @@
+import useAxios from '../../hooks/useAxios/useAxios';
 import './PlanSalles.css';
 
-const PlanSalles = () => {
+const PlanSalles = ( {refText} ) => {
 
+    const {response} = useAxios('get', 'http://localhost:3001/salles/');
+
+    const selectSalle = (e) => {
+        const sallesAll = document.querySelectorAll(".salles_loc");
+
+        sallesAll.forEach((salle) => {
+            salle.classList.remove("salle_active");
+        });
+
+        response.success.forEach( (salle) => {
+            console.log(salle);
+            console.log(e);
+
+            if (salle.nom === e.target.textContent || salle.nom === e.target.value) {
+                refText.current.innerText = salle.nom;
+            }
+        });
+
+        e.target.parentNode.classList.add("salle_active");
+
+        // refText.current.innerText = "coucou les loups"
+        console.log(response);
+    }
 
     return (  
         <div className="plan_salles">
@@ -12,66 +36,66 @@ const PlanSalles = () => {
                             <rect id="ascenceur" x="260.4" y="241.3" className="salle" width="48.3" height="20.7"/>
                             <text transform="matrix(1 0 0 1 262.9611 254.875)" className="txt_ascenseur">Ascenseur</text>
                         </g>
-                        <g className='salles_loc'>
-                            <rect id="baccarat" x="568.6" y="206.7" className="salle" width="67.3" height="42.1"/> 
-                            <text transform="matrix(1 0 0 1 578.6277 231.3651)" className="st4 st5">Baccarat</text>
+                        <g className='salles_loc' onClick={selectSalle}>
+                            <rect id="baccarat" x="568.6" y="206.7" className="salle" width="67.3" height="42.1" value="Baccarat"/> 
+                            <text transform="matrix(1 0 0 1 578.6277 231.3651)">Baccarat</text>
                         </g>
-                        <g className='salles_loc'>
+                        <g className='salles_loc' onClick={selectSalle}>
                             <rect id="corbin" x="504.1" y="206.7" className="salle" width="63.7" height="42.1"/>
-                            <text transform="matrix(1 0 0 1 517.6277 231.3648)" className="st4 st5">Corbin</text>
+                            <text transform="matrix(1 0 0 1 517.6277 231.3648)">Corbin</text>
                         </g>
-                        <g className='salles_loc'>
+                        <g className='salles_loc' onClick={selectSalle}>
                             <rect id="galle" x="420.6" y="206.7" className="salle" width="82.9" height="42.1"/>
-                            <text transform="matrix(1 0 0 1 448.1899 231.3652)" className="st4 st5">Gallé</text>
+                            <text transform="matrix(1 0 0 1 448.1899 231.3652)">Gallé</text>
                         </g>
-                        <g className='salles_loc'>
+                        <g className='salles_loc' onClick={selectSalle}>
                             <rect id="daum" x="358.1" y="206.7" className="salle" width="61.9" height="42.1"/>
-                            <text transform="matrix(1 0 0 1 373.6899 231.3653)" className="st4 st5">Daum</text>
+                            <text transform="matrix(1 0 0 1 373.6899 231.3653)">Daum</text>
                         </g>
-                        <g className='salles_loc'>
+                        <g className='salles_loc' onClick={selectSalle}>
                             <rect id="longwy" x="358.1" y="177.7" className="salle" width="82.3" height="28.4"/>
-                            <text transform="matrix(1 0 0 1 379.461 194.6768)" className="st4 st5">Longwy</text>
+                            <text transform="matrix(1 0 0 1 379.461 194.6768)">Longwy</text>
                         </g>
                         <g>
                             <rect id="multimedia" x="344.1" y="129.7" className="salle" width="96.3" height="47.3"/>
-                            <text transform="matrix(1 0 0 1 364.9611 155.396)" className="st4 st5">Multimédia</text>
+                            <text transform="matrix(1 0 0 1 364.9611 155.396)">Multimédia</text>
                         </g>
                         <g>
                             <rect id="service" x="219.7" y="185.6" className="salle" width="123.8" height="20.6"/>
-                            <text transform="matrix(1 0 0 1 260.9611 199.375)" className="st4 st5">Services</text>
+                            <text transform="matrix(1 0 0 1 260.9611 199.375)">Services</text>
                         </g>
-                        <g className='salles_loc'>
+                        <g className='salles_loc' onClick={selectSalle}>
                             <rect id="amphi" x="219.7" y="60.6" className="salle" width="123.8" height="124.3"/>
-                            <text transform="matrix(1 0 0 1 246.9611 122.375)" className="st4 st5">Amphithéâtre</text>
+                            <text transform="matrix(1 0 0 1 246.9611 122.375)">Amphithéâtre</text>
                         </g>
-                        <g className='salles_loc'>
+                        <g className='salles_loc' onClick={selectSalle}>
                             <rect id="lamour" x="219.7" y="19" className="salle" width="123.8" height="41"/>
-                            <text transform="matrix(1 0 0 1 259.9611 42.3749)" className="st4 st5">Lamour</text>
+                            <text transform="matrix(1 0 0 1 259.9611 42.3749)">Lamour</text>
                         </g>
                         <g>
                             <rect id="administration" x="71.2" y="228.2" className="salle" width="128.1" height="33.8"/>
-                            <text transform="matrix(1 0 0 1 93.9611 247.8749)" className="st4 st5">Administration</text>
+                            <text transform="matrix(1 0 0 1 93.9611 247.8749)">Administration</text>
                         </g>
-                        <g className='salles_loc'>
+                        <g className='salles_loc' onClick={selectSalle}>
                             <rect id="gruber" x="16" y="206.9" className="salle" width="54.5" height="55.1"/>
-                            <text transform="matrix(1 0 0 1 24.9611 236.2712)" className="st4 st5">Grüber</text>
+                            <text transform="matrix(1 0 0 1 24.9611 236.2712)">Grüber</text>
                         </g>
                         <g>
                             <rect id="reprographie" x="16" y="169.7" className="salle" width="90" height="36.5"/>
-                            <text transform="matrix(1 0 0 1 24.9611 190.9374)" className="st4 st5">Reprographie</text>
+                            <text transform="matrix(1 0 0 1 24.9611 190.9374)">Reprographie</text>
                         </g>
-                        <g className='salles_loc'>
+                        <g className='salles_loc' onClick={selectSalle}>
                             <rect id="convivialite" x="16" y="106" className="salle" width="90" height="63"/>
                             <text transform="matrix(1 0 0 1 26.2995 131.75)">
-                                <tspan x="0" y="0" className="st4 st5">Restauration</tspan>
-                                <tspan x="-3.2" y="14.4" className="st4 st5">et convivialité</tspan>
+                                <tspan x="0" y="0">Restauration</tspan>
+                                <tspan x="-3.2" y="14.4">et convivialité</tspan>
                             </text>
                             <rect id="cuisine" x="16" y="78.2" className="salle" width="90" height="27"/>
-                            <text transform="matrix(1 0 0 1 41.4612 94.7708)" className="st4 st5">Cuisine</text>
+                            <text transform="matrix(1 0 0 1 41.4612 94.7708)">Cuisine</text>
                         </g>
-                        <g className='salles_loc'>
+                        <g className='salles_loc' onClick={selectSalle}>
                             <rect id="majorelle" x="16" y="19" className="salle" width="90" height="58.6"/>
-                            <text transform="matrix(1 0 0 1 37.4611 53.2712)" className="st4 st5">Majorelle</text>
+                            <text transform="matrix(1 0 0 1 37.4611 53.2712)">Majorelle</text>
                         </g>
                         <text transform="matrix(1 0 0 1 209.9474 281.5833)" className="entree_m2l">ENTREE</text>
                     </g>

@@ -3,17 +3,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .plan_svg {
-    width: 70%;
+  width: 70%;
 }
 
 .plan_svg #plan {
-    font-family: var(--typo_text);
-    font-size: 12px;
-    cursor: default;
-    fill: white;
+  font-family: var(--typo_text);
+  font-size: 12px;
+  cursor: default;
+  fill: white;
 }
 
 .plan_svg .salle {
@@ -21,13 +22,25 @@
   transition: fill 0.5s;
 }
 
-.plan_svg .salles_loc:hover rect {
+.plan_svg .salles_loc:hover rect{
   fill: var(--gold);
   cursor: pointer;
   transition: fill 0.5s;
 }
 
 .plan_svg .salles_loc:hover text {
+  cursor: pointer;
+  fill: black;
+  transition: fill 0.5s;
+}
+
+.plan_svg .salles_loc.salle_active rect  {
+  fill: var(--gold);
+  cursor: pointer;
+  transition: fill 0.5s;
+}
+
+.plan_svg .salles_loc.salle_active text {
   cursor: pointer;
   fill: black;
   transition: fill 0.5s;
