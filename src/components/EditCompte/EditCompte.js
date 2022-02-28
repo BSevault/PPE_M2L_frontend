@@ -57,7 +57,7 @@ const EditCompte = ({ user }) => {
 
 
     return (
-        <div className="compte">
+        <div className="edit-compte">
             <GenericFormSimple props={genericFormData} handleSubmit={handleSubmit} messageSuccess={messageSuccess} messageError={messageError} />
         </div>
     );
