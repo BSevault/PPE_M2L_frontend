@@ -49,14 +49,6 @@ const SignIn = () => {
     }
   };
 
-  const addActiveInput = (e) => {
-    if (e.target.value !== "") {
-      e.target.parentNode.classList.add("active_input");
-    } else if (e.target.value === "") {
-      e.target.parentNode.classList.remove("active_input");
-    }
-  };
-
   const signIn = async (e) => {
     e.preventDefault();
 
@@ -67,7 +59,7 @@ const SignIn = () => {
       email: toSend2[0].value,
       tel: toSend[4].value,
       password: toSend2[2].value,
-      ddn: toSend[2].value,
+      ddn: toSend[2].value.split('T')[0],
       adresse: toSend[3].value,
     };
 
@@ -115,7 +107,6 @@ const SignIn = () => {
                 id={item.id}
                 value={item.value}
                 onChange={(e) => handleChange(e)}
-                onInput={(e) => addActiveInput(e)}
                 ref={item.textRef}
                 required
               />

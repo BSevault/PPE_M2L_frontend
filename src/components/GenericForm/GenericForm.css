@@ -17,17 +17,13 @@
 .generic_form label {
   color: rgb(70, 66, 66);
   cursor: text;
-  position: absolute;
-  margin: 19px;
-  font-size: 1em;
+  font-size: 0.9em;
   z-index: 1;
-  transition: ease-out 0.5s;
 }
 
 .generic_form input, textarea {
-  position: relative;
   font-size: 1em;
-  margin: 10px 10px 10px 10px ;
+  margin: 8px 10px 10px 10px ;
   width: 400px;
   padding: 8px;
   border: 1px solid var(--blue);
@@ -35,16 +31,8 @@
   resize: none;
   outline: none;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  transition: ease-in-out 0.5s;
 }
 
-.generic_form .mapped_input:focus-within label , .generic_form .mapped_input.active_input label {
-  color: black;
-  cursor: text;
-  font-size: 0.9em;
-  transform: translateY(-32px);
-  transition: ease-in-out 0.5s;
-}
 
 
 @media only screen and (max-width: 768px) {
