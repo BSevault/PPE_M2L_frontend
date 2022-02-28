@@ -12,16 +12,18 @@ const Navbar = ({ user, setUser }) => {
   const navLinksVisiteurs = [
     { text: "Accueil", chemin: "/" },
     { text: "Salles", chemin: "/salles" },
-    { text: "Produits", chemin: "/produits" }
+    { text: "Produits", chemin: "/produits" },
+    { text: "Contact", chemin: "/contact" }
   ];
-
+  
   const navLinksLogged = [
     { text: "Accueil", chemin: "/" },
     { text: "Salles", chemin: "/salles" },
     { text: "Produits", chemin: "/produits" },
     { text: "Réservations", chemin: "/reservations" },
     { text: "Réunions", chemin: "/reunions" },
-    { text: "Factures", chemin: "/factures" }
+    { text: "Factures", chemin: "/factures" },
+    { text: "Contact", chemin: "/contact" }
   ];
 
   if (user === "") {
