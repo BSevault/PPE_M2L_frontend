@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const useAxios = (method, adress, content) => {
     const [response, setResponse] = useState(null);
-    const [error, setError] = useState('');
+    const [error, setError] = useState(null);
+    // tant que ni réponse ni erreur, loading = true
     const [loading, setloading] = useState(true);
 
 
@@ -26,7 +27,6 @@ const useAxios = (method, adress, content) => {
 
     useEffect(() => {
         fetchData();
-        console.log("blabla");
     }, []);
 
     // console.log(response);

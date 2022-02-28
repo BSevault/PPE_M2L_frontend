@@ -17,10 +17,7 @@ function App() {
     (
       async () => {
         if (idUser) {
-          const result = await axios.get(`http://localhost:3001/users/${idUser}`,
-            {
-              credentials: idUser
-            });
+          const result = await axios.get(`http://localhost:3001/users/${idUser}`);
           const user = result.data.success[0];
 
           setUser(user);
@@ -29,7 +26,7 @@ function App() {
     )()
   }, []);
 
-  console.log(user);
+  // console.log(user);
 
   return (
     <div className="App">
