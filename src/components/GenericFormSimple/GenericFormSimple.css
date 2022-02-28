@@ -1,0 +1,68 @@
+.generic-form-simple {
+    color: var(--color_text);
+    margin: 20px 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: var(--color_green_light);
+    border: 3px double var(--color_green_light);
+    border-radius: 12px;
+    box-shadow: var(--color_green_light) 0px 4px 16px,
+      var(--color_green_light) 0px 8px 32px;
+  }
+  
+  .generic-form-simple .mapped-input {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .generic-form-simple .form-message {
+    /* margin: 10px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .generic-form-simple label {
+    padding: 5px;
+  }
+  
+  .generic-form-simple input,
+  textarea {
+    width: 400px;
+    padding: 8px;
+    background: var(--background_color);
+    border: 2px solid var(--color_melon_light);
+    border-radius: 5px;
+    resize: vertical;
+  }
+  
+  .generic-form-simple button {
+    margin: 30px;
+    color: var(--color_text);
+    padding: 10px 40px;
+    background: var(--color_green);
+    border: 5px double var(--color_green_light);
+    box-shadow: var(--color_green_light) 0px 4px 16px,
+      var(--color_green_light) 0px 8px 32px;
+    border-radius: 8px;
+  }
+  
+  @media only screen and (max-width: 768px) {
+      .generic-form-simple {
+          margin: 20px 5%;
+      }
+      .generic-form-simple textarea, input {
+          max-width: 70%;
+          font-size: 100%;
+      }
+  
+      .generic-form-simple input {
+          font-size: 100%;
+      }
+  }

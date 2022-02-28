@@ -1,22 +1,30 @@
+// import GenericFormSimple from '../../components/GenericFormSimple';
+import { useState } from 'react';
+import GenericFormSimple from '../../components/GenericFormSimple/GenericFormSimple';
+
 const Compte = ({ user }) => {
-  const userLogged = user;
-  // console.log(userLogged);
+
+  const userFiltered = user;
+  delete userFiltered['id', 'is_active', 'is_admin'];
+
+  const [toSend, setToSend] = useState(user);
+
+  const genericFormData = {
+    "toSend": toSend,
+    "setToSend": setToSend,
+  }
+
   let arrUser = [];
 
-  for (const data in userLogged) {
-    if (userLogged.hasOwnProperty.call(userLogged, data)) {
-      const element = userLogged[data];
-      // console.log(data, element);
-
-      arrUser.push(`${data} : ${element}`);
-    }
+  for (const data in user) {
+    const element = user[data];
+    arrUser.push(`${data} : ${element}`);
   }
+
 
   return (
     <div className="compte">
-      {arrUser.map((data, index) => {
-        return <p key={`compte ${index}`}>{data}</p>;
-      })}
+      <GenericFormSimple props={genericFormData} />
     </div>
   );
 };
