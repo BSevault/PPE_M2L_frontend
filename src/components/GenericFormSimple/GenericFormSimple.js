@@ -1,8 +1,7 @@
 
-import { useState } from 'react';
 import './GenericFormSimple.css';
 
-const GenericFormSimple = ({ props }) => {
+const GenericFormSimple = ({ props, handleSubmit }) => {
     const { toSend, setToSend } = props;
     const items = Object.keys(toSend);
 
@@ -11,7 +10,7 @@ const GenericFormSimple = ({ props }) => {
     };
 
     return (
-        <form className="generic-form-simple">
+        <form className="generic-form-simple" onSubmit={handleSubmit}>
             {
                 items.map((item, index) => (
                     <div className="mapped-input" key={`formKey-${index}`}>
@@ -28,7 +27,7 @@ const GenericFormSimple = ({ props }) => {
                     </div>
                 ))
             }
-            <button type='submit' onClick={() => (console.log('clické!'))}>Envoyer !</button >
+            <button type='submit'>Envoyer !</button >
         </form>
     );
 }
