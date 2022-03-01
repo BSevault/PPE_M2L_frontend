@@ -39,7 +39,6 @@ const EditCompte = ({ user }) => {
             "prenom": user.prenom,
             "email": user.email,
             "tel": user.tel,
-            "password": "test",
             "ddn": user.ddn.split('T')[0],
             "adresse": user.adresse
         });
