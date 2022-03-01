@@ -12,18 +12,17 @@ function App() {
   const [user, setUser] = useState('');
 
   useEffect(() => {
-    const idUser = localStorage.getItem("userId");
+    const idUser = localStorage.getItem("userId");  // va lire l'idUser stocker en LocalStorage
 
-    (
-      async () => {
+    // ()() permet de faire fonctionner une fonction async dans un useEffect
+    (async () => {
         if (idUser) {
-          const result = await axios.get(`http://localhost:3001/users/${idUser}`);
-          const user = result.data.success[0];
+          const result = await axios.get(`http://localhost:3001/users/${idUser}`); // call axios avec l'id du User
+          const user = result.data.success[0];                                     // recupère toute les infos du user
 
           setUser(user);
         }
-      }
-    )()
+      })()
   }, []);
 
   // console.log(user);
@@ -31,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Navbar user={user} setUser={setUser} />
+        <Navbar user={user} setUser={setUser} />            {/* passe le JSON User + setUser en props pour avoir les données dans toutes l'app */}
         <RoutesM2L user={user} setUser={setUser} />
         <Footer />
       </Router>

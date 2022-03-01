@@ -21,7 +21,8 @@ const Login = ( { setUser } ) => {
             password
         })
         .catch((error) => {
-
+            
+            // on traite les erreurs en cas de mauvais login ou pwd
             if (error.response.status === 401) {
                 messageError.current.innerText = "⚠️ Email ou mot de passe invalide !";
                 inputEmail.current.value = '';
@@ -29,6 +30,7 @@ const Login = ( { setUser } ) => {
             }
         });
 
+        // si tout ce passe bien on stock l'id dans le localStorage et set "redirect=true"
         if (result.data.success) {
             localStorage.setItem("userId", result.data.success.id)
             setRedirect(true);
@@ -37,10 +39,12 @@ const Login = ( { setUser } ) => {
         setUser(result.data.success);
     };
 
+    // fait la redirection vers Home une fois le user logger si "redirec=true"
     if (redirect) {
         return <Navigate to="/" />;
     }
 
+    // ajoute une classe quand le curseur est dans un input text
     const addActiveInput = (e) => {
         if (e.target.value !== "") {
             e.target.parentNode.classList.add("active_input");     
