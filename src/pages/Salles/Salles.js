@@ -1,14 +1,11 @@
-
 import { useState } from 'react';
-// import ItemList from '../../components/ItemList/ItemList';
+import ItemList from '../../components/ItemList/ItemList';
 import PlanSalles from '../../components/PlanSalles/PlanSalles';
 import useAxios from '../../hooks/useAxios/useAxios';
 import './Salles.css'
 
 const Salles = () => {
     const keys = ['nom', 'description', 'capacite', 'prix'];
-    const name = 'salles';
-    // const headerKeys = [ 'Nom', 'Description', 'Capacité (nb personnes)', 'Prix (€)']
 
     const {response} = useAxios('get', 'http://localhost:3001/salles/');
 
@@ -40,28 +37,8 @@ const Salles = () => {
     return (  
         <div className="salles">
             <h1>Salles mise à disposition des ligues</h1>
-            
             <PlanSalles selectSalle={selectSalle}/>
-            
-            <div className={`item-list ${name}-list`}>
-                <ul className={`item headers ${name}-headers`}>
-                    {headers &&
-                        headers.map((header, index) => (
-                            <li key={`${name}-headers-key-${index}`}>{header}</li>
-                        ))}
-                </ul>
-
-            {items &&
-                items.map((item) => (
-                    <ul className={`item ${name}-item`} key={`item-${item.id}`}>
-                        {keys.map((key, index) => (
-                            <li key={`${name}-key-${index}`}> {item[key]} </li>
-                        ))}
-                    </ul>
-                ))}
-            </div>
-
-            {/* <ItemList name='salles'  content={null} keys={sallesKeys} headers={headerKeys} data={dataSalle}/> */}
+            <ItemList name='salles' keys={keys} headers={headers} data={items}/>
         </div>
     );
 }
