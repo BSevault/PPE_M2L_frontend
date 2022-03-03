@@ -1,25 +1,16 @@
 import { useEffect, useState } from "react";
-import useAxios from "../../hooks/useAxios/useAxios";
 import "./ItemList.css";
 
 // name : nom de la liste
+// data : JSON contenant les données à afficher
 // keys : tableau contenant les noms des colonnes de la table listée
 // headers : tableau contenant les en-têtes de la table listée
-const ItemList = ({ name, method, adress, content, keys, headers }) => {
+const ItemList = ({ name, data, keys, headers }) => {
     const [items, setItems] = useState();
     
-    const { response } = useAxios(method, adress, content);
-    
     useEffect(() => {
-        if (response) setItems(response.success);
-    }, [adress, response]);
-
-    // useEffect(() => {
-    //     setItems(data);
-    // }, [data]);
- 
-
-    // console.log(items);
+        if (data) setItems(data);
+    }, [data]);
 
     return (
         <div className={`item-list ${name}-list`}>
