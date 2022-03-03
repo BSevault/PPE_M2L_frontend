@@ -10,7 +10,6 @@ const Salles = () => {
     const name = 'salles';
     // const headerKeys = [ 'Nom', 'Description', 'Capacité (nb personnes)', 'Prix (€)']
 
-    // const salleCarac = useRef();
     const {response} = useAxios('get', 'http://localhost:3001/salles/');
 
     const [ headers, setHeaders ] = useState();
@@ -34,14 +33,8 @@ const Salles = () => {
             salle.classList.remove("salle_active");
         });
 
-        if (e.target.parentNode.classList.contains("salles_loc")) {
-            e.target.parentNode.classList.add("salle_active");
-            addData(e, response);
-
-        } else if (e.target.parentNode.parentNode.classList.contains("salles_loc")) {
-            e.target.parentNode.parentNode.classList.add("salle_active");
-            addData(e, response);
-        }
+        e.target.parentNode.classList.add("salle_active");
+        addData(e, response);
     }
 
     return (  

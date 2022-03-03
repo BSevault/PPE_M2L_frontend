@@ -5,7 +5,6 @@ import ItemList from "../../components/ItemList/ItemList";
 const Produits = () => {
     const productsKeys = ["nom_produit", "description", "qte_dispo", "prix"];
     const productsHeader = ["Produit", "Description", "Quantité disponible", "Prix (€)"]
-    const { response } = useAxios("get", "http://localhost:3001/produits", null );
     return (
         <div id="products-wrapper">
             <div id="products-content">
