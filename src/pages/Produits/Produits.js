@@ -3,7 +3,7 @@ import ItemList from "../../components/ItemList/ItemList";
 
 const Produits = () => {
     const productsKeys = ["nom_produit", "description", "qte_dispo", "prix"];
-    const productsHeader = ["Produit", "Description", "Quantité disponible", "Prix"]
+    const productsHeader = ["Produit", "Description", "Quantité disponible", "Prix (€)"]
     return (
         <div id="products-wrapper">
             <div id="products-content">
