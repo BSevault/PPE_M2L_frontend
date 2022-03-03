@@ -3,16 +3,16 @@
 
 import './GenericForm.css';
 
+// on génère un form depuis un tableau d'objet "toSend"
 const GenericForm = ({ toSend, setToSend, input, par }) => {
 
     const handleChange = (e) => {
-
-        const id = e.target.name;
-        const indexSend = toSend.findIndex((elem) => elem.id === id );
+        const id = e.target.name;                                       // on recupère l'id de l'input selectionné
+        const indexSend = toSend.findIndex((elem) => elem.id === id );  // on recupère l'index dans toSend
         
         if (indexSend !== -1){
-            let newArray = toSend.slice();
-            newArray[indexSend].value = e.target.value;
+            let newArray = toSend.slice();                              // on copie le tableau toSend
+            newArray[indexSend].value = e.target.value;                 // on insère la valeur de l'input au bon index dans le nouveau tableau et on setToSend
             setToSend(newArray);
         }
     };
@@ -22,13 +22,14 @@ const GenericForm = ({ toSend, setToSend, input, par }) => {
             {
                 toSend.map((item, index) => (
                     <div className="mapped_input" key={`formKey-${index}`}>
-                        <label htmlFor={item.id} className='input-label'>{`${item.place}`}</label>
+                        <label htmlFor={item.id} className='input-label'>{`${item.place}`}</label>                        
                         <input
                             type={item.type}
                             name={item.id}
                             id={item.id}
                             value={item.value}
                             onChange={(e) => handleChange(e)}
+                            ref={item.textRef ? item.textRef : null}
                             required
                         />
                     </div>

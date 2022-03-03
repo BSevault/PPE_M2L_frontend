@@ -3,7 +3,12 @@ import { NavLink } from "react-router-dom";
 import logo from "../../assets/logos/logo_M2L.png";
 import "./Navbar.css";
 
+// navLinksVisiteurs => liste d'objet pour la navbar visiteur
+// navLinksLogged => liste d'objet pour la navbar visiteur connecté
+
 const Navbar = ({ user, setUser }) => {
+
+  // retire userId du localStorage + vide les données user
   const logOutApp = () => {
     localStorage.removeItem("userId");
     setUser("");
@@ -12,18 +17,21 @@ const Navbar = ({ user, setUser }) => {
   const navLinksVisiteurs = [
     { text: "Accueil", chemin: "/" },
     { text: "Salles", chemin: "/salles" },
-    { text: "Produits", chemin: "/produits" }
+    { text: "Produits", chemin: "/produits" },
+    { text: "Contact", chemin: "/contact" }
   ];
-
+  
   const navLinksLogged = [
     { text: "Accueil", chemin: "/" },
     { text: "Salles", chemin: "/salles" },
     { text: "Produits", chemin: "/produits" },
     { text: "Réservations", chemin: "/reservations" },
     { text: "Réunions", chemin: "/reunions" },
-    { text: "Factures", chemin: "/factures" }
+    { text: "Factures", chemin: "/factures" },
+    { text: "Contact", chemin: "/contact" }
   ];
 
+  // 2 rendu si le user est set ou pas
   if (user === "") {
     return (
       <nav className="navbar">
@@ -78,3 +86,4 @@ const Navbar = ({ user, setUser }) => {
 };
 
 export default Navbar;
+

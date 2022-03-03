@@ -7,6 +7,14 @@
     --gold: #fec816;
     --blue: #068D9D;
     --gold_light: #fde184;
+
+    --background_color: #f4f3ee;
+    --color_text: #254441;
+    --color_melon: #f8d3a3;
+    --color_melon_light: #f8d3a3a4;
+    --color_green: #43aa8b;
+    --color_green_light: #43aa8b86;
+    --color_grey: #bcb8b1;
 }
 
 * {

@@ -3,10 +3,13 @@ import { useEffect } from "react";
 const useCheckSignIn = ( email, pwd, pwdVerif ) => {
 
     useEffect(() => {
+
+        // REGEX pour email
         let patternEmail = new RegExp(
           /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
         );
     
+        // on stylise l'input pour que user sait que sont email est pas correct.
         if (patternEmail.test(email.current.value)) {
           email.current.style.borderBottom = "solid 2px #43aa8b";
           email.current.emailIsOk = true;
@@ -15,6 +18,7 @@ const useCheckSignIn = ( email, pwd, pwdVerif ) => {
           email.current.emailIsOk = false;
         }
     
+        // REGEX pour pwd
         const patternPwd = new RegExp(
           "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
         );
