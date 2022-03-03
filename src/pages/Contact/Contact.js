@@ -27,7 +27,7 @@ const Contact = () => {
                     setToSend={setToSend}
                     input={
                         <div className="mapped_input">
-                            <label for="message" className="input-label">
+                            <label htmlFor="message" className="input-label">
                                 Message
                             </label>
                             <textarea
