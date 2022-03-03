@@ -7,12 +7,17 @@ import "./ItemList.css";
 // headers : tableau contenant les en-têtes de la table listée
 const ItemList = ({ name, method, adress, content, keys, headers }) => {
     const [items, setItems] = useState();
-
+    
     const { response } = useAxios(method, adress, content);
-
+    
     useEffect(() => {
         if (response) setItems(response.success);
-    }, [response]);
+    }, [adress, response]);
+
+    // useEffect(() => {
+    //     setItems(data);
+    // }, [data]);
+ 
 
     // console.log(items);
 

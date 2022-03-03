@@ -72,5 +72,5 @@ const Login = ( { setUser } ) => {
         </div>
     );
 }
- 
+
 export default Login;

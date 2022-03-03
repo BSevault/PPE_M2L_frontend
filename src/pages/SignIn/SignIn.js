@@ -38,10 +38,20 @@ const SignIn = () => {
     },
   ]);
 
+  const handleChange = (e) => {
+    const id = e.target.name;
+    const indexSend = toSend2.findIndex((elem) => elem.id === id);
+
+    if (indexSend !== -1) {
+      let newArray = toSend2.slice();
+      newArray[indexSend].value = e.target.value;
+      setToSend2(newArray);
+    }
+  };
+
   const signIn = async (e) => {
     e.preventDefault();
 
-    // données entrées par le User + adresse du backend
     const adress = "http://localhost:3001/users";
     const content = {
       nom: toSend[0].value,
@@ -49,20 +59,16 @@ const SignIn = () => {
       email: toSend2[0].value,
       tel: toSend[4].value,
       password: toSend2[2].value,
-      ddn: toSend[2].value.split("T")[0],
+      ddn: toSend[2].value.split('T')[0],
       adresse: toSend[3].value,
     };
 
-    // emailIsOk pwdIsOk pwdVerifIsOk = true on envoie les données pour créer le user
-    // ces variables sont stocker dans le useRef (current."nomVariable")
     if (
       email.current.emailIsOk &&
       pwd.current.pwdIsOk &&
       pwdVerif.current.pwdVerifIsOk
     ) {
       const result = await axios.post(adress, content).catch((error) => {
-
-        // on traite les erreurs + affiche message dans un <p> prévu pour ça
         if (error.response.status === 401) {
           signInText.current.innerText =
             "⚠️ Un compte existe déjà avec cette email";
@@ -76,10 +82,11 @@ const SignIn = () => {
       signInText.current.innerText =
         "⚠️ Il y a un problème avec votre email ou mot de passe. Veuillez les vérifier";
     }
-  };
 
-  // custom hook pour check le mail, le pwd et que le pwd = 2eme champ pwd
+  };
+  
   useCheckSignIn(email, pwd, pwdVerif);
+   
 
   return (
     <div className="signin">
@@ -87,12 +94,28 @@ const SignIn = () => {
 
       <div className="signin_form">
         <GenericForm toSend={toSend} setToSend={setToSend} />
-        <GenericForm
-          toSend={toSend2}
-          setToSend={setToSend2}
-          input={<input type="submit" onClick={signIn} value="Envoyer !" />}
-          par={<p className="signin_ok" ref={signInText}></p>}
-        />
+
+        <div className="generic_form">
+          {toSend2.map((item, index) => (
+            <div className="mapped_input" key={`formKey-${index}`}>
+              <label htmlFor={item.id} className="input-label">
+                {item.place}
+              </label>
+              <input
+                type={item.type}
+                name={item.id}
+                id={item.id}
+                value={item.value}
+                onChange={(e) => handleChange(e)}
+                ref={item.textRef}
+                required
+              />
+            </div>
+          ))}
+
+          <input type="submit" onClick={signIn} value="Envoyer !" />
+          <p className="signin_ok" ref={signInText}></p>
+        </div>
       </div>
     </div>
   );

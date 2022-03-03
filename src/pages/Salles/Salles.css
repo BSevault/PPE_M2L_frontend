@@ -1,0 +1,14 @@
+.salles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin: 20px;
+    padding: 10px;
+  }
+
+.salles h1 {
+    padding: 10px;
+    margin-bottom: 15px;
+}
