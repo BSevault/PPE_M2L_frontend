@@ -8,6 +8,7 @@ import Login from "../../pages/Login/Login.js";
 import Logout from "../../pages/Logout/Logout.js";
 import Presentation from "../../pages/Presentation/Presentation.js";
 import Produits from "../../pages/Produits/Produits.js";
+import Reservations from "../../pages/Reservations/Reservations.js";
 import Salles from "../../pages/Salles/Salles.js";
 import SignIn from "../../pages/SignIn/SignIn.js";
 
@@ -25,6 +26,7 @@ const RoutesM2L = ( { user, setUser } ) => {
       <Route path="/salles" element={<Salles />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/presentation" element={<Presentation />} />
+      <Route path="/reservations" element={<Reservations user={user}/>} />
 
       {/* <Route path="/backend" element={<ConnectDB />} /> */}
     </Routes>
