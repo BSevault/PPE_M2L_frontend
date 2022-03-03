@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import Calendar from "react-calendar";
 import ItemList from '../../components/ItemList/ItemList';
 import PlanSalles from '../../components/PlanSalles/PlanSalles';
 import useAxios from '../../hooks/useAxios/useAxios';
+
 import './Salles.css'
+import 'react-calendar/dist/Calendar.css';
 
 const Salles = () => {
     const keys = ['nom', 'description', 'capacite', 'prix'];
@@ -39,6 +42,7 @@ const Salles = () => {
             <h1>Salles mise à disposition des ligues</h1>
             <PlanSalles selectSalle={selectSalle}/>
             <ItemList name='salles' keys={keys} headers={headers} data={items}/>
+            <Calendar/>
         </div>
     );
 }
