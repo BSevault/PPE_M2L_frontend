@@ -1,44 +1,13 @@
-// import useAxios from '../../hooks/useAxios/useAxios';
 import './PlanSalles.css';
 
-const PlanSalles = ( {refText, selectSalle} ) => {
-
-    // const {response} = useAxios('get', 'http://localhost:3001/salles/');
-
-    // const addData = (e, response) => {
-    //     response.success.forEach( (salle) => {
-                
-    //         if (salle.nom === e.target.textContent || salle.nom === e.target.parentNode.children[1].textContent) {
-    //             refText.current.innerText = salle.nom;
-    //         }
-    //     });
-    // }
-
-
-    // const selectSalle = (e) => {
-    //     const sallesAll = document.querySelectorAll(".salles_loc");
-
-    //     sallesAll.forEach((salle) => {
-    //         salle.classList.remove("salle_active");
-    //     });
-
-    //     if (e.target.parentNode.classList.contains("salles_loc")) {
-    //         e.target.parentNode.classList.add("salle_active");
-    //         addData(e, response);
-
-    //     } else if (e.target.parentNode.parentNode.classList.contains("salles_loc")) {
-    //         e.target.parentNode.parentNode.classList.add("salle_active");
-    //         addData(e, response);
-    //     }
-
-    // }
+const PlanSalles = ( {selectSalle} ) => {
 
     return (  
         <div className="plan_salles">
             <div className="plan_svg">
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 650 300" >
                     <g id="plan">
-                        <g>
+                        <g className='salles_no_loc'>
                             <rect id="ascenceur" x="260.4" y="241.3" className="salle" width="48.3" height="20.7"/>
                             <text transform="matrix(1 0 0 1 262.9611 254.875)" className="txt_ascenseur">Ascenseur</text>
                         </g>
@@ -62,11 +31,11 @@ const PlanSalles = ( {refText, selectSalle} ) => {
                             <rect id="longwy" x="358.1" y="177.7" className="salle" width="82.3" height="28.4"/>
                             <text transform="matrix(1 0 0 1 379.461 194.6768)">Longwy</text>
                         </g>
-                        <g>
+                        <g className='salles_no_loc'>
                             <rect id="multimedia" x="344.1" y="129.7" className="salle" width="96.3" height="47.3"/>
                             <text transform="matrix(1 0 0 1 364.9611 155.396)">Multimédia</text>
                         </g>
-                        <g>
+                        <g className='salles_no_loc'>
                             <rect id="service" x="219.7" y="185.6" className="salle" width="123.8" height="20.6"/>
                             <text transform="matrix(1 0 0 1 260.9611 199.375)">Services</text>
                         </g>
@@ -78,7 +47,7 @@ const PlanSalles = ( {refText, selectSalle} ) => {
                             <rect id="lamour" x="219.7" y="19" className="salle" width="123.8" height="41"/>
                             <text transform="matrix(1 0 0 1 259.9611 42.3749)">Lamour</text>
                         </g>
-                        <g>
+                        <g className='salles_no_loc'>
                             <rect id="administration" x="71.2" y="228.2" className="salle" width="128.1" height="33.8"/>
                             <text transform="matrix(1 0 0 1 93.9611 247.8749)">Administration</text>
                         </g>
@@ -86,7 +55,7 @@ const PlanSalles = ( {refText, selectSalle} ) => {
                             <rect id="gruber" x="16" y="206.9" className="salle" width="54.5" height="55.1"/>
                             <text transform="matrix(1 0 0 1 24.9611 236.2712)">Grüber</text>
                         </g>
-                        <g>
+                        <g  className='salles_no_loc'>
                             <rect id="reprographie" x="16" y="169.7" className="salle" width="90" height="36.5"/>
                             <text transform="matrix(1 0 0 1 24.9611 190.9374)">Reprographie</text>
                         </g>

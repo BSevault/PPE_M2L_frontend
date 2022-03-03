@@ -63,3 +63,7 @@
   font-family: var(--typo_text);
   cursor: default;
 }
+
+.salles_no_loc .salle {
+  fill: var(--color_grey);
+}
