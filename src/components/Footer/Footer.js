@@ -10,9 +10,7 @@ const Footer = () => {
                 <p>12 avenue de Lorraine, 57000 METZ</p>
             </li>
             <li id="presentation">
-                <a href="../../assets/docs/Presentation_M2L.pdf" >
-                   <h3> Présentation des locaux</h3>
-                </a>
+                <Link to="/presentation"><h3> Présentation des locaux</h3></Link>
             </li>
             <li id="legals">
                 <Link to="/legals"><h3>Mentions légales</h3></Link>

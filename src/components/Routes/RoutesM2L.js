@@ -6,6 +6,7 @@ import Home from "../../pages/Home/Home.js";
 import Legals from "../../pages/Legals/Legals.js";
 import Login from "../../pages/Login/Login.js";
 import Logout from "../../pages/Logout/Logout.js";
+import Presentation from "../../pages/Presentation/Presentation.js";
 import Produits from "../../pages/Produits/Produits.js";
 import Salles from "../../pages/Salles/Salles.js";
 import SignIn from "../../pages/SignIn/SignIn.js";
@@ -23,6 +24,7 @@ const RoutesM2L = ( { user, setUser } ) => {
       <Route path="/cgv" element={<Cgv />} />
       <Route path="/salles" element={<Salles />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/presentation" element={<Presentation />} />
 
       {/* <Route path="/backend" element={<ConnectDB />} /> */}
     </Routes>
