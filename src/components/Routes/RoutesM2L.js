@@ -13,7 +13,7 @@ const RoutesM2L = ( { user, setUser } ) => {
   return (
     <Routes>
       <Route path="/" element={<Home user={user}/>} />
-      <Route path="/produits" element={<Produits />} />
+      <Route path="/produits" element={<Produits/>} />
       <Route path="/login" element={<Login user={user} setUser={setUser} />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/logout" element={<Logout />} />

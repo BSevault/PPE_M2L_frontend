@@ -17,7 +17,6 @@ const Navbar = ({ user, setUser }) => {
   const navLinksVisiteurs = [
     { text: "Accueil", chemin: "/" },
     { text: "Salles", chemin: "/salles" },
-    { text: "Produits", chemin: "/produits" },
     { text: "Contact", chemin: "/contact" }
   ];
   
