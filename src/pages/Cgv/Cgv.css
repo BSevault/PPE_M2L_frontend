@@ -1,0 +1,24 @@
+.cgv-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.cgv-content {
+    display: flex;
+    flex-direction: column ;
+    width: 70%;
+}
+
+.cgv-content h1{
+    text-align: center;
+    margin: 30px;
+}
+
+.cgv-content p {
+    margin: 15px;
+}
+
+.cgv-content .legals-title {
+    margin-top: 50px;
+}

@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import Cgv from "../../pages/Cgv/Cgv.js";
 import Compte from "../../pages/Compte/Compte.js";
 import Contact from "../../pages/Contact/Contact.js";
 import Home from "../../pages/Home/Home.js";
@@ -19,6 +20,7 @@ const RoutesM2L = ( { user, setUser } ) => {
       <Route path="/logout" element={<Logout />} />
       <Route path="/compte" element={<Compte user={user} />} />
       <Route path="/legals" element={<Legals />} />
+      <Route path="/cgv" element={<Cgv />} />
       <Route path="/salles" element={<Salles />} />
       <Route path="/contact" element={<Contact />} />
 
