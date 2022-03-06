@@ -19,7 +19,7 @@ const RoutesM2L = ( { user, setUser } ) => {
       <Route path="/logout" element={<Logout />} />
       <Route path="/compte" element={<Compte user={user} />} />
       <Route path="/legals" element={<Legals />} />
-      <Route path="/salles" element={<Salles />} />
+      <Route path="/salles" element={<Salles user={user} />} />
       <Route path="/contact" element={<Contact />} />
 
       {/* <Route path="/backend" element={<ConnectDB />} /> */}
