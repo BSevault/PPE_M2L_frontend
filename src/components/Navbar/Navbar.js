@@ -17,7 +17,6 @@ const Navbar = ({ user, setUser }) => {
   const navLinksVisiteurs = [
     { text: "Accueil", chemin: "/" },
     { text: "Salles", chemin: "/salles" },
-    { text: "Contact", chemin: "/contact" }
   ];
   
   const navLinksLogged = [
@@ -27,7 +26,7 @@ const Navbar = ({ user, setUser }) => {
     { text: "Réservations", chemin: "/reservations" },
     { text: "Réunions", chemin: "/reunions" },
     { text: "Factures", chemin: "/factures" },
-    { text: "Contact", chemin: "/contact" }
+    { text: "Réclamations", chemin: "/complaint" },
   ];
 
   // 2 rendu si le user est set ou pas

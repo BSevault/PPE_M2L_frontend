@@ -71,7 +71,7 @@ const SignIn = () => {
       const result = await axios.post(adress, content).catch((error) => {
         if (error.response.status === 401) {
           signInText.current.innerText =
-            "⚠️ Un compte existe déjà avec cette email";
+            "⚠️ Un compte existe déjà avec cet email";
         }
       });
 
