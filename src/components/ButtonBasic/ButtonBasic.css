@@ -1,0 +1,8 @@
+.button-basic {
+    padding: 10px;
+    background: var(--color_green_light);
+  }
+
+  .button-basic:hover {
+    background: var(--color_green);
+}
