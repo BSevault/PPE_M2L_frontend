@@ -1,22 +1,25 @@
 import { useEffect, useState } from "react";
+import ButtonBasic from "../../components/ButtonBasic/ButtonBasic";
 import './GestionResa.css';
 
-const GestionResa = ({ reservation }) => {
+const GestionResa = ({ reservation, setFocus }) => {
+    // const [resaKeys, setResaKeys] = useState();
+    // useEffect(() => {
+    //     if (reservation) setResaKeys(Object.keys(reservation))
+    // }, [reservation]);
 
-    const [resaKeys, setResaKeys] = useState();
+    console.log(reservation);
+
+
     
-    useEffect(() => {
-        if (reservation) setResaKeys(Object.keys(reservation))
-    }, [reservation]);
 
     return (
         <div className="gestion-resa">
+            <div className="return-resa">
+                <ButtonBasic handleClick={() => setFocus()} buttonInnerText="Revenir à mes réservations" />
+            </div>
             <ul className="test">
-                {
-                    resaKeys?.map((key, index) => (
-                        <li key={`resa-${index}`}>{reservation[key]}</li>
-                ))
-                }
+                <p>id réservation: {reservation.id}</p>
             </ul>
         </div>
     );
