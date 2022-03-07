@@ -53,7 +53,7 @@ const Salles = ( {user} ) => {
             <PlanSalles selectSalle={selectSalle}/>
             {items &&
                 <div className="list_resa">
-                    <SalleResa idSalle={idSalle} dataResa={dateResevedSalle} user={user} input={
+                    <SalleResa idSalle={idSalle} dateResevedSalle={dateResevedSalle} user={user} input={
                         <ItemList name='salles' keys={keys} headers={headers} data={items}/>} setAllReservations={setAllReservations} allReservations={allReservations} setDateReservedSalle={setDateReservedSalle} />
                 </div>
             }
