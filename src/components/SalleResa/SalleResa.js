@@ -4,11 +4,13 @@ import { useState, useRef } from 'react';
 
 import 'react-calendar/dist/Calendar.css';
 import './SalleResa.css';
+import { useNavigate } from "react-router-dom";
 
 const SalleResa = ( {idSalle, dateResevedSalle, user, input, setAllReservations, allReservations, setDateReservedSalle} ) => {
     const [ jourSelected, setJourSelected] = useState("");
     const [ resaConfirm, setResaConfirm] = useState();
     const resa_confirm = useRef();
+    const navigate = useNavigate();
   
         // date de débout du calendrier.
     let startDate = new Date();
@@ -35,7 +37,8 @@ const SalleResa = ( {idSalle, dateResevedSalle, user, input, setAllReservations,
         setDateReservedSalle(prevState => [...prevState, resa]);
         // console.log(dateResevedSalle);
 
-        window.location.reload();
+        
+        navigate("/reservations");
             // si la réservation est confirmé, on affiche un message
         // if (result.data.success) {
         //     setResaConfirm(`La salle est bien réservée pour le ${new Date(jourSelected).toLocaleString().split(",")[0]}`); 
