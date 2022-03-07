@@ -16,8 +16,8 @@ const SalleResa = ( {idSalle, dateResevedSalle, user, input, setAllReservations,
         // quand on clique sur une date du calendrier
     const selectDay = (e) => {
             // on formate la date dans le bon sens 
-        let jour = new Date(e).toLocaleDateString().split("/");
-        jour = `${jour[2]}${jour[1]}${jour[0]}`;
+        let jour = new Date(e).toLocaleString().split(',')[0].split("/");
+        jour = `${jour[2]}-${jour[1]}-${jour[0]}`;
             // on set la date
         setJourSelected(jour);
     }
@@ -35,13 +35,14 @@ const SalleResa = ( {idSalle, dateResevedSalle, user, input, setAllReservations,
         setDateReservedSalle(prevState => [...prevState, resa]);
         // console.log(dateResevedSalle);
 
+        window.location.reload();
             // si la réservation est confirmé, on affiche un message
-        if (result.data.success) {
-            setResaConfirm(`La salle est bien réservée pour le ${new Date(jourSelected).toLocaleString().split(",")[0]}`); 
-        }
-        else {
-            setResaConfirm(`Un problème est survenu, veuillez recommencer la réservation`);
-        }
+        // if (result.data.success) {
+        //     setResaConfirm(`La salle est bien réservée pour le ${new Date(jourSelected).toLocaleString().split(",")[0]}`); 
+        // }
+        // else {
+        //     setResaConfirm(`Un problème est survenu, veuillez recommencer la réservation`);
+        // }
     }
 
         // quand on clique quelque part on vide le <p> de confirmation de réservation
