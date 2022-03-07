@@ -20,7 +20,7 @@ const Login = ({ setUser }) => {
             email,
             password
         },
-            // { withCredentials: true }
+            { withCredentials: true }
         )
             .catch((error) => {
 
