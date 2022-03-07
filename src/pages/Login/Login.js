@@ -4,10 +4,10 @@ import { useRef, useState } from 'react';
 
 import './Login.css'
 
-const Login = ( { setUser } ) => {
+const Login = ({ setUser }) => {
     const [email, setEmail] = useState();
     const [password, setPasswordUser] = useState();
-    const [redirect, setRedirect] = useState(false);    
+    const [redirect, setRedirect] = useState(false);
 
     const inputEmail = useRef();
     const inputPwd = useRef();
@@ -16,19 +16,21 @@ const Login = ( { setUser } ) => {
 
     const submitLogIn = async () => {
 
-        const result = await axios.post('http://localhost:3001/users/login',{
+        const result = await axios.post('http://localhost:3001/users/login', {
             email,
             password
-        })
-        .catch((error) => {
-            
-            // on traite les erreurs en cas de mauvais login ou pwd
-            if (error.response.status === 401) {
-                messageError.current.innerText = "⚠️ Email ou mot de passe invalide !";
-                inputEmail.current.value = '';
-                inputPwd.current.value = '';
-            }
-        });
+        },
+            // { withCredentials: true }
+        )
+            .catch((error) => {
+
+                // on traite les erreurs en cas de mauvais login ou pwd
+                if (error.response.status === 401) {
+                    messageError.current.innerText = "⚠️ Email ou mot de passe invalide !";
+                    inputEmail.current.value = '';
+                    inputPwd.current.value = '';
+                }
+            });
 
         // si tout ce passe bien on stock l'id dans le localStorage et set "redirect=true"
         if (result.data.success) {
@@ -47,26 +49,26 @@ const Login = ( { setUser } ) => {
     // ajoute une classe quand le curseur est dans un input text
     const addActiveInput = (e) => {
         if (e.target.value !== "") {
-            e.target.parentNode.classList.add("active_input");     
-        } else if(e.target.value === ""){
-            e.target.parentNode.classList.remove("active_input");     
+            e.target.parentNode.classList.add("active_input");
+        } else if (e.target.value === "") {
+            e.target.parentNode.classList.remove("active_input");
         }
     }
 
-    
-    return (  
+
+    return (
         <div className="login">
             <h1>Se connecter à votre compte M2L</h1>
-            <form action="_POST" onClick={e => {e.preventDefault()}} id="form_login">
+            <form action="_POST" onClick={e => { e.preventDefault() }} id="form_login">
                 <div className="input_form">
                     <label htmlFor="email">Email</label>
-                    <input type="text" name="email" id="email" onChange={e => setEmail(e.target.value)} onInput={e => addActiveInput(e)} ref={inputEmail} required/>
+                    <input type="text" name="email" id="email" onChange={e => setEmail(e.target.value)} onInput={e => addActiveInput(e)} ref={inputEmail} required />
                 </div>
                 <div className="input_form">
                     <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" onChange={e => setPasswordUser(e.target.value)} onInput={e => addActiveInput(e)} ref={inputPwd} required/>
+                    <input type="password" name="password" id="password" onChange={e => setPasswordUser(e.target.value)} onInput={e => addActiveInput(e)} ref={inputPwd} required />
                 </div>
-                <input type="submit" value="Login" id='submit' onClick={submitLogIn}/>
+                <input type="submit" value="Login" id='submit' onClick={submitLogIn} />
             </form>
             <p ref={messageError}></p>
         </div>
