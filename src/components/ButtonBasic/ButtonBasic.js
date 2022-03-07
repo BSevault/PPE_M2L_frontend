@@ -1,8 +1,8 @@
 import './ButtonBasic.css';
 
-const ButtonBasic = () => {
+const ButtonBasic = ({ handleClick }) => {
     return ( 
-        <button className="button-basic">
+        <button className="button-basic" onClick={handleClick}>
             <p>Gérer</p>
         </button>
      );

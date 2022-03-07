@@ -1,10 +1,12 @@
 import './Reservations.css';
 import useAxios from "../../hooks/useAxios/useAxios";
 import ItemList from "../../components/ItemList/ItemList";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import ButtonBasic from '../../components/ButtonBasic/ButtonBasic';
+import GestionResa from '../GestionResa/GestionResa';
 
 const Reservations = ({ user }) => {
+    const [focus, setFocus] = useState();
     const productsKeys = ["nom", "description", "date_resa", 'gerer'];
     const productsHeader = ["Nom de la Salle", "Description", "Date", "Gérer"];
     const { response } = useAxios("get", `http://localhost:3001/users/${user.id}/reservations`, null)
@@ -13,12 +15,19 @@ const Reservations = ({ user }) => {
         if (response) {
             response.success[0].forEach(resa => {
                 resa['date_resa'] = new Date(resa['date_resa']).toLocaleDateString();
-                resa['gerer'] = <ButtonBasic />;
+                resa['gerer'] = <ButtonBasic handleClick={() => setFocus(resa)} />;
             });
         }
     }, [response])
 
-    console.log(response?.success[0]);
+
+    if (focus) {
+        return (
+            <div className="gestionresa">
+                <GestionResa reservation={focus} />
+            </div>
+        )
+    }
 
     return (
         <div id="resa-wrapper">
