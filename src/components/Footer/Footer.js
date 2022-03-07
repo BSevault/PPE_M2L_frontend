@@ -12,6 +12,9 @@ const Footer = () => {
             <li id="presentation">
                 <Link to="/presentation"><h3> Présentation des locaux</h3></Link>
             </li>
+            <li id="contact">
+                <Link to="/contact"><h3> Contact</h3></Link>
+            </li>
             <li id="legals">
                 <Link to="/legals"><h3>Mentions légales</h3></Link>
                 <Link to="/cgv"><h3>CGV / CGU</h3></Link>

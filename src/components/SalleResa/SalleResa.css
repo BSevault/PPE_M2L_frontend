@@ -1,0 +1,48 @@
+.salle_resa {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: center;
+    width: 100%;
+    margin: 20px;
+    padding: 10px;
+  }
+
+.desc_btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.salles .list_resa .btn_resa_salle {
+    color: var(--blue);
+    font-weight: bold;
+    outline: none;
+    margin-top: 40px;
+    padding: 5px;
+    width: 400px;
+    font-size: 1.1em;
+    border: 1px solid var(--blue);
+    border-radius: 7px;
+    background-color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  .salles .list_resa .btn_resa_salle:hover {
+    background-color: var(--gold_light);
+    /* box-shadow: rgba(50, 50, 93, 0.11) 0px 30px 60px -12px inset,
+      rgba(0, 0, 0, 0.11) 0px 18px 36px -18px inset; */
+      transition: background-color 0.3s ease-out;
+  }
+
+  .salles .list_resa .resa_confirm {
+    margin: 20px;
+    padding: 8px;
+    color: var(--blue);
+    font-weight: 600;
+    font-style: italic;
+  }

@@ -1,14 +1,51 @@
 .salles {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    margin: 20px;
-    padding: 10px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 20px;
+  padding: 10px;
+}
 
 .salles h1 {
-    padding: 10px;
-    margin-bottom: 15px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.salles .react-calendar {
+  width: 350px;
+  height: auto;
+  margin: 7px 20px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  border: none;
+  border-radius: 7px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.salles .react-calendar__viewContainer {
+  margin: 15px;
+}
+
+.salles .react-calendar__month-view__weekdays,
+.salles .react-calendar__month-view__days__day,
+.salles .react-calendar__navigation__label {
+  font-size: 1.1em;
+}
+
+.salles .react-calendar__month-view--weekNumbers {
+  margin: 10px;
+}
+
+.salles .react-calendar__navigation__label::first-letter,
+.salles .react-calendar__year-view__months__month::first-letter {
+  text-transform: uppercase;
+}
+
+.list_resa {
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  justify-content: center;
+  align-items: flex-start;
 }

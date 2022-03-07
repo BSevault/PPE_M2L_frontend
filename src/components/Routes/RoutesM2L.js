@@ -11,6 +11,7 @@ import Produits from "../../pages/Produits/Produits.js";
 import Reservations from "../../pages/Reservations/Reservations.js";
 import Salles from "../../pages/Salles/Salles.js";
 import SignIn from "../../pages/SignIn/SignIn.js";
+import Complaint from "../../pages/Complaint/Complaint.js";
 
 const RoutesM2L = ( { user, setUser } ) => {
   return (
@@ -22,10 +23,11 @@ const RoutesM2L = ( { user, setUser } ) => {
       <Route path="/logout" element={<Logout />} />
       <Route path="/compte" element={<Compte user={user} />} />
       <Route path="/legals" element={<Legals />} />
+      <Route path="/salles" element={<Salles user={user} />} />
       <Route path="/cgv" element={<Cgv />} />
-      <Route path="/salles" element={<Salles />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/presentation" element={<Presentation />} />
+      <Route path="/complaint" element={<Complaint user={user} />} />
       <Route path="/reservations" element={<Reservations user={user}/>} />
 
       {/* <Route path="/backend" element={<ConnectDB />} /> */}
