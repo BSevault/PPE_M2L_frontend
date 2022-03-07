@@ -1,14 +1,100 @@
 .salles {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    margin: 20px;
-    padding: 10px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 20px;
+  padding: 10px;
+}
 
 .salles h1 {
-    padding: 10px;
-    margin-bottom: 15px;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.salles .react-calendar {
+  width: 350px;
+  height: auto;
+  margin: 0 20px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  border: none;
+  border-radius: 7px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.salles .react-calendar__viewContainer {
+  margin: 15px;
+}
+
+.salles .react-calendar__month-view__weekdays,
+.salles .react-calendar__month-view__days__day,
+.salles .react-calendar__navigation__label {
+  font-size: 1.1em;
+}
+
+.salles .react-calendar__month-view--weekNumbers {
+  margin: 10px;
+}
+
+.salles .react-calendar__navigation__label::first-letter,
+.salles .react-calendar__year-view__months__month::first-letter {
+  text-transform: uppercase;
+}
+
+.list_resa {
+  display: flex;
+  flex-direction: row;
+  width: 85%;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.salles .item-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.salles .item-list,
+.salles .salles-list {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 7px 7px 7px 7px;
+}
+
+.salles .salles-headers {
+  border-radius: 7px 7px 0 0;
+  background-color: white;
+}
+
+.salles .salles-item {
+  border-radius: 0 0 7px 7px;
+  background-color: white;
+}
+
+.salles .item:first-child {
+  border: none;
+}
+
+.item-list .headers {
+  font-weight: 900;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.salles .item-list .item {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border: none;
+}
+
+.item-list .item li {
+  margin: 10px;
+  width: 100%;
+  text-align: center;
 }

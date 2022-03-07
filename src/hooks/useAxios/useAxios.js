@@ -12,7 +12,8 @@ const useAxios = (method, adress, content) => {
         axios({
             method: method,
             url: adress,
-            data: content
+            data: content,
+            withCredentials: true
         })
             .then((res) => {
                 setResponse(res.data);

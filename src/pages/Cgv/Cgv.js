@@ -14,7 +14,7 @@ const Cgv = () => {
                 TVA Intra-communautaire n°;
                 Le responsable de la publication personne physique est M2L PPE;
 
-                Les présentes CGV ont été générées gratuitement par la société de communication <a href="http://kinic.fr" target="_blank">Kinic</a>
+                Les présentes CGV ont été générées gratuitement par la société de communication <a href="http://kinic.fr" target="_blank" rel="noreferrer">Kinic</a>
 
                 <h1>Conditions générales de vente des produits vendus sur www.ppe_m2l.com</h1>
 
