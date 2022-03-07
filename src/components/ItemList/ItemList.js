@@ -10,6 +10,7 @@ const ItemList = ({ name, data, keys, headers }) => {
     
     useEffect(() => {
         if (data) setItems(data);
+        console.log(data);
     }, [data]);
 
     return (
