@@ -3,3 +3,17 @@
     justify-content: center;
     margin: 20px;
 }
+
+.gestion-resa-content {
+    display: flex;
+}
+
+.add-user {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.user-list {
+    flex-grow: 1;
+    text-align: center;
+}
