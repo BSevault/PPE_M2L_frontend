@@ -67,6 +67,9 @@ const Complaint = () => {
 
         }
     }, [response,complaints, produits, salles]);
+    
+    let message = ("");
+    if (complaints.length < 1 ) message = "Vous n'avez pas encore soumis de ticket";
 
     // on définit un message si il n'y a pas de ticket 
 
@@ -105,13 +108,13 @@ const Complaint = () => {
          
         try {
             const send = await axios.post(`http://localhost:3001/users/${user.id}/tickets`,
-                {date_probleme: jourSelected, description, id_user: user.id, id_salle, id_produit});
+                {date_probleme: jourSelected, description, id_user: user.id, id_salle, id_produit}, {withCredentials: true});
             console.log(send.data.success);
         } catch (error) {
             console.log(error.message);
         }
 
-        const ticket = await axios.get(`http://localhost:3001/users/${user.id}/tickets`);
+        const ticket = await axios.get(`http://localhost:3001/users/${user.id}/tickets`, {withCredentials: true});
         console.log(complaints);
         setComplaints(ticket.success);
         console.log(complaints);
