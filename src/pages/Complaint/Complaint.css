@@ -11,3 +11,7 @@ div#complaint form {
 div#complaint form select {
     margin: 15px;
 }
+
+div#complaint textarea {
+    resize: both;
+}
