@@ -31,8 +31,7 @@ const SalleResa = ( {idSalle, dateResevedSalle, input, setAllReservations, allRe
     const sendReservation = async () => {
             // on envoie la réservation au back
         await axios.post(`http://localhost:3001/users/${user.id}/reservation`,
-            {date: jourSelected, salle_id: idSalle, is_paid: 0},
-            { withCredentials: true }
+            {date: jourSelected, salle_id: idSalle, is_paid: 0}
         )
             // set un objet pour l'ajouter au state
         let resa = {date_resa: new Date(jourSelected).toISOString(), is_paid: 0, id_user: user.id, id_salle: idSalle};
