@@ -68,7 +68,7 @@ const SignIn = () => {
       pwd.current.pwdIsOk &&
       pwdVerif.current.pwdVerifIsOk
     ) {
-      const result = await axios.post(adress, content).catch((error) => {
+      const result = await axios.post(adress, content, { withCredentials: true }).catch((error) => {
         if (error.response.status === 401) {
           signInText.current.innerText =
             "⚠️ Un compte existe déjà avec cet email";
