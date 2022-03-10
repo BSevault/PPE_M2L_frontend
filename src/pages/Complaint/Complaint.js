@@ -67,11 +67,8 @@ const Complaint = () => {
 
         }
     }, [response,complaints, produits, salles]);
-    
 
     // on définit un message si il n'y a pas de ticket 
-    let message = "";
-    if (complaints.length < 1 ) message = "Vous n'avez pas encore soumis de ticket";
 
     // date de début du calendrier.
     let startDate = new Date();
@@ -190,7 +187,6 @@ const Complaint = () => {
                     headers={headers}
                 />
 
-            <p>{message}</p>
         </div>
     );
 };
