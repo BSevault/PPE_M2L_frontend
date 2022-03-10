@@ -1,0 +1,17 @@
+div#complaint h1, div#complaint h2, div#complaint p {
+    text-align: center;
+    margin: 30px;
+}
+
+div#complaint form {
+    display: flex;
+    justify-content: center;
+}
+
+div#complaint form select {
+    margin: 15px;
+}
+
+div#complaint textarea {
+    resize: both;
+}
