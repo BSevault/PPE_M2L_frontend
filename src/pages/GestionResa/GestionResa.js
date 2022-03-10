@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
+import AddParticipant from "../../components/AddParticipant/AddParticipant";
 import ButtonBasic from "../../components/ButtonBasic/ButtonBasic";
 import ItemList from "../../components/ItemList/ItemList";
 import useAxios from "../../hooks/useAxios/useAxios";
 import './GestionResa.css';
 
 const GestionResa = ({ reservation, setFocus }) => {
-    // const [resaKeys, setResaKeys] = useState();
-    // useEffect(() => {
-    //     if (reservation) setResaKeys(Object.keys(reservation))
-    // }, [reservation]);
     const [participants, setParticipants] = useState();
+    const [partiEmail, setPartiEmail] = useState('');
+    const [content, setContent] = useState();
+    const [addPartiAdress, setAddPartiAdress] = useState();
     const partiKeys = ["nom", "prenom", "email"];
     const partiHeader = ["Nom", "Prénom", "Email"];
 
@@ -20,9 +20,31 @@ const GestionResa = ({ reservation, setFocus }) => {
             "id_resa": reservation.id
         })
 
+    const { response: respEmail } = useAxios("post", addPartiAdress, content )
+
+    const userExists = (email) => {
+        return participants.some((el) => el.email === email)
+    }
+
+    const handleSubmit = (e) => {
+        e?.preventDefault();
+        const patternEmail = new RegExp(
+            /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
+        );
+        if (!userExists(partiEmail) && patternEmail.test(partiEmail)) {
+            setContent({
+                "resa_id": 2
+            });
+            setAddPartiAdress("http://localhost:3001/users/3/participations");
+            console.log('submited email !');
+            console.log(participants);
+
+        }
+        console.log('handle error here');
+    };
+
     useEffect(() => {
         if (response) setParticipants(response.success[0]);
-        if (response) console.log(response.success[0]);
     }, [response])
 
 
@@ -37,12 +59,16 @@ const GestionResa = ({ reservation, setFocus }) => {
             </div>
             <div className="gestion-resa-content">
                 <div className="add-user">
-                    <p>future  formulaire ici</p>
+                    <AddParticipant
+                        partiEmail={partiEmail}
+                        setPartiEmail={setPartiEmail}
+                        handleSubmit={handleSubmit}
+                    />
                 </div>
                 <ul className="user-list">
-                <h1 id="participants">
-                    Participants
-                </h1>
+                    <h1 id="participants">
+                        Participants
+                    </h1>
                     {participants &&
                         <ItemList
                             name="participants"
