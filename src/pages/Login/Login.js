@@ -36,7 +36,6 @@ const Login = () => {
 
         // si tout ce passe bien on stock l'id dans le localStorage et set "redirect=true"
         if (result.data.success) {
-            // localStorage.setItem("userId", result.data.success.id)
             setRedirect(true);
         }
 

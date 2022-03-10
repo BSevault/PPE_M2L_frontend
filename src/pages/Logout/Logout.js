@@ -5,17 +5,15 @@ import useAxios from "../../hooks/useAxios/useAxios";
 // juste une redirection vers le home aprèss le logOut
 const Logout = () => {
     const { setUser } = useAuth();
-    const {response} = useAxios('get', `http://localhost:3001/users/logout`);
 
+    useAxios('get', `http://localhost:3001/users/logout`);
     setUser();
 
-    console.log(response);
+    // console.log(response);
 
     return (  
         <div className="logout">
-           
-                <Navigate to="/login" />
-        
+            <Navigate to="/login" />
         </div>
     );
 }

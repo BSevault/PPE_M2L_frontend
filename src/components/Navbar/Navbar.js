@@ -9,13 +9,8 @@ import "./Navbar.css";
 
 const Navbar = () => {
   const { user } = useAuth();
-  console.log(user);
   // retire userId du localStorage + vide les données user
-  const logOutApp = () => {
-    localStorage.removeItem("userId");
-    // setUser("");
-  };
-
+ 
   const navLinksVisiteurs = [
     { text: "Accueil", chemin: "/" },
     { text: "Salles", chemin: "/salles" },
@@ -78,7 +73,7 @@ const Navbar = () => {
         </div>
         <div className="nav_user">
           <NavLink className="nav_link" to="/compte">{`${user.prenom} ${user.nom}`}</NavLink>
-          <NavLink className="nav_link" to="/logout" onClick={logOutApp}>Log Out</NavLink>
+          <NavLink className="nav_link" to="/logout">Log Out</NavLink>
         </div>
       </nav>
     );

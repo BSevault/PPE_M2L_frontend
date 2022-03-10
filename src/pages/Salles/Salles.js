@@ -6,8 +6,11 @@ import SalleResa from '../../components/SalleResa/SalleResa';
 
 import './Salles.css'
 import 'react-calendar/dist/Calendar.css';
+import { useAuth } from '../../components/contexts/AuthContext';
 
-const Salles = ( {user} ) => {
+const Salles = () => {
+    const { user } = useAuth();
+
         // values pour ItemList
     const keys = ['nom', 'description', 'capacite', 'prix'];
 

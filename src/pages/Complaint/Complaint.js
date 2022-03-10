@@ -2,8 +2,10 @@ import useAxios from "../../hooks/useAxios/useAxios";
 import "./Complaint.css";
 import ItemList from "../../components/ItemList/ItemList";
 import { useEffect } from "react";
+import { useAuth } from "../../components/contexts/AuthContext";
 
-const Complaint = ( {user} ) => {
+const Complaint = () => {
+    const { user } = useAuth();
 
     const keys = ['id', 'date_ticket', 'description', 'date_probleme', 'nom'];
     const headers = ['Num. ticket', 'Date de création du ticket', 'Description', 'Date du problème', 'Salle concernée' ]

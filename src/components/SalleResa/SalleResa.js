@@ -1,10 +1,10 @@
 import Calendar from "react-calendar";
 import axios from "axios";
 import { useState, useRef } from 'react';
+import { useNavigate } from "react-router-dom";
 
 import 'react-calendar/dist/Calendar.css';
 import './SalleResa.css';
-import { useNavigate } from "react-router-dom";
 
 const SalleResa = ( {idSalle, dateResevedSalle, user, input, setAllReservations, allReservations, setDateReservedSalle} ) => {
     const [ jourSelected, setJourSelected] = useState("");
@@ -27,8 +27,9 @@ const SalleResa = ( {idSalle, dateResevedSalle, user, input, setAllReservations,
         // fonction d'envoi de la réservation
     const sendReservation = async () => {
             // on envoie la réservation au back
-        const result = await axios.post(`http://localhost:3001/users/${user.id}/reservation`,
-            {date: jourSelected, salle_id: idSalle, is_paid: 0}
+        await axios.post(`http://localhost:3001/users/${user.id}/reservation`,
+            {date: jourSelected, salle_id: idSalle, is_paid: 0},
+            { withCredentials: true }
         )
             // set un objet pour l'ajouter au state
         let resa = {date_resa: new Date(jourSelected).toISOString(), is_paid: 0, id_user: user.id, id_salle: idSalle};
