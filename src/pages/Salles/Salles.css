@@ -13,7 +13,7 @@
   margin-bottom: 15px;
 }
 
-.salles .react-calendar {
+.react-calendar {
   width: 350px;
   height: auto;
   margin: 7px 20px;
@@ -23,22 +23,22 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.salles .react-calendar__viewContainer {
+.react-calendar__viewContainer {
   margin: 15px;
 }
 
-.salles .react-calendar__month-view__weekdays,
-.salles .react-calendar__month-view__days__day,
-.salles .react-calendar__navigation__label {
+.react-calendar__month-view__weekdays,
+.react-calendar__month-view__days__day,
+.react-calendar__navigation__label {
   font-size: 1.1em;
 }
 
-.salles .react-calendar__month-view--weekNumbers {
+.react-calendar__month-view--weekNumbers {
   margin: 10px;
 }
 
-.salles .react-calendar__navigation__label::first-letter,
-.salles .react-calendar__year-view__months__month::first-letter {
+.react-calendar__navigation__label::first-letter,
+.react-calendar__year-view__months__month::first-letter {
   text-transform: uppercase;
 }
 

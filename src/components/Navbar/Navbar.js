@@ -8,7 +8,7 @@ import "./Navbar.css";
 // navLinksLogged => liste d'objet pour la navbar visiteur connecté
 
 const Navbar = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   // retire userId du localStorage + vide les données user
  
   const navLinksVisiteurs = [
@@ -73,7 +73,7 @@ const Navbar = () => {
         </div>
         <div className="nav_user">
           <NavLink className="nav_link" to="/compte">{`${user.prenom} ${user.nom}`}</NavLink>
-          <NavLink className="nav_link" to="/logout">Log Out</NavLink>
+          <a className="nav_link" onClick={logout}>Log Out</a>
         </div>
       </nav>
     );

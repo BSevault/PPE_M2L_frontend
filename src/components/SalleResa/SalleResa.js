@@ -1,12 +1,15 @@
-import Calendar from "react-calendar";
-import axios from "axios";
 import { useState, useRef } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import Calendar from "react-calendar";
+import axios from "axios";
 
 import 'react-calendar/dist/Calendar.css';
 import './SalleResa.css';
 
-const SalleResa = ( {idSalle, dateResevedSalle, user, input, setAllReservations, allReservations, setDateReservedSalle} ) => {
+const SalleResa = ( {idSalle, dateResevedSalle, input, setAllReservations, allReservations, setDateReservedSalle} ) => {
+    const { user } = useAuth();
+
     const [ jourSelected, setJourSelected] = useState("");
     const [ resaConfirm, setResaConfirm] = useState();
     const resa_confirm = useRef();
@@ -28,8 +31,7 @@ const SalleResa = ( {idSalle, dateResevedSalle, user, input, setAllReservations,
     const sendReservation = async () => {
             // on envoie la réservation au back
         await axios.post(`http://localhost:3001/users/${user.id}/reservation`,
-            {date: jourSelected, salle_id: idSalle, is_paid: 0},
-            { withCredentials: true }
+            {date: jourSelected, salle_id: idSalle, is_paid: 0}
         )
             // set un objet pour l'ajouter au state
         let resa = {date_resa: new Date(jourSelected).toISOString(), is_paid: 0, id_user: user.id, id_salle: idSalle};
