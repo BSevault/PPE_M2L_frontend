@@ -38,7 +38,7 @@ const SalleResa = ( {idSalle, dateResevedSalle, user, input, setAllReservations,
         // console.log(dateResevedSalle);
 
         
-        navigate("/reservations");
+        // navigate("/reservations");
             // si la réservation est confirmé, on affiche un message
         // if (result.data.success) {
         //     setResaConfirm(`La salle est bien réservée pour le ${new Date(jourSelected).toLocaleString().split(",")[0]}`); 
