@@ -111,6 +111,7 @@
   .nav_link {
     color: #475569;
     padding: 8px;
+    cursor: pointer;
   }
   
   .navbar ul li:not(:last-child) {

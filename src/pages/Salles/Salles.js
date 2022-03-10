@@ -3,10 +3,10 @@ import ItemList from '../../components/ItemList/ItemList';
 import PlanSalles from '../../components/PlanSalles/PlanSalles';
 import useAxios from '../../hooks/useAxios/useAxios';
 import SalleResa from '../../components/SalleResa/SalleResa';
+import { useAuth } from '../../components/contexts/AuthContext';
 
 import './Salles.css'
 import 'react-calendar/dist/Calendar.css';
-import { useAuth } from '../../components/contexts/AuthContext';
 
 const Salles = () => {
     const { user } = useAuth();
@@ -69,7 +69,7 @@ const Salles = () => {
                 <PlanSalles selectSalle={selectSalle}/>
                 {items &&
                     <div className="list_resa">
-                        <SalleResa idSalle={idSalle} dateResevedSalle={dateResevedSalle} user={user} setAllReservations={setAllReservations} allReservations={allReservations} setDateReservedSalle={setDateReservedSalle} 
+                        <SalleResa idSalle={idSalle} dateResevedSalle={dateResevedSalle} setAllReservations={setAllReservations} allReservations={allReservations} setDateReservedSalle={setDateReservedSalle} 
                         input={
                             <ItemList name='salles' keys={keys} headers={headers} data={items}/>} />
                     </div>
