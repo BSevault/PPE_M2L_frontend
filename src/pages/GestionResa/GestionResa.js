@@ -12,18 +12,19 @@ const GestionResa = ({ reservation, setFocus }) => {
     const [participants, setParticipants] = useState();
     const [partiEmail, setPartiEmail] = useState('');
     const [content, setContent] = useState();
+    const [listPartiAdress, setListPartiAdress] = useState(`http://localhost:3001/users/reservation/participants`);
     const [addPartiAdress, setAddPartiAdress] = useState();
     const partiKeys = ["nom", "prenom", "email"];
     const partiHeader = ["Nom", "Prénom", "Email"];
 
     const { response } = useAxios(
         "post",
-        `http://localhost:3001/users/reservation/participants`,
+        listPartiAdress,
         {
             "id_resa": reservation.id
         })
 
-    const { response: respEmail } = useAxios("post", addPartiAdress, content )
+    const { response: respEmail } = useAxios("post", addPartiAdress, content)
 
     const userExists = (email) => {
         return participants.some((el) => el.email === email)
@@ -40,15 +41,19 @@ const GestionResa = ({ reservation, setFocus }) => {
                 "email": partiEmail
             });
             setAddPartiAdress(`http://localhost:3001/users/${user.id}/participations`);
-            console.log('submited email !');
+            setListPartiAdress(null);
 
         }
         console.log('handle error here');
     };
 
     useEffect(() => {
+        setListPartiAdress(`http://localhost:3001/users/reservation/participants`);
+        setPartiEmail('');
+        setAddPartiAdress(null);
         if (response) setParticipants(response.success[0]);
-    }, [response])
+
+    }, [response, listPartiAdress])
 
 
 
