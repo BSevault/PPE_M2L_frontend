@@ -63,6 +63,7 @@ const GestionResa = ({ reservation, setFocus }) => {
                 <ButtonBasic
                     handleClick={() => setFocus()}
                     buttonInnerText="Revenir à mes réservations"
+                    style={{ width: '400px' }}
                 />
             </div>
             <div className="gestion-resa-content">

@@ -24,7 +24,7 @@
 }
 
 .react-calendar__viewContainer {
-  margin: 15px;
+  padding: 12px;
 }
 
 .react-calendar__month-view__weekdays,

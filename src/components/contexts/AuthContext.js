@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -17,7 +17,7 @@ const AuthContextProvider = ({ children }) => {
         try {
             await axios.get('http://localhost:3001/users/logout', { withCredentials: true });
             setUser()
-            navigate('/login');
+            navigate('/');
         } catch (error) {
             console.log(error.message);
         }
@@ -30,7 +30,7 @@ const AuthContextProvider = ({ children }) => {
             setUser(data.success.logged_user);
             navigate('/');
         } catch (error) {
-            navigate('/login');
+            navigate('/');
         }
     }
 

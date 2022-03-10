@@ -27,16 +27,16 @@
     font-size: 1.1em;
     border: 1px solid var(--blue);
     border-radius: 7px;
-    background-color: white;
+    background-color: whitesmoke;
     cursor: pointer;
-    transition: background-color 0.3s ease-in;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    transition: all 0.3s ease-in;
   }
   .salles .list_resa .btn_resa_salle:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     background-color: var(--gold_light);
     /* box-shadow: rgba(50, 50, 93, 0.11) 0px 30px 60px -12px inset,
       rgba(0, 0, 0, 0.11) 0px 18px 36px -18px inset; */
-      transition: background-color 0.3s ease-out;
+      transition: all 0.3s ease-out;
   }
 
   .salles .list_resa .resa_confirm {
