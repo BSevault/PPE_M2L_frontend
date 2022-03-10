@@ -67,9 +67,6 @@ const Complaint = () => {
 
         }
     }, [response,complaints, produits, salles]);
-    
-    let message = ("");
-    if (complaints.length < 1 ) message = "Vous n'avez pas encore soumis de ticket";
 
     // on définit un message si il n'y a pas de ticket 
 
