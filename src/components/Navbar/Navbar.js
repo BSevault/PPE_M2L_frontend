@@ -1,19 +1,16 @@
 import { NavLink } from "react-router-dom";
 
 import logo from "../../assets/logos/logo_M2L.png";
+import { useAuth } from "../contexts/AuthContext";
 import "./Navbar.css";
 
 // navLinksVisiteurs => liste d'objet pour la navbar visiteur
 // navLinksLogged => liste d'objet pour la navbar visiteur connecté
 
-const Navbar = ({ user, setUser }) => {
-
+const Navbar = () => {
+  const { user } = useAuth();
   // retire userId du localStorage + vide les données user
-  const logOutApp = () => {
-    localStorage.removeItem("userId");
-    setUser("");
-  };
-
+ 
   const navLinksVisiteurs = [
     { text: "Accueil", chemin: "/" },
     { text: "Salles", chemin: "/salles" },
@@ -30,7 +27,7 @@ const Navbar = ({ user, setUser }) => {
   ];
 
   // 2 rendu si le user est set ou pas
-  if (user === "") {
+  if (!user || user === undefined || user === "undefined" || user === null) {
     return (
       <nav className="navbar">
         <NavLink to="/" className="logo">
@@ -76,7 +73,7 @@ const Navbar = ({ user, setUser }) => {
         </div>
         <div className="nav_user">
           <NavLink className="nav_link" to="/compte">{`${user.prenom} ${user.nom}`}</NavLink>
-          <NavLink className="nav_link" to="/logout" onClick={logOutApp}>Log Out</NavLink>
+          <NavLink className="nav_link" to="/logout">Log Out</NavLink>
         </div>
       </nav>
     );

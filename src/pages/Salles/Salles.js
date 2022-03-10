@@ -6,8 +6,11 @@ import SalleResa from '../../components/SalleResa/SalleResa';
 
 import './Salles.css'
 import 'react-calendar/dist/Calendar.css';
+import { useAuth } from '../../components/contexts/AuthContext';
 
-const Salles = ( {user} ) => {
+const Salles = () => {
+    const { user } = useAuth();
+
         // values pour ItemList
     const keys = ['nom', 'description', 'capacite', 'prix'];
 
@@ -59,19 +62,33 @@ const Salles = ( {user} ) => {
         });
     }
 
-    return (  
-        <div className="salles">
-            <h1>Salles mise à disposition des ligues</h1>
-            <PlanSalles selectSalle={selectSalle}/>
-            {items &&
-                <div className="list_resa">
-                    <SalleResa idSalle={idSalle} dateResevedSalle={dateResevedSalle} user={user} setAllReservations={setAllReservations} allReservations={allReservations} setDateReservedSalle={setDateReservedSalle} 
-                    input={
-                        <ItemList name='salles' keys={keys} headers={headers} data={items}/>} />
-                </div>
-            }
-        </div>
-    );
+    if (user) {
+        return (  
+            <div className="salles">
+                <h1>Salles mise à disposition des ligues</h1>
+                <PlanSalles selectSalle={selectSalle}/>
+                {items &&
+                    <div className="list_resa">
+                        <SalleResa idSalle={idSalle} dateResevedSalle={dateResevedSalle} user={user} setAllReservations={setAllReservations} allReservations={allReservations} setDateReservedSalle={setDateReservedSalle} 
+                        input={
+                            <ItemList name='salles' keys={keys} headers={headers} data={items}/>} />
+                    </div>
+                }
+            </div>
+        );
+    } else {
+        return (  
+            <div className="salles">
+                <h1>Salles mise à disposition des ligues</h1>
+                <PlanSalles selectSalle={selectSalle}/>
+                {items &&
+                    <div className="list_resa">
+                        <ItemList name='salles' keys={keys} headers={headers} data={items}/>
+                    </div>
+                }
+            </div>
+        );
+    }
 }
  
 export default Salles;

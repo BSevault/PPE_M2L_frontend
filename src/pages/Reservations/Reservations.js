@@ -4,8 +4,11 @@ import ItemList from "../../components/ItemList/ItemList";
 import { useEffect, useState } from 'react';
 import ButtonBasic from '../../components/ButtonBasic/ButtonBasic';
 import GestionResa from '../GestionResa/GestionResa';
+import { useAuth } from '../../components/contexts/AuthContext';
 
-const Reservations = ({ user }) => {
+const Reservations = () => {
+    const { user } = useAuth();
+
     const [focus, setFocus] = useState();
     const resaKeys = ["nom", "description", "date_resa", 'gerer'];
     const resaHeader = ["Nom de la Salle", "Description", "Date", "Gérer"];

@@ -1,13 +1,15 @@
 import useAxios from "../../hooks/useAxios/useAxios";
 import ItemList from "../../components/ItemList/ItemList";
+import { useEffect, useState } from "react";
+import { useAuth } from "../../components/contexts/AuthContext";
 import ScrollSelect from '../../components/ScrollSelect/ScrollSelect';
 import Calendar from "react-calendar";
-import { useEffect, useState } from "react";
 
 import "./Complaint.css";
 import 'react-calendar/dist/Calendar.css';
 
-const Complaint = ({ user }) => {
+const Complaint = () => {
+    const { user } = useAuth();
     // on définit les clés et les headers de la liste de tickets
     const keys = ["id", "date_ticket", "date_probleme", "nom", "nom_produit","description"];
     const headers = [
