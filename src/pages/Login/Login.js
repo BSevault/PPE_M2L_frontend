@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
+import { useAuth } from '../../components/contexts/AuthContext';
 
 import './Login.css'
 
-const Login = ({ setUser }) => {
+const Login = () => {
+    const { setUser } = useAuth();
     const [email, setEmail] = useState();
     const [password, setPasswordUser] = useState();
     const [redirect, setRedirect] = useState(false);
@@ -34,7 +36,7 @@ const Login = ({ setUser }) => {
 
         // si tout ce passe bien on stock l'id dans le localStorage et set "redirect=true"
         if (result.data.success) {
-            localStorage.setItem("userId", result.data.success.id)
+            // localStorage.setItem("userId", result.data.success.id)
             setRedirect(true);
         }
 

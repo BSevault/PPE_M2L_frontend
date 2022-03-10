@@ -12,8 +12,10 @@ import Reservations from "../../pages/Reservations/Reservations.js";
 import Salles from "../../pages/Salles/Salles.js";
 import SignIn from "../../pages/SignIn/SignIn.js";
 import Complaint from "../../pages/Complaint/Complaint.js";
+import { useAuth } from "../contexts/AuthContext.js";
 
-const RoutesM2L = ( { user, setUser } ) => {
+const RoutesM2L = () => {
+  const { user, setUser } = useAuth();
   return (
     <Routes>
       <Route path="/" element={<Home user={user}/>} />
