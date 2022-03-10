@@ -1,3 +1,4 @@
+import axios from 'axios';
 import useAxios from "../../hooks/useAxios/useAxios";
 import ItemList from "../../components/ItemList/ItemList";
 import { useEffect, useState } from "react";
@@ -53,6 +54,7 @@ const Complaint = () => {
                 })
             }
             
+            
             // on controle la longueur de la liste des noms de salle pour eviter les duplications
             if (nom_salle.length < salles.success.length){
                 salles.success.forEach( (salle) => {
@@ -65,16 +67,19 @@ const Complaint = () => {
 
         }
     }, [response,complaints, produits, salles]);
+    
 
     // on définit un message si il n'y a pas de ticket 
     let message = "";
     if (complaints.length < 1 ) message = "Vous n'avez pas encore soumis de ticket";
 
-    // on stocke le jour cliqué sur le calendrier
-    const [ jourSelected, setJourSelected] = useState("");
-
     // date de début du calendrier.
     let startDate = new Date();
+    const dateFormat = (date) => {
+        let jour = new Date(date).toLocaleString().split(',')[0].split("/");
+        jour = `${jour[2]}-${jour[1]}-${jour[0]}`;
+        return jour;
+    }
 
     // quand on clique sur une date du calendrier
     const selectDay = (e) => {
@@ -85,20 +90,36 @@ const Complaint = () => {
         setJourSelected(jour);
     }
 
-    const sendTicket = (e) => {
+     // on stocke le jour cliqué sur le calendrier
+    const [ jourSelected, setJourSelected] = useState(dateFormat(startDate));
+
+    const sendTicket = async (e) => {
         e.preventDefault();
         let description = document.getElementById("description").value;
         let id_salle = document.getElementById("salles").value;
         let id_produit = document.getElementById("produits").value;
-        let date = startDate.toLocaleString();
-        console.log(date);
-        if (jourSelected === "") setJourSelected('test'); //peux pas le faire
         if (id_salle === "") id_salle = 1;
         if (id_produit === "") id_produit = 1;
-        console.log(jourSelected);
-        console.log(description);
-        console.log(id_salle);
-        console.log(id_produit);
+        console.log('date probleme :', jourSelected);
+        console.log('description :', description);
+        console.log('user.id :', user.id);
+        console.log('id_salle :', id_salle);
+        console.log('id_produit :', id_produit);
+         
+        try {
+            const send = await axios.post(`http://localhost:3001/users/${user.id}/tickets`,
+                {date_probleme: jourSelected, description, id_user: user.id, id_salle, id_produit});
+            console.log(send.data.success);
+        } catch (error) {
+            console.log(error.message);
+        }
+
+        const ticket = await axios.get(`http://localhost:3001/users/${user.id}/tickets`);
+        console.log(complaints);
+        setComplaints(ticket.success);
+        console.log(complaints);
+
+        
 
     }
 
@@ -109,7 +130,10 @@ const Complaint = () => {
             <h1>Réclamations</h1>
             <h2>Faire une réclamation</h2>
 
-            <form id="create-ticket-form">
+            <form
+            id="create-ticket-form"
+            onSubmit={sendTicket}
+            >
 
                 <div>
                     <p>Date de survenue du problème : </p>
@@ -127,14 +151,14 @@ const Complaint = () => {
                     id="salles"
                     name="salles"
                     label="Salle concernée"
-                    values={nom_salle}
+                    values={nom_salle.slice(1)}
                 />
 
                 <ScrollSelect
                     id="produits"
                     name="produits"
                     label="Produit concerné"
-                    values={nom_produit}
+                    values={nom_produit.slice(1)}
                     
                 />
 
@@ -152,8 +176,7 @@ const Complaint = () => {
                     className='btn_ticket' 
                     type="submit"
                     value="Envoyer le ticket"
-                    onClick={sendTicket}
-
+                    
                 />
             </form>
                 <p>*N.A. : non applicable</p>
