@@ -3,7 +3,7 @@ import useAxios from "../../hooks/useAxios/useAxios";
 import ItemList from "../../components/ItemList/ItemList";
 import ScrollSelect from '../../components/ScrollSelect/ScrollSelect';
 import Calendar from "react-calendar";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import "./Complaint.css";
 import 'react-calendar/dist/Calendar.css';
@@ -66,10 +66,10 @@ const Complaint = ({ user }) => {
         }
     }, [response,complaints, produits, salles]);
     
+    let message = ("");
+    if (complaints.length < 1 ) message = "Vous n'avez pas encore soumis de ticket";
 
     // on définit un message si il n'y a pas de ticket 
-    let message = "";
-    if (complaints.length < 1 ) message = "Vous n'avez pas encore soumis de ticket";
 
     // date de début du calendrier.
     let startDate = new Date();
@@ -106,13 +106,13 @@ const Complaint = ({ user }) => {
          
         try {
             const send = await axios.post(`http://localhost:3001/users/${user.id}/tickets`,
-                {date_probleme: jourSelected, description, id_user: user.id, id_salle, id_produit});
+                {date_probleme: jourSelected, description, id_user: user.id, id_salle, id_produit}, {withCredentials: true});
             console.log(send.data.success);
         } catch (error) {
             console.log(error.message);
         }
 
-        const ticket = await axios.get(`http://localhost:3001/users/${user.id}/tickets`);
+        const ticket = await axios.get(`http://localhost:3001/users/${user.id}/tickets`, {withCredentials: true});
         console.log(complaints);
         setComplaints(ticket.success);
         console.log(complaints);
