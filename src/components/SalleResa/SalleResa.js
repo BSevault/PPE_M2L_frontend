@@ -21,10 +21,11 @@ const SalleResa = ( {idSalle, dateResevedSalle, input, setAllReservations, allRe
         // quand on clique sur une date du calendrier
     const selectDay = (e) => {
             // on formate la date dans le bon sens 
-        let jour = new Date(e).toLocaleString().split(',')[0].split("/");
+        let jour = new Date(e).toLocaleDateString('en-GB').split(',')[0].split("/");
         jour = `${jour[2]}-${jour[1]}-${jour[0]}`;
             // on set la date
         setJourSelected(jour);
+        console.log(jourSelected);
     }
     
         // fonction d'envoi de la réservation

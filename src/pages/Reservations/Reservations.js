@@ -17,8 +17,8 @@ const Reservations = () => {
     useEffect(() => {
         if (response) {
             response.success[0].sort((a, b) => new Date(a.date_resa) - new Date(b.date_resa));
-            response.success[0].forEach((resa, index) => {
-                resa['date_resa'] = new Date(resa['date_resa']).toLocaleDateString();
+            response.success[0].forEach((resa) => {
+                resa['date_resa'] = new Date(resa['date_resa']).toLocaleDateString('en-GB');
                 resa['gerer'] = <ButtonBasic handleClick={() => setFocus(resa)} buttonInnerText="Gérer"/>;
                 // resa['id'] = index; // fake id, for keys in itemlist
             });
