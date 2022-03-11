@@ -20,7 +20,7 @@ const Salles = () => {
         // récupère toutes les réservations des salles
     const {response: allResa} = useAxios('get', 'http://localhost:3001/users/all/reservations/');
     
-    const [ allReservations, setAllReservations ] = useState();
+   const [ allReservations, setAllReservations ] = useState();
     console.log(allReservations);
     const [ headers, setHeaders ] = useState();
     const [ items, setItems ] = useState();
