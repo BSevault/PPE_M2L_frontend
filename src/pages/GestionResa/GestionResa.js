@@ -14,9 +14,10 @@ const GestionResa = ({ reservation, setFocus }) => {
     const [content, setContent] = useState();
     const [listPartiAdress, setListPartiAdress] = useState(`http://localhost:3001/users/reservation/participants`);
     const [addPartiAdress, setAddPartiAdress] = useState();
-    const partiKeys = ["nom", "prenom", "email"];
-    const partiHeader = ["Nom", "Prénom", "Email"];
+    const partiKeys = ["nom", "prenom", "email", "supprimer"];
+    const partiHeader = ["Nom", "Prénom", "Email", "Supprimer"];
 
+    // get participant list
     const { response } = useAxios(
         "post",
         listPartiAdress,
@@ -24,7 +25,8 @@ const GestionResa = ({ reservation, setFocus }) => {
             "id_resa": reservation.id
         })
 
-    const { response: respEmail } = useAxios("post", addPartiAdress, content)
+    // fetchs en attente de click
+    useAxios("post", addPartiAdress, content)
 
     const userExists = (email) => {
         return participants.some((el) => el.email === email)
@@ -51,7 +53,13 @@ const GestionResa = ({ reservation, setFocus }) => {
         setListPartiAdress(`http://localhost:3001/users/reservation/participants`);
         setPartiEmail('');
         setAddPartiAdress(null);
-        if (response) setParticipants(response.success[0]);
+        if (response) {
+            response.success[0].forEach((partiEl) => {
+                partiEl['supprimer'] = <ButtonBasic handleClick={() => console.log('supprimer: ', partiEl)} buttonInnerText="Yeet" colorstyle='red'/>;
+            });
+            response.success[0][0].supprimer = '';
+            setParticipants(response.success[0]);
+        }
 
     }, [response, listPartiAdress])
 

@@ -28,8 +28,8 @@ const AddParticipant = ({ partiEmail, setPartiEmail, handleSubmit }) => {
                 </div>
                 <ButtonBasic
                     handleClick={() => handleSubmit}
-                    buttonInnerText="Ajouter le participant"
-                    style={{ width: '400px' }}
+                    buttonInnerText="Ajouter"
+                    style={{ width: '200px' }}
                 />
             </form>
         </div>
