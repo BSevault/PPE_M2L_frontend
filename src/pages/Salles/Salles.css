@@ -13,6 +13,11 @@
   margin-bottom: 15px;
 }
 
+.salles .item-list .item:hover:not(:first-child) {
+  background-color: whitesmoke;
+  transition: background-color 0.2s ease-in;
+}
+
 .react-calendar {
   width: 350px;
   height: auto;
