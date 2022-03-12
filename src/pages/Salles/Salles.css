@@ -10,7 +10,7 @@
 
 .salles h1 {
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .salles .item-list .item:hover:not(:first-child) {
