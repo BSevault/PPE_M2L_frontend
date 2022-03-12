@@ -1,30 +1,65 @@
+import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
-import useAxios from '../../hooks/useAxios/useAxios';
 
 
 const SallesContext = createContext();
 export const useSalles = () => useContext(SallesContext);
 
 const SallesContextProvider = ({ children }) => {
+    const [ allSalles, setAllSalles ] = useState();
     const [ allReservations, setAllReservations ] = useState();
     const [ dateResevedSalle, setDateReservedSalle] = useState();
+    const [ resaConfirm, setResaConfirm] = useState();
+    const [ jourSelected, setJourSelected] = useState();
+    
+    const fetchSallesReservations = async () => {
+        try {
+            const resultSalles = await axios.get('http://localhost:3001/salles/', { withCredentials: true });
+            setAllSalles(resultSalles.data.success);
 
-    const {response : salles} = useAxios('get', 'http://localhost:3001/salles/');
+            const resultReservations = await axios.get('http://localhost:3001/users/all/reservations/', { withCredentials: true });
+            setAllReservations(resultReservations.data.success);
 
-    const {response: reservations} = useAxios('get', 'http://localhost:3001/users/all/reservations/');
+        } catch (error) {
+            console.log(error);
+        }        
+    }
 
     useEffect( () => {
-        setAllReservations(reservations); //set toutes les reservations dans le state allReservations
-    }, [reservations])
+        fetchSallesReservations();
+    }, []);
+
+    // quand on clique sur une date du calendrier
+    const selectDay = (e, resa) => {
+            // on formate la date dans le bon sens 
+        let jour = new Date(e).toLocaleDateString('en-GB').split(',')[0].split("/");
+        jour = `${jour[2]}-${jour[1]}-${jour[0]}`;
+            // on set la date
+        if (jour !== "undefined-undefined-Invalid Date") {
+            setJourSelected(jour);
+            if (resa) {
+                setResaConfirm("");
+            }
+        }
+    }
 
     const value = {
-
+        allReservations,
+        setAllReservations,
+        dateResevedSalle,
+        setDateReservedSalle,
+        resaConfirm, 
+        setResaConfirm,
+        allSalles,
+        setAllSalles,
+        selectDay,
+        jourSelected,
+        setJourSelected
     };
 
-
-    return <SallesContextProvider value={value}>
+    return <SallesContext.Provider value={value}>
         {children}
-    </SallesContextProvider>
+    </SallesContext.Provider>
 }
  
 export default SallesContextProvider;
