@@ -49,7 +49,7 @@ const GestionResa = ({ reservation, setFocus }) => {
 
             // trigger the request + reset the participants fetch
             setCrudPartiAdress(`http://localhost:3001/users/${user.id}/participations`);
-            setTimeout(() => setListPartiAdress(), 200);
+            setTimeout(() => setListPartiAdress(), 10);
             // setListPartiAdress();
 
         }
@@ -66,7 +66,7 @@ const GestionResa = ({ reservation, setFocus }) => {
 
         // // trigger the request + reset the participants fetch
         setCrudPartiAdress(`http://localhost:3001/users/${user.id}/participations`)
-        setTimeout(() => setListPartiAdress(), 200);
+        setTimeout(() => setListPartiAdress(), 10);
         // setListPartiAdress();
         // response?.success[0].splice(index, 1);
     }
