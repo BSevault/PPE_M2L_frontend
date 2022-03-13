@@ -10,7 +10,12 @@
 
 .salles h1 {
   padding: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+}
+
+.salles .item-list .item:hover:not(:first-child) {
+  background-color: whitesmoke;
+  transition: background-color 0.2s ease-in;
 }
 
 .react-calendar {

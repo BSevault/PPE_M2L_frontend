@@ -17,6 +17,12 @@
     border-radius: 7px 7px 7px 7px;
     margin: 7px;
     background-color: whitesmoke;
+    transition: background-color 0.1s ease-out;
+}
+
+.item-list .item:hover:not(:first-child) {
+  background-color: #6d9dc53f;
+  transition: background-color 0.1s ease-in;
 }
 
 .item-list .headers {

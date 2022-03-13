@@ -1,12 +1,13 @@
 /**
-Component that recieve a list of choice from props with the names 'services'
+Component that recieve a list of choice from props with the names 'values'
 Display the list as a select element
 handleSubmit as placeholder for further customizations
  */
 
+import { forwardRef } from 'react';
 import './ScrollSelect.css'
 
-const ScrollSelect = ({ name, label, values }) => {
+const ScrollSelect = forwardRef(({ name, label, values }, ref) => {
 
     const handleSelect = (e) => {
         console.log(e.target.value);
@@ -15,18 +16,18 @@ const ScrollSelect = ({ name, label, values }) => {
 
     return (
         <div className="scrollSelect">
-            <label htmlFor="service-select">{`${label} `}</label>
+            <label htmlFor={name}>{`${label} `}</label>
 
-            <select name={name} id={name} onChange={(e) => handleSelect(e)}>
-                <option value="">--</option>
+            <select ref={ref} name={name} id={name} onChange={(e) => handleSelect(e)}>
+                <option value="1" defaultValue>--</option>
                 {
                     values.map((value, index) => (
-                        <option key={`${index}-${value}`} value={index+1}>{value}</option>
+                        <option key={`${index}-${value}`} value={index+2}>{value}</option>
                     ))
                 }
             </select>
         </div>
     );
-}
+})
 
 export default ScrollSelect;
