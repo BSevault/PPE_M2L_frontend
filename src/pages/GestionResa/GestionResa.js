@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import AddParticipant from "../../components/AddParticipant/AddParticipant";
 import ButtonBasic from "../../components/ButtonBasic/ButtonBasic";
@@ -11,9 +12,10 @@ const GestionResa = ({ reservation, setFocus }) => {
 
     const [participants, setParticipants] = useState();
     const [partiEmail, setPartiEmail] = useState('');
-    const [content, setContent] = useState();
+    const [partiInfo, setPartiInfo] = useState();
     const [listPartiAdress, setListPartiAdress] = useState(`http://localhost:3001/users/reservation/participants`);
-    const [addPartiAdress, setAddPartiAdress] = useState();
+    const [crudPartiAdress, setCrudPartiAdress] = useState();
+    const [method, setMethod] = useState();
     const partiKeys = ["nom", "prenom", "email", "supprimer"];
     const partiHeader = ["Nom", "Prénom", "Email", "Supprimer"];
 
@@ -26,8 +28,9 @@ const GestionResa = ({ reservation, setFocus }) => {
         })
 
     // fetchs en attente de click
-    useAxios("post", addPartiAdress, content)
+    useAxios(method, crudPartiAdress, partiInfo)
 
+    // If email parameter in participants list, return true -- prevent submiting already present participant
     const userExists = (email) => {
         return participants.some((el) => el.email === email)
     }
@@ -38,30 +41,46 @@ const GestionResa = ({ reservation, setFocus }) => {
             /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
         );
         if (!userExists(partiEmail) && patternEmail.test(partiEmail)) {
-            setContent({
+            setMethod("post");
+            setPartiInfo({
                 "resa_id": reservation.id,
                 "email": partiEmail
             });
-            setAddPartiAdress(`http://localhost:3001/users/${user.id}/participations`);
-            setListPartiAdress(null);
+            
+            // trigger the request + reset the participants fetch
+            setCrudPartiAdress(`http://localhost:3001/users/${user.id}/participations`);
+            setListPartiAdress();
 
         }
-        console.log('handle error here');
+        // console.log('handle error here -- pages/GestionResa/GestionResa.js');
     };
+
+    const handleDelete =  async (partiEl) => {
+        setMethod("delete");
+        setPartiInfo({
+            "user_id": partiEl.id,
+            "resa_id": reservation.id
+        });
+
+        // // trigger the request + reset the participants fetch
+        setCrudPartiAdress(`http://localhost:3001/users/${user.id}/participations`)
+        setListPartiAdress();
+    }
 
     useEffect(() => {
         setListPartiAdress(`http://localhost:3001/users/reservation/participants`);
         setPartiEmail('');
-        setAddPartiAdress(null);
+        setCrudPartiAdress();
+        // setDelPartiAdress();
         if (response) {
-            response.success[0].forEach((partiEl) => {
-                partiEl['supprimer'] = <ButtonBasic handleClick={() => console.log('supprimer: ', partiEl)} buttonInnerText="Yeet" colorstyle='red'/>;
+            response.success[0].forEach((partiEl, index) => {
+                partiEl['supprimer'] = <ButtonBasic handleClick={() => handleDelete(partiEl, index)} buttonInnerText="Yeet" colorstyle='red'/>;
             });
             response.success[0][0].supprimer = '';
             setParticipants(response.success[0]);
         }
 
-    }, [response, listPartiAdress])
+    }, [response, listPartiAdress, method])
 
 
 

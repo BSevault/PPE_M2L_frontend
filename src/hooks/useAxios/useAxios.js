@@ -27,6 +27,7 @@ const useAxios = (method, adress, content) => {
 
     useEffect(() => {
         if (adress) fetchData();
+        // console.log("useAxios, adress:", adress, "method:", method);
     }, [adress]);
 
     // console.log(response);
