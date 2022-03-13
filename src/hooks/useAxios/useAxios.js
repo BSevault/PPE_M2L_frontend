@@ -8,7 +8,6 @@ const useAxios = (method, adress, content) => {
     const [loading, setloading] = useState(true);
 
     const fetchData = () => {
-        console.log('fetch lancé !');
         axios({
             method: method,
             url: adress,
@@ -28,6 +27,7 @@ const useAxios = (method, adress, content) => {
 
     useEffect(() => {
         if (adress) fetchData();
+        // console.log("useAxios, adress:", adress, "method:", method);
     }, [adress]);
 
     // console.log(response);
