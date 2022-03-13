@@ -46,16 +46,18 @@ const GestionResa = ({ reservation, setFocus }) => {
                 "resa_id": reservation.id,
                 "email": partiEmail
             });
-            
+
             // trigger the request + reset the participants fetch
             setCrudPartiAdress(`http://localhost:3001/users/${user.id}/participations`);
-            setListPartiAdress();
+            setTimeout(() => setListPartiAdress(), 200);
+            // setListPartiAdress();
 
         }
         // console.log('handle error here -- pages/GestionResa/GestionResa.js');
     };
 
-    const handleDelete =  async (partiEl) => {
+    const handleDelete = async (partiEl, index) => {
+        console.log(index)
         setMethod("delete");
         setPartiInfo({
             "user_id": partiEl.id,
@@ -64,7 +66,9 @@ const GestionResa = ({ reservation, setFocus }) => {
 
         // // trigger the request + reset the participants fetch
         setCrudPartiAdress(`http://localhost:3001/users/${user.id}/participations`)
-        setListPartiAdress();
+        setTimeout(() => setListPartiAdress(), 200);
+        // setListPartiAdress();
+        // response?.success[0].splice(index, 1);
     }
 
     useEffect(() => {
@@ -74,13 +78,13 @@ const GestionResa = ({ reservation, setFocus }) => {
         // setDelPartiAdress();
         if (response) {
             response.success[0].forEach((partiEl, index) => {
-                partiEl['supprimer'] = <ButtonBasic handleClick={() => handleDelete(partiEl, index)} buttonInnerText="Yeet" colorstyle='red'/>;
+                partiEl['supprimer'] = <ButtonBasic handleClick={() => handleDelete(partiEl, index)} buttonInnerText="Yeet" colorstyle='red' />;
             });
             response.success[0][0].supprimer = '';
             setParticipants(response.success[0]);
         }
 
-    }, [response, listPartiAdress, method])
+    }, [response, listPartiAdress])
 
 
 
