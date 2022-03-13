@@ -21,7 +21,7 @@ const Reservations = () => {
 
     const handleDelete = (resa, index) => {
         // basic warning message, flemme de customiser
-        if (window.confirm("Êtes vous certain de vouloir supprimer cette réservation?") == true) {
+        if (window.confirm("On rend pas la monnaie.") == true) {
             setResaContent({ "resa_id": resa.id });
             setDelResaAdress(`http://localhost:3001/users/${user.id}/reservation`);
             response?.success[0].splice(index, 1);
