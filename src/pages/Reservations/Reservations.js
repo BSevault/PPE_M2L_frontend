@@ -10,19 +10,34 @@ const Reservations = () => {
     const { user } = useAuth();
 
     const [focus, setFocus] = useState();
-    const resaKeys = ["nom", "description", "date_resa", 'gerer'];
-    const resaHeader = ["Nom de la Salle", "Description", "Date", "Gérer"];
+    const resaKeys = ["nom", "description", "date_resa", 'gerer', 'supprimer'];
+    const resaHeader = ["Nom de la Salle", "Description", "Date", "Gérer", "Supprimer"];
     const { response } = useAxios("get", `http://localhost:3001/users/${user.id}/reservations`, null)
+
+    const [delResaAdress, setDelResaAdress] = useState();
+    const [resaContent, setResaContent] = useState();
+
+    useAxios("delete", delResaAdress, resaContent)
+
+    const handleDelete = (resa, index) => {
+        // basic warning message, flemme de customiser
+        if (window.confirm("Êtes vous certain de vouloir supprimer cette réservation?") == true) {
+            setResaContent({ "resa_id": resa.id });
+            setDelResaAdress(`http://localhost:3001/users/${user.id}/reservation`);
+            response?.success[0].splice(index, 1);
+        }
+    }
 
     useEffect(() => {
         if (response) {
             response.success[0].sort((a, b) => new Date(a.date_resa) - new Date(b.date_resa));
-            response.success[0].forEach((resa) => {
+            response.success[0].forEach((resa, index) => {
                 resa['date_resa'] = new Date(resa['date_resa']).toLocaleDateString('en-GB');
-                resa['gerer'] = <ButtonBasic handleClick={() => setFocus(resa)} buttonInnerText="Gérer"/>;
+                resa['gerer'] = <ButtonBasic handleClick={() => setFocus(resa)} buttonInnerText="Gérer" />;
+                resa['supprimer'] = <ButtonBasic handleClick={() => handleDelete(resa, index)} buttonInnerText="Yeet" colorstyle='red' />;
                 // resa['id'] = index; // fake id, for keys in itemlist
             });
-            
+
         }
     }, [response])
 
@@ -30,7 +45,7 @@ const Reservations = () => {
     if (focus) {
         return (
             <div className="gestionresa">
-                <GestionResa reservation={focus} setFocus={setFocus}/>
+                <GestionResa reservation={focus} setFocus={setFocus} />
             </div>
         )
     }

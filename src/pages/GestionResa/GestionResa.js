@@ -76,7 +76,7 @@ const GestionResa = ({ reservation, setFocus }) => {
         setCrudPartiAdress();
         // setDelPartiAdress();
         if (response) {
-            response.success[0].forEach((partiEl, index) => {
+            response.success[0].forEach((partiEl) => {
                 partiEl['supprimer'] = <ButtonBasic handleClick={() => handleDelete(partiEl)} buttonInnerText="Yeet" colorstyle='red' />;
             });
             response.success[0][0].supprimer = '';

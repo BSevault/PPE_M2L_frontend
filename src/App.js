@@ -9,7 +9,7 @@ import { useAuth } from './components/contexts/AuthContext';
 function App() {
   const { user } = useAuth();
   
-    console.log(user);
+    // console.log(user);
 
   return (
     <div className="App">
