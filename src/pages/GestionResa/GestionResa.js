@@ -56,8 +56,7 @@ const GestionResa = ({ reservation, setFocus }) => {
         // console.log('handle error here -- pages/GestionResa/GestionResa.js');
     };
 
-    const handleDelete = async (partiEl, index) => {
-        console.log(index)
+    const handleDelete = async (partiEl) => {
         setMethod("delete");
         setPartiInfo({
             "user_id": partiEl.id,
@@ -78,7 +77,7 @@ const GestionResa = ({ reservation, setFocus }) => {
         // setDelPartiAdress();
         if (response) {
             response.success[0].forEach((partiEl, index) => {
-                partiEl['supprimer'] = <ButtonBasic handleClick={() => handleDelete(partiEl, index)} buttonInnerText="Yeet" colorstyle='red' />;
+                partiEl['supprimer'] = <ButtonBasic handleClick={() => handleDelete(partiEl)} buttonInnerText="Yeet" colorstyle='red' />;
             });
             response.success[0][0].supprimer = '';
             setParticipants(response.success[0]);
