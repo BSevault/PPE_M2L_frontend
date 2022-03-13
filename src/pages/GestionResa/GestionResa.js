@@ -89,6 +89,7 @@ const GestionResa = ({ reservation, setFocus }) => {
 
     return (
         <div className="gestion-resa">
+            <h1 className="info-resa">Réservation de la salle {reservation.nom} à la date du {reservation.date_resa}</h1>
             <div className="return-resa">
                 <ButtonBasic
                     handleClick={() => setFocus()}
@@ -105,9 +106,9 @@ const GestionResa = ({ reservation, setFocus }) => {
                     />
                 </div>
                 <ul className="user-list">
-                    <h1 id="participants">
+                    <h2 id="participants">
                         Participants
-                    </h1>
+                    </h2>
                     {participants &&
                         <ItemList
                             name="participants"
@@ -115,7 +116,6 @@ const GestionResa = ({ reservation, setFocus }) => {
                             keys={partiKeys}
                             headers={partiHeader}
                         />}
-
                 </ul>
             </div>
         </div>

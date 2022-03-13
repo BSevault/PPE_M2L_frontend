@@ -17,3 +17,8 @@
     flex-grow: 1;
     text-align: center;
 }
+
+.info-resa {
+    text-align: center;
+    margin: 20px;
+}
