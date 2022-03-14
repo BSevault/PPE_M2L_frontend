@@ -3,10 +3,10 @@ import ItemList from '../../components/ItemList/ItemList';
 import PlanSalles from '../../components/PlanSalles/PlanSalles';
 import SalleResa from '../../components/SalleResa/SalleResa';
 import { useAuth } from '../../components/contexts/AuthContext';
+import { useSalles } from '../../components/contexts/SallesContext';
 
 import './Salles.css'
 import 'react-calendar/dist/Calendar.css';
-import { useSalles } from '../../components/contexts/SallesContext';
 
 const Salles = () => {
     const { user } = useAuth();
