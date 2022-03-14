@@ -122,42 +122,41 @@ const Complaint = () => {
     
     const sendTicket = async (e) => {
         e.preventDefault();
-        let temp;
         console.log('date probleme :', jourSelected);
         console.log('description :', description.current.value);
         console.log('user.id :', user.id);
         console.log('id_salle :', id_salle.current.value);
         console.log('id_produit :', id_produit.current.value);
+        let id_newTicket = '';
          
-        // try {
-        //     const send = await axios.post(`http://localhost:3001/users/${user.id}/tickets`,
-        //         {date_probleme: dateFormatToDB(jourSelected), description: description.current.value, id_user: user.id, id_salle: id_salle.current.value, id_produit: id_produit.current.value});
-        //     console.log(send.data.success);
-        // } catch (error) {
-        //     console.log(error.message);
-        // }
+        try {
+            const send = await axios.post(`http://localhost:3001/users/${user.id}/tickets`,
+                {date_probleme: dateFormatToDB(jourSelected), description: description.current.value, id_user: user.id, id_salle: parseInt(id_salle.current.value)+1, id_produit: parseInt(id_produit.current.value)+1});
+            console.log(send.data.success[0]['id']);
+            id_newTicket = send.data.success[0]['id'];
+        } catch (error) {
+            console.log(error.message);
+        }
 
         let newSalle = "";
         let newProduit = "";
 
         nom_salle.forEach( (el, index) => {
-            if (index === id_salle.current.value-1) {
+            if (index == id_salle.current.value) {
                 newSalle = el;
             }
         });
 
         nom_produit.forEach( (el, index) => {
-            if (index === id_produit.current.value-1) {
+            if (index == id_produit.current.value) {
                 newProduit = el;
             }
         });
 
-        let newTicket = ({ id: "3112", date_ticket: dateFormatToDB(startDate), date_probleme: (jourSelected), nom: newSalle, nom_produit: newProduit, description: description.current.value})
+        let newTicket = ({ id: id_newTicket, date_ticket: dateFormatToDB(startDate), date_probleme: jourSelected, nom: newSalle, nom_produit: newProduit, description: description.current.value})
         console.log('newTicket : ',newTicket);
         
-        // temp = tickets;
-        // temp.success.push(newTicket);
-        // setTickets(temp);
+        
         setTickets(prevstate => [...prevstate, newTicket]);
 
         // setTickets(prevstate =>  prevstate.success.push(newTicket));
