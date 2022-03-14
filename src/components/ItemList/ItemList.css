@@ -19,8 +19,8 @@
     background-color: whitesmoke;
     transition: background-color 0.1s ease-out;
 }
-
-.item-list .item:hover:not(:nth-child(2)) {
+/* :nth-child(2) */
+.item-list .item:hover:not(:first-child) {
   background-color: #6d9dc53f;
   transition: background-color 0.1s ease-in;
 }
@@ -35,4 +35,10 @@
   margin: 10px;
   width: 100%;
   text-align: center;
+}
+
+.extra-content {
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }

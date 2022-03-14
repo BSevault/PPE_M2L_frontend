@@ -1,0 +1,12 @@
+.reservation-history-details {
+    display: flex;
+    width: 85%;
+}
+
+.flexblock {
+    flex-grow: 2;
+}
+
+.flexblock2 {
+    flex-grow: 1;
+}
