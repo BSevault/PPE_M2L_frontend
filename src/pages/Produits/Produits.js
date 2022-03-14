@@ -1,6 +1,7 @@
 import "./Produits.css";
 import useAxios from "../../hooks/useAxios/useAxios";
 import ItemList from "../../components/ItemList/ItemList";
+import FactureResa from "../../components/FactureResa/FactureResa";
 
 const Produits = () => {
     const productsKeys = ["nom_produit", "description", "qte_dispo", "prix"];
@@ -20,6 +21,7 @@ const Produits = () => {
                     headers={productsHeader}
                 /> }
             </div>
+            <FactureResa/>
         </div>
     );
 };
