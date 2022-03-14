@@ -38,29 +38,51 @@ const Complaint = () => {
     // on requête la liste des produits sur la db via le backend pour en extraire les noms dans un tableau
     const { response : produits } = useAxios("get", "http://localhost:3001/produits");
 
+    
     // on définit un state des tickets pour manier la liste en local sans avoir à requêter à nouveau en cas de modifs
     const [tickets, setTickets] = useState();
-    console.log('tickets : ', tickets);
-    console.log('allUserTickets : ', allUserTickets);
-
+    // console.log('tickets : ', tickets);
+    // console.log('allUserTickets : ', allUserTickets);
+    
     const [nom_salle, setNom_salle] = useState([]);
     
     const [nom_produit, setNom_produit] = useState([]);
     
+    // const [newTicket, setNewTicket] = useState();
+
+    const dateFormatToDB = (date) => {
+        let jour = new Date(date).toLocaleString('en-GB').split(',')[0].split("/");
+        jour = `${jour[2]}-${jour[1]}-${jour[0]}`;
+        return jour;
+    }
+    
+    const dateFormatFromDB = (date) => {
+        // console.log(date);
+        // console.log(date instanceof Date);
+        
+        let jour = new Date(date).toLocaleString('en-GB').split(',')[0].split("/");
+        jour = `${jour[0]}/${jour[1]}/${jour[2]}`;
+        return jour;
+    }
 
     useEffect( () => {
-        setTickets(allUserTickets);
+        if(allUserTickets) {
+            setTickets(allUserTickets?.success);
+        }
     }, [allUserTickets]);
 
+    
     useEffect( ()=> {
         if (tickets) {
             // on formate les dates => dd/mm/yyy
-            tickets.success.forEach( (ticket) => {
-                ticket["date_ticket"] = new Date(ticket["date_ticket"]).toLocaleDateString('en-GB');
-                ticket["date_probleme"] = new Date(ticket["date_probleme"]).toLocaleDateString('en-GB');
+            console.log('ticket dans useEffect',tickets);
+            tickets?.forEach( (ticket) => {
+                if (ticket["date_ticket"][2] !== '/') {
+                    ticket["date_ticket"] = dateFormatFromDB(ticket["date_ticket"]);
+                    ticket["date_probleme"] = dateFormatFromDB(ticket["date_probleme"]);
+                }
             });    
         }
-        console.log('ticket dans useEffect',tickets);
     }
     ,[tickets])
 
@@ -87,20 +109,15 @@ const Complaint = () => {
     // on définit un message si il n'y a pas de ticket 
 
     
-    const dateFormat = (date) => {
-        let jour = new Date(date).toLocaleString('en-GB').split(',')[0].split("/");
-        jour = `${jour[2]}-${jour[1]}-${jour[0]}`;
-        return jour;
-    }
 
     // quand on clique sur une date du calendrier
     const selectDay = (e) => {
         // on set la date
-        setJourSelected(e);
+        setJourSelected(dateFormatToDB (e));
     }
 
      // on stocke le jour cliqué sur le calendrier
-    const [ jourSelected, setJourSelected] = useState(startDate);
+    const [ jourSelected, setJourSelected] = useState(dateFormatToDB(startDate));
 
     
     const sendTicket = async (e) => {
@@ -114,7 +131,7 @@ const Complaint = () => {
          
         // try {
         //     const send = await axios.post(`http://localhost:3001/users/${user.id}/tickets`,
-        //         {date_probleme: dateFormat(jourSelected), description: description.current.value, id_user: user.id, id_salle: id_salle.current.value, id_produit: id_produit.current.value});
+        //         {date_probleme: dateFormatToDB(jourSelected), description: description.current.value, id_user: user.id, id_salle: id_salle.current.value, id_produit: id_produit.current.value});
         //     console.log(send.data.success);
         // } catch (error) {
         //     console.log(error.message);
@@ -135,17 +152,18 @@ const Complaint = () => {
             }
         });
 
-        const newTicket = { id: "3112", date_ticket: '12/03/2022', date_probleme: '12/03/2022', nom: newSalle, nom_produit: newProduit, description: description.current.value};
+        let newTicket = ({ id: "3112", date_ticket: dateFormatToDB(startDate), date_probleme: (jourSelected), nom: newSalle, nom_produit: newProduit, description: description.current.value})
         console.log('newTicket : ',newTicket);
         
-        temp = tickets;
-        temp.success.push(newTicket);
-        setTickets(temp);
+        // temp = tickets;
+        // temp.success.push(newTicket);
+        // setTickets(temp);
+        setTickets(prevstate => [...prevstate, newTicket]);
 
         // setTickets(prevstate =>  prevstate.success.push(newTicket));
-        console.log('temp : ',temp);
-        console.log('tickets.success : ',tickets.success);
-        console.log('allUserTickets',allUserTickets);
+        // console.log('temp : ',temp);
+        // console.log('tickets.success : ',tickets.success);
+        // console.log('allUserTickets',allUserTickets);
 
 
 
@@ -221,7 +239,7 @@ const Complaint = () => {
             { allUserTickets && salles && produits &&
                 <ItemList
                     name="tickets"
-                    data={tickets.success}
+                    data={tickets}
                     keys={keys}
                     headers={headers}
                 />
