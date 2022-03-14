@@ -5,7 +5,7 @@ import ItemList from "../ItemList/ItemList";
 
 import './FactureResa.css';
 
-const FactureResa = () => {
+const FactureResa = ({ id_resa }) => {
     const { user } = useAuth();
     const [adressPaiement, setAdressPaiement] = useState();
     const [paymentResa, setPaymentResa] = useState();
@@ -20,7 +20,7 @@ const FactureResa = () => {
     const { response : allPayments } = useAxios('get', adressPaiement);
 
     useEffect(() => {
-        setAdressPaiement(`http://localhost:3001/users/paiements/2`);
+        setAdressPaiement(`http://localhost:3001/users/paiements/${id_resa}`);
         // setPaymentResa(allPayments?.success);
     }, [])
 

@@ -22,7 +22,7 @@ const ItemList = ({ name, data, keys, headers, ExtraContent }) => {
 
     // set sextra content if there is one given
     const setExtraContent = (item) => {
-        if (ExtraContent) return <ExtraContent buttonInnerText={item.nom} />
+        if (ExtraContent) return <ExtraContent item={item} />
     }
 
     return (
@@ -36,14 +36,14 @@ const ItemList = ({ name, data, keys, headers, ExtraContent }) => {
 
             {items &&
                 items.map((item, index) => (
-                    <div className="item-list" onClick={() => toggle(index)}>
-                        <ul className={`item ${name}-item`} key={`item-${item.id}`} >
+                    <>
+                        <ul className={`item ${name}-item`} key={`item-${item.id}`} onClick={() => toggle(index)}>
                             {keys.map((key, index) => (
                                 <li key={`${name}-key-${index}`}> {item[key]} </li>
                             ))}
                         </ul>
-                        <div style={{display: targetOpen===index ? "inline-block": "none"}} className="test-text">{setExtraContent(item)} </div>
-                    </div>
+                        <div className="extra-content" style={{display: targetOpen===index ? "flex": "none"}}>{setExtraContent(item)} </div>
+                    </>
                 ))}
         </div>
     );

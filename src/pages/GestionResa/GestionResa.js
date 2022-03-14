@@ -116,7 +116,6 @@ const GestionResa = ({ reservation, setFocus }) => {
                             data={participants}
                             keys={partiKeys}
                             headers={partiHeader}
-                            ExtraContent={ButtonBasic}
                         />}
                 </ul>
             </div>

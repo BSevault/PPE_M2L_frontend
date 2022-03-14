@@ -9,7 +9,7 @@ import './SalleResa.css';
 
 const SalleResa = ( {idSalle, input} ) => {
     const { user } = useAuth();
-    const { setAllReservations, dateResevedSalle, setDateReservedSalle, resaConfirm, setResaConfirm, selectDay, jourSelected } = useSalles();
+    const { setAllReservations, dateResevedSalle, setDateReservedSalle, resaConfirm, setResaConfirm, selectDay, jourSelected, setJourSelected } = useSalles();
   
         // date de débout du calendrier.
     let startDate = new Date();
@@ -35,6 +35,7 @@ const SalleResa = ( {idSalle, input} ) => {
                 // si la réservation est confirmé, on affiche un message
             if (result.data.success) {
                 setResaConfirm(`La salle est bien réservée pour le ${new Date(jourSelected).toLocaleString().split(",")[0]}`); 
+                setJourSelected();
             }
             else {
                 setResaConfirm(`Un problème est survenu, veuillez recommencer la réservation`);

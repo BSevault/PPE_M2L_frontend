@@ -5,11 +5,13 @@ import { useEffect, useState } from 'react';
 import ButtonBasic from '../../components/ButtonBasic/ButtonBasic';
 import GestionResa from '../GestionResa/GestionResa';
 import { useAuth } from '../../components/contexts/AuthContext';
+import ReservationsHistory from '../ReservationsHistory/ReservationsHistory';
 
 const Reservations = () => {
     const { user } = useAuth();
 
     const [focus, setFocus] = useState();
+    const [displayHistory, setDisplayHistory] = useState(false);
     const resaKeys = ["nom", "description", "date_resa", 'gerer', 'supprimer'];
     const resaHeader = ["Nom de la Salle", "Description", "Date", "Gérer", "Supprimer"];
     const { response } = useAxios("get", `http://localhost:3001/users/${user.id}/reservations`, null)
@@ -50,6 +52,12 @@ const Reservations = () => {
         )
     }
 
+    if (displayHistory) {
+        return (
+            <ReservationsHistory setDisplayHistory={setDisplayHistory} />
+        )
+    }
+
     return (
         <div id="resa-wrapper">
             <div id="resa-content">
@@ -62,6 +70,13 @@ const Reservations = () => {
                         headers={resaHeader}
                     />}
             </div>
+            <div className="return-resa">
+                <ButtonBasic
+                    handleClick={() => setDisplayHistory(true)}
+                    buttonInnerText="Historique des réservations"
+                    style={{ width: '400px' }}
+                />
+            </div>            
         </div>
     );
 }
