@@ -1,6 +1,7 @@
+import axios from 'axios';
 import useAxios from "../../hooks/useAxios/useAxios";
 import ItemList from "../../components/ItemList/ItemList";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useAuth } from "../../components/contexts/AuthContext";
 import ScrollSelect from '../../components/ScrollSelect/ScrollSelect';
 import Calendar from "react-calendar";
@@ -21,84 +22,152 @@ const Complaint = () => {
         "Description"
     ];
 
-    // on définit un state des tickets pour manier la liste en local sans avoir à requêter à nouveau en cas de modifs
-    const [complaints, setComplaints] = useState([]);
-
-    // on requête la liste des produits sur la db via le backend pour en extraire les noms dans un tableau
-    const { response : produits } = useAxios("get", "http://localhost:3001/produits");
-    const [nom_produit, setNom_produit] = useState([]);
-    
-    // on requête la liste des salles sur la db via le backend pour en extraire les noms dans un tableau
-    const { response : salles } = useAxios("get", "http://localhost:3001/salles/all");
-    const [nom_salle, setNom_salle] = useState([]);
-
-    // on requête la liste des tickets sur la db via le backend
-    const { response } = useAxios("get", `http://localhost:3001/users/${user.id}/tickets`);
-
-    // on gère ma logique dans un useEffect sinon ça déraille
-    useEffect(() => {
-        if (response && produits && salles) {
-
-            // on formate les dates => dd/mm/yyy
-            setComplaints(response.success);
-            complaints.forEach( (ticket) => {
-                ticket["date_ticket"] = new Date(ticket["date_ticket"]).toLocaleDateString();
-                ticket["date_probleme"] = new Date(ticket["date_probleme"]).toLocaleDateString();
-            });
-
-            // on controle la longueur de la liste des noms de produit pour eviter les duplications
-            if (nom_produit.length < produits.success.length){
-                produits.success.forEach( (produit) => {
-                    setNom_produit(prevstate => [...prevstate, produit.nom_produit])
-                })
-            }
-            
-            // on controle la longueur de la liste des noms de salle pour eviter les duplications
-            if (nom_salle.length < salles.success.length){
-                salles.success.forEach( (salle) => {
-                    setNom_salle(prevstate => [...prevstate, salle.nom])
-                })
-            }
-
-            console.log(nom_produit);
-            console.log(nom_salle);
-
-        }
-    }, [response,complaints, produits, salles]);
-
-    // on définit un message si il n'y a pas de ticket 
-    let message = "";
-    if (complaints.length < 1 ) message = "Vous n'avez pas encore soumis de ticket";
-
-    // on stocke le jour cliqué sur le calendrier
-    const [ jourSelected, setJourSelected] = useState("");
-
     // date de début du calendrier.
     let startDate = new Date();
 
-    // quand on clique sur une date du calendrier
-    const selectDay = (e) => {
-        // on formate la date dans le bon sens 
-        let jour = new Date(e).toLocaleString().split(',')[0].split("/");
+    const description = useRef();
+    const id_salle = useRef();
+    const id_produit = useRef();
+
+    // on requête la liste des tickets sur la db via le backend
+    const { response: allUserTickets } = useAxios("get", `http://localhost:3001/users/${user.id}/tickets`);
+
+    // on requête la liste des salles sur la db via le backend pour en extraire les noms dans un tableau
+    const { response : salles } = useAxios("get", "http://localhost:3001/salles/all");
+
+    // on requête la liste des produits sur la db via le backend pour en extraire les noms dans un tableau
+    const { response : produits } = useAxios("get", "http://localhost:3001/produits");
+
+    
+    // on définit un state des tickets pour manier la liste en local sans avoir à requêter à nouveau en cas de modifs
+    const [tickets, setTickets] = useState();
+    // console.log('tickets : ', tickets);
+    // console.log('allUserTickets : ', allUserTickets);
+    
+    const [nom_salle, setNom_salle] = useState([]);
+    
+    const [nom_produit, setNom_produit] = useState([]);
+    
+    // const [newTicket, setNewTicket] = useState();
+
+    const dateFormatToDB = (date) => {
+        let jour = new Date(date).toLocaleString('en-GB').split(',')[0].split("/");
         jour = `${jour[2]}-${jour[1]}-${jour[0]}`;
-        // on set la date
-        setJourSelected(jour);
+        return jour;
+    }
+    
+    const dateFormatFromDB = (date) => {
+        // console.log(date);
+        // console.log(date instanceof Date);
+        
+        let jour = new Date(date).toLocaleString('en-GB').split(',')[0].split("/");
+        jour = `${jour[0]}/${jour[1]}/${jour[2]}`;
+        return jour;
     }
 
-    const sendTicket = (e) => {
+    useEffect( () => {
+        if(allUserTickets) {
+            setTickets(allUserTickets?.success);
+        }
+    }, [allUserTickets]);
+
+    
+    useEffect( ()=> {
+        if (tickets) {
+            // on formate les dates => dd/mm/yyy
+            console.log('ticket dans useEffect',tickets);
+            tickets?.forEach( (ticket) => {
+                if (ticket["date_ticket"][2] !== '/') {
+                    ticket["date_ticket"] = dateFormatFromDB(ticket["date_ticket"]);
+                    ticket["date_probleme"] = dateFormatFromDB(ticket["date_probleme"]);
+                }
+            });    
+        }
+    }
+    ,[tickets])
+
+    if (salles && produits) {
+        // on controle la longueur de la liste des noms de salle pour eviter les duplications
+        if (nom_salle.length < salles.success.length){
+            salles.success.forEach( (salle) => {
+                setNom_salle(prevstate => [...prevstate, salle.nom])
+            });
+        }
+
+    // on controle la longueur de la liste des noms de produit pour eviter les duplications
+        if (nom_produit.length < produits.success.length){
+            produits.success.forEach( (produit) => {
+                setNom_produit(prevstate => [...prevstate, produit.nom_produit])
+            });
+        }
+        // console.log(nom_salle);
+        // console.log(nom_produit);
+    }
+
+
+    
+    // on définit un message si il n'y a pas de ticket 
+
+    
+
+    // quand on clique sur une date du calendrier
+    const selectDay = (e) => {
+        // on set la date
+        setJourSelected(dateFormatToDB (e));
+    }
+
+     // on stocke le jour cliqué sur le calendrier
+    const [ jourSelected, setJourSelected] = useState(dateFormatToDB(startDate));
+
+    
+    const sendTicket = async (e) => {
         e.preventDefault();
-        let description = document.getElementById("description").value;
-        let id_salle = document.getElementById("salles").value;
-        let id_produit = document.getElementById("produits").value;
-        let date = startDate.toLocaleString();
-        console.log(date);
-        if (jourSelected === "") setJourSelected('test'); //peux pas le faire
-        if (id_salle === "") id_salle = 1;
-        if (id_produit === "") id_produit = 1;
-        console.log(jourSelected);
-        console.log(description);
-        console.log(id_salle);
-        console.log(id_produit);
+        console.log('date probleme :', jourSelected);
+        console.log('description :', description.current.value);
+        console.log('user.id :', user.id);
+        console.log('id_salle :', id_salle.current.value);
+        console.log('id_produit :', id_produit.current.value);
+        let id_newTicket = '';
+         
+        try {
+            const send = await axios.post(`http://localhost:3001/users/${user.id}/tickets`,
+                {date_probleme: dateFormatToDB(jourSelected), description: description.current.value, id_user: user.id, id_salle: parseInt(id_salle.current.value)+1, id_produit: parseInt(id_produit.current.value)+1});
+            console.log(send.data.success[0]['id']);
+            id_newTicket = send.data.success[0]['id'];
+        } catch (error) {
+            console.log(error.message);
+        }
+
+        let newSalle = "";
+        let newProduit = "";
+
+        nom_salle.forEach( (el, index) => {
+            if (index == id_salle.current.value) {
+                newSalle = el;
+            }
+        });
+
+        nom_produit.forEach( (el, index) => {
+            if (index == id_produit.current.value) {
+                newProduit = el;
+            }
+        });
+
+        let newTicket = ({ id: id_newTicket, date_ticket: dateFormatToDB(startDate), date_probleme: jourSelected, nom: newSalle, nom_produit: newProduit, description: description.current.value})
+        console.log('newTicket : ',newTicket);
+        
+        
+        setTickets(prevstate => [...prevstate, newTicket]);
+
+        // setTickets(prevstate =>  prevstate.success.push(newTicket));
+        // console.log('temp : ',temp);
+        // console.log('tickets.success : ',tickets.success);
+        // console.log('allUserTickets',allUserTickets);
+
+
+
+
+        
 
     }
 
@@ -109,7 +178,7 @@ const Complaint = () => {
             <h1>Réclamations</h1>
             <h2>Faire une réclamation</h2>
 
-            <form id="create-ticket-form">
+            <form id="create-ticket-form" onSubmit={sendTicket}>
 
                 <div>
                     <p>Date de survenue du problème : </p>
@@ -123,20 +192,25 @@ const Complaint = () => {
                         
                     />
                 </div>
-                <ScrollSelect 
+                { salles &&
+                    <ScrollSelect 
                     id="salles"
                     name="salles"
                     label="Salle concernée"
-                    values={nom_salle}
+                    values={nom_salle.slice(1)}
+                    ref={id_salle}
                 />
+                }
 
-                <ScrollSelect
-                    id="produits"
-                    name="produits"
-                    label="Produit concerné"
-                    values={nom_produit}
-                    
-                />
+                { produits && 
+                    <ScrollSelect
+                        id="produits"
+                        name="produits"
+                        label="Produit concerné"
+                        values={nom_produit.slice(1)}
+                        ref={id_produit}
+                    />
+                }
 
 
                 <label htmlFor="description">Description du problème : (1000 caractères max.)</label>
@@ -145,6 +219,7 @@ const Complaint = () => {
                     id="description"
                     maxLength={1000}
                     required
+                    ref={description}
                 ></textarea> 
 
 
@@ -152,22 +227,23 @@ const Complaint = () => {
                     className='btn_ticket' 
                     type="submit"
                     value="Envoyer le ticket"
-                    onClick={sendTicket}
-
+                    
                 />
             </form>
-                <p>*N.A. : non applicable</p>
+
+            <p>*N.A. : non applicable</p>
 
             <h2>Vos réclamations</h2>
             
+            { allUserTickets && salles && produits &&
                 <ItemList
-                    name="complaints"
-                    data={complaints}
+                    name="tickets"
+                    data={tickets}
                     keys={keys}
                     headers={headers}
                 />
+            }
 
-            <p>{message}</p>
         </div>
     );
 };
