@@ -87,6 +87,7 @@ const GestionResa = ({ reservation, setFocus }) => {
 
 
 
+
     return (
         <div className="gestion-resa">
             <h1 className="info-resa">Réservation de la salle {reservation.nom} à la date du {reservation.date_resa}</h1>
@@ -115,6 +116,7 @@ const GestionResa = ({ reservation, setFocus }) => {
                             data={participants}
                             keys={partiKeys}
                             headers={partiHeader}
+                            ExtraContent={ButtonBasic}
                         />}
                 </ul>
             </div>
