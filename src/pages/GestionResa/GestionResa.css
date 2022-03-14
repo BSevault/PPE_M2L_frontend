@@ -9,11 +9,16 @@
 }
 
 .add-user {
-    flex-grow: 1;
+    flex-grow: .8;
     text-align: center;
 }
 
 .user-list {
     flex-grow: 1;
     text-align: center;
+}
+
+.info-resa {
+    text-align: center;
+    margin: 20px;
 }

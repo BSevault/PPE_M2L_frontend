@@ -12,35 +12,37 @@ import Salles from "../../pages/Salles/Salles.js";
 import SignIn from "../../pages/SignIn/SignIn.js";
 import Complaint from "../../pages/Complaint/Complaint.js";
 import { useAuth } from "../../components/contexts/AuthContext.js";
-
+import SallesContextProvider from "../contexts/SallesContext.js";
 
 const ProtectedRoute = () => {
   const { user } = useAuth();
-  return user ? <Outlet /> : <Navigate to="/login" />
-}
-
+  return user ? <Outlet /> : <Navigate to="/login" />;
+};
 
 const RoutesM2L = () => {
-
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
+    
+      <Routes>
+        <Route path="/" element={<Home />} />
 
-      <Route element={<ProtectedRoute />}>
-        <Route path="/compte" element={<Compte />} />
-        <Route path="/complaint" element={<Complaint />} />
-        <Route path="/reservations" element={<Reservations />} />
-        <Route path="/produits" element={<Produits/>} />
-      </Route>
+        <Route element={<ProtectedRoute />}>
+          <Route path="/compte" element={<Compte />} />
+          <Route path="/complaint" element={<Complaint />} />
+          <Route path="/reservations" element={<Reservations />} />
+          <Route path="/produits" element={<Produits />} />
+        </Route>
 
-      <Route path="/salles" element={<Salles />} />
-      <Route path="/legals" element={<Legals />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/cgv" element={<Cgv />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/presentation" element={<Presentation />} />
-    </Routes>
+        <Route path="/salles" element={<SallesContextProvider><Salles /></SallesContextProvider>} />
+      
+      
+        <Route path="/legals" element={<Legals />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/cgv" element={<Cgv />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/presentation" element={<Presentation />} />
+      </Routes>
+    
   );
 };
 

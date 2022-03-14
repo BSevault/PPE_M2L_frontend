@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import { useAuth } from '../../components/contexts/AuthContext';
 
@@ -7,6 +7,7 @@ import './Login.css'
 
 const Login = () => {
     const { setUser } = useAuth();
+    const navigate = useNavigate();
     const [email, setEmail] = useState();
     const [password, setPasswordUser] = useState();
     const [redirect, setRedirect] = useState(false);
@@ -16,7 +17,8 @@ const Login = () => {
 
     let messageError = useRef();
 
-    const submitLogIn = async () => {
+    const submitLogIn = async (e) => {
+        e.preventDefault();
 
         const result = await axios.post('http://localhost:3001/users/login', {
             email,
@@ -44,7 +46,7 @@ const Login = () => {
 
     // fait la redirection vers Home une fois le user logger si "redirec=true"
     if (redirect) {
-        return <Navigate to="/" />;
+        navigate('/');
     }
 
     // ajoute une classe quand le curseur est dans un input text
@@ -60,7 +62,7 @@ const Login = () => {
     return (
         <div className="login">
             <h1>Se connecter à votre compte M2L</h1>
-            <form action="_POST" onClick={e => { e.preventDefault() }} id="form_login">
+            <form action="_POST" onSubmit={submitLogIn} id="form_login">
                 <div className="input_form">
                     <label htmlFor="email">Email</label>
                     <input type="text" name="email" id="email" onChange={e => setEmail(e.target.value)} onInput={e => addActiveInput(e)} ref={inputEmail} required />
@@ -69,7 +71,7 @@ const Login = () => {
                     <label htmlFor="password">Password</label>
                     <input type="password" name="password" id="password" onChange={e => setPasswordUser(e.target.value)} onInput={e => addActiveInput(e)} ref={inputPwd} required />
                 </div>
-                <input type="submit" value="Login" id='submit' onClick={submitLogIn} />
+                <input type="submit" value="Login" id='submit' />
             </form>
             <p ref={messageError}></p>
         </div>
