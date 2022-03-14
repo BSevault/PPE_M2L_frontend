@@ -20,7 +20,7 @@
     transition: background-color 0.1s ease-out;
 }
 
-.item-list .item:hover:not(:first-child) {
+.item-list .item:hover:not(:nth-child(2)) {
   background-color: #6d9dc53f;
   transition: background-color 0.1s ease-in;
 }
