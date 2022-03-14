@@ -1,6 +1,7 @@
 import './ReservationHistoryDetails.css';
 import useAxios from "../../hooks/useAxios/useAxios";
 import ItemList from "../ItemList/ItemList";
+import FactureResa from '../FactureResa/FactureResa';
 
 const ReservationHistoryDetails = ({ item: reservation }) => {
 
@@ -27,13 +28,7 @@ const ReservationHistoryDetails = ({ item: reservation }) => {
                     />}
             </div>
             <div className="flexblock2">
-                {response &&
-                    <ItemList
-                        name="reservations"
-                        data={response.success[0]}
-                        keys={partiKeys}
-                        headers={partiHeader}
-                    />}
+                <FactureResa id_resa={reservation.id} />
             </div>
         </div>
     );
