@@ -3,17 +3,42 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* border-radius: 7px;
+    width: 85%;
+    background-color: whitesmoke;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
 }
 
 .facture_resa .total_facture {
-  width: 85%;
+  width: fit-content;
+  align-self: flex-end;
+  font-weight: 900;
   border: none;
   border-radius: 7px;
   margin: 7px;
   padding: 10px;
-  padding-right: 30px;
   background-color: rgba(146, 218, 118, 0.356);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  text-align: right;
+   /*box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; 
+  text-align: right;*/
 }
+/*
+.facture_resa .item-list .item {
+  border-bottom: 1px double var(--blue);
+  margin: 4px;
+  width: 100%;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.facture_resa .item-list .headers {
+  color: whitesmoke;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  font-weight: 900;
+  border-radius: 7px;
+  font-size: 1.2rem;
+  text-align: left;
+  background-color: var(--blue);
+} */

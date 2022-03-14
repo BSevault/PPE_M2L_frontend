@@ -8,7 +8,7 @@ const ReservationHistoryDetails = ({ item: reservation }) => {
 
     const listPartiAdress = `http://localhost:3001/users/reservation/participants`
     const partiKeys = ["nom", "prenom", "email"];
-    const partiHeader = ["Nom", "Prénom", "Email"];
+    const partiHeader = ["Liste des participants"];
 
     const { response } = useAxios("post", listPartiAdress, { "id_resa": reservation.id });
 
@@ -25,6 +25,7 @@ const ReservationHistoryDetails = ({ item: reservation }) => {
                         data={response.success[0]}
                         keys={partiKeys}
                         headers={partiHeader}
+                        colorstyle={`blue`}
                     />}
             </div>
             <div className="flexblock2">

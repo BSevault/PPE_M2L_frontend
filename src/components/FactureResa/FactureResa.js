@@ -1,42 +1,37 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import useAxios from "../../hooks/useAxios/useAxios";
-import { useAuth } from "../contexts/AuthContext";
 import ItemList from "../ItemList/ItemList";
 
 import './FactureResa.css';
 
 const FactureResa = ({ id_resa }) => {
-    const { user } = useAuth();
     const [adressPaiement, setAdressPaiement] = useState();
-    const [paymentResa, setPaymentResa] = useState();
-    let sumTotal = 0;
-
+    const totalFacture = useRef();
     const keys = ['nom_produit', 'qte', 'total'];
-    const headers = ['Produits commandés', 'Quantité', 'Total (€)']
+    const headers = ['Produits commandés']
 
-    // const { response : allResa } = useAxios('get', `http://localhost:3001/users/${user.id}/reservation/`)
-
-    
     const { response : allPayments } = useAxios('get', adressPaiement);
 
     useEffect(() => {
         setAdressPaiement(`http://localhost:3001/users/paiements/${id_resa}`);
-        // setPaymentResa(allPayments?.success);
-    }, [])
 
-    console.log(allPayments);
-    if (allPayments) {
-        allPayments.success.forEach((paiement) => {
-            sumTotal = sumTotal + paiement.total;
-        });
-    }
+        if (allPayments) {
+            totalFacture.current.total = 0;
+            allPayments?.success.forEach((paiement) => {
+                totalFacture.current.total = totalFacture.current.total + paiement.total;
+            });
+        }
+
+    }, [id_resa, allPayments])
+
+    // console.log(allPayments);
     
     
 
     return (  
         <div className="facture_resa">
-            <ItemList name={'facture'} data={allPayments?.success} keys={keys} headers={headers} />
-            <p className="total_facture">Total : {sumTotal}€</p>
+            <ItemList name={'facture'} data={allPayments?.success} keys={keys} headers={headers} colorstyle={`blue`}/>
+            <p className="total_facture" ref={totalFacture} >Total : {totalFacture?.current?.total} €</p>
         </div>
     );
 }
