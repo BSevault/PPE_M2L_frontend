@@ -1,9 +1,10 @@
 
 import './GenericFormSimple.css';
 
-const GenericFormSimple = ({ props, handleSubmit, messageSuccess, messageError }) => {
+const GenericFormSimple = ({ props, handleSubmit, messageSuccess, messageError, type }) => {
     const { toSend, setToSend } = props;
     const items = Object.keys(toSend);
+    if (!type) type = 'text';
 
     const handleChange = (e) => {
         setToSend({ ...toSend, [e.target.name]: e.target.value });
@@ -16,7 +17,7 @@ const GenericFormSimple = ({ props, handleSubmit, messageSuccess, messageError }
                     <div className="mapped-input" key={`formKey-${index}`}>
                         <label htmlFor={item} className='input-label'>{`${item}:`}</label>
                         <input
-                            type='text'
+                            type={type}
                             name={item}
                             id={item}
                             placeholder={item}

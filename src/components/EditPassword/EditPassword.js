@@ -66,7 +66,7 @@ const EditPassword = ({ user }) => {
 
     return (
         <div className="edit-password">
-            <GenericFormSimple props={genericFormData} handleSubmit={handleSubmit} messageSuccess={messageSuccess} messageError={messageError} />
+            <GenericFormSimple props={genericFormData} handleSubmit={handleSubmit} messageSuccess={messageSuccess} messageError={messageError} type='password' />
         </div>
     );
 };
