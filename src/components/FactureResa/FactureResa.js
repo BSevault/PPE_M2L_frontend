@@ -24,11 +24,7 @@ const FactureResa = ({ id_resa }) => {
             totalFacture.current.total = (totalFacture.current.total).toFixed(2);
         }
 
-    }, [id_resa, allPayments])
-
-    console.log(allPayments);
-        
-    
+    }, [id_resa, allPayments])    
 
     return (  
         <div className="facture_resa">

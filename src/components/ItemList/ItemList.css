@@ -6,18 +6,18 @@
   width: 100%;
 }
 
-
 .item-list .item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 85%;
-    border: none;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-    border-radius: 7px 7px 7px 7px;
-    margin: 7px;
-    background-color: whitesmoke;
-    transition: background-color 0.1s ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  border: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border-radius: 7px 7px 7px 7px;
+  margin: 7px;
+  background-color: whitesmoke;
+  transition: background-color 0.1s ease-out;
 }
 /* :nth-child(2) */
 .item-list .item:hover:not(:first-child) {
@@ -52,8 +52,8 @@
   border-radius: 7px;
   width: 100%;
   background-color: whitesmoke;
-   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 .item-listblue .item {
@@ -69,15 +69,10 @@
 
 .item-listblue .headers {
   color: whitesmoke;
-   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   font-weight: 900;
   border-radius: 7px;
   font-size: 1.2rem;
-  /* text-align: left; */
   background-color: var(--blue);
-}
-
-.item-listblue .item li {
-/* width: fit-content; */
 }
