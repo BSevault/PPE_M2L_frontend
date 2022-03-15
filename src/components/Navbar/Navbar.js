@@ -19,7 +19,7 @@ const Navbar = () => {
   const navLinksLogged = [
     { text: "Accueil", chemin: "/" },
     { text: "Salles", chemin: "/salles" },
-    { text: "Produits", chemin: "/produits" },
+    // { text: "Produits", chemin: "/produits" },
     { text: "Réservations", chemin: "/reservations" },
     { text: "Réunions", chemin: "/reunions" },
     { text: "Réclamations", chemin: "/complaint" },
