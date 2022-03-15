@@ -49,12 +49,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 85%;
+  border-radius: 7px;
+  width: 100%;
   background-color: whitesmoke;
    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
   rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
-
 
 .item-listblue .item {
   margin: 4px;
@@ -62,10 +62,10 @@
   width: 100%;
   box-shadow: none;
 }
-.item-listblue .item {
+
+.item-listblue .item:not(:last-of-type) {
   border-bottom: 1px double var(--blue);
 }
-
 
 .item-listblue .headers {
   color: whitesmoke;
@@ -76,4 +76,8 @@
   font-size: 1.2rem;
   /* text-align: left; */
   background-color: var(--blue);
+}
+
+.item-listblue .item li {
+/* width: fit-content; */
 }

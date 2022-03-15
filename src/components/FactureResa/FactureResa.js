@@ -17,15 +17,17 @@ const FactureResa = ({ id_resa }) => {
 
         if (allPayments) {
             totalFacture.current.total = 0;
+
             allPayments?.success.forEach((paiement) => {
-                totalFacture.current.total = totalFacture.current.total + paiement.total;
+                totalFacture.current.total = (totalFacture.current.total + paiement.total);
             });
+            totalFacture.current.total = (totalFacture.current.total).toFixed(2);
         }
 
     }, [id_resa, allPayments])
 
-    // console.log(allPayments);
-    
+    console.log(allPayments);
+        
     
 
     return (  
