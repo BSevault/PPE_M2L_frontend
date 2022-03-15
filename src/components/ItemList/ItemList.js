@@ -43,7 +43,7 @@ const ItemList = ({ name, data, keys, headers, ExtraContent }) => {
                                 <li key={`${name}-key-${index}`}> {item[key]} </li>
                             ))}
                         </ul>
-                        <div className="extra-content" style={{display: targetOpen===index ? "flex": "none"}}>{setExtraContent(item)} </div>
+                        <div className="extra-content" key={`extraC-${item.id}`} style={{display: targetOpen===index ? "flex": "none"}}>{setExtraContent(item)} </div>
                     </>
                 ))}
         </div>

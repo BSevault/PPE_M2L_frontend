@@ -29,9 +29,8 @@ const RoutesM2L = () => {
         <Route element={<ProtectedRoute />}>
           <Route path="/compte" element={<Compte />} />
           <Route path="/reservations" element={<Reservations />} />
-          {/* <Route path="/reunions" element={<Reunions />} /> */}
-          <Route path="/complaint" element={<Complaint />} />
-          
+          <Route path="/reunions" element={<Reunions />} />
+          <Route path="/complaint" element={<Complaint />} />          
           <Route path="/produits" element={<Produits />} />
         </Route>
 
