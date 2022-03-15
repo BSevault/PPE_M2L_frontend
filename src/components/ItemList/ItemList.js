@@ -17,7 +17,8 @@ const ItemList = ({ name, data, keys, headers, ExtraContent }) => {
 
     // toggle extra content at index of click
     const toggle = (index) => {
-        setTargetOpen(index);
+        if (targetOpen === index) setTargetOpen();
+        else setTargetOpen(index);
     }
 
     // set sextra content if there is one given
