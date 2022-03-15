@@ -1,19 +1,19 @@
 .facture_resa {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .facture_resa .total_facture {
-  width: 85%;
+  width: fit-content;
+  align-self: flex-end;
+  font-weight: 900;
   border: none;
   border-radius: 7px;
   margin: 7px;
   padding: 10px;
-  padding-right: 30px;
   background-color: rgba(146, 218, 118, 0.356);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  text-align: right;
+  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; 
 }

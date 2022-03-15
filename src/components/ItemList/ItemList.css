@@ -39,6 +39,45 @@
 
 .extra-content {
   display: flex;
-  width: 100%;
+  width: 85%;
   justify-content: center;
+}
+
+/* ------------------------blue---------------------------*/
+.item-listblue {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  width: 100%;
+  background-color: whitesmoke;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.item-listblue .item {
+  margin: 4px;
+  border-radius: 0;
+  width: 100%;
+  box-shadow: none;
+}
+
+.item-listblue .item:not(:last-of-type) {
+  border-bottom: 1px double var(--blue);
+}
+
+.item-listblue .headers {
+  color: whitesmoke;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+  rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  font-weight: 900;
+  border-radius: 7px;
+  font-size: 1.2rem;
+  /* text-align: left; */
+  background-color: var(--blue);
+}
+
+.item-listblue .item li {
+/* width: fit-content; */
 }

@@ -1,4 +1,3 @@
-import { useState, useRef } from 'react';
 import { useAuth } from "../contexts/AuthContext";
 import Calendar from "react-calendar";
 import axios from "axios";

@@ -6,9 +6,11 @@ import "./ItemList.css";
 // data : JSON contenant les données à afficher
 // keys : tableau contenant les noms des colonnes de la table listée
 // headers : tableau contenant les en-têtes de la table listée
-const ItemList = ({ name, data, keys, headers, ExtraContent }) => {
+const ItemList = ({ name, data, keys, headers, ExtraContent, colorstyle }) => {
     const [items, setItems] = useState();
     const [targetOpen, setTargetOpen] = useState();
+    var color = '';
+    if (colorstyle) color = colorstyle;
 
     useEffect(() => {
         if (data) setItems(data);
@@ -27,7 +29,7 @@ const ItemList = ({ name, data, keys, headers, ExtraContent }) => {
     }
 
     return (
-        <div className={`item-list ${name}-list`}>
+        <div className={`item-list${color} ${name}-list`}>
             <ul className={`item headers ${name}-headers`}>
                 {headers &&
                     headers.map((header, index) => (

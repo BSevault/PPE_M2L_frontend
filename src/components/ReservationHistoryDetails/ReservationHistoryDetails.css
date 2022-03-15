@@ -5,8 +5,11 @@
 
 .flexblock {
     flex-grow: 2;
+    margin: 20px;
 }
 
 .flexblock2 {
     flex-grow: 1;
+    margin: 20px;
+
 }
