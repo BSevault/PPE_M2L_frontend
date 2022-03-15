@@ -21,7 +21,6 @@ const Produits = () => {
                     headers={productsHeader}
                 /> }
             </div>
-            <FactureResa/>
         </div>
     );
 };

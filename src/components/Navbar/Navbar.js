@@ -22,7 +22,6 @@ const Navbar = () => {
     { text: "Produits", chemin: "/produits" },
     { text: "Réservations", chemin: "/reservations" },
     { text: "Réunions", chemin: "/reunions" },
-    { text: "Factures", chemin: "/factures" },
     { text: "Réclamations", chemin: "/complaint" },
   ];
 
