@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import useAxios from "../../hooks/useAxios/useAxios";
 import ItemList from "../ItemList/ItemList";
+import PdfCreator from '../PdfCreator/PdfCreator';
 
 import './FactureResa.css';
 
-const FactureResa = ({ id_resa, is_paid }) => {
+const FactureResa = ({ id_resa, resaSalle }) => {
     const [ adressPaiement, setAdressPaiement ] = useState();
     const [ colorTotal, setColorTotal ] = useState();
     const totalFacture = useRef();
@@ -25,7 +26,7 @@ const FactureResa = ({ id_resa, is_paid }) => {
             totalFacture.current.total = `Total : ${(totalFacture.current.total).toFixed(2)} €`;
         }
 
-        if (!is_paid) {
+        if (!resaSalle.is_paid) {
             setColorTotal({backgroundColor: "rgba(214, 76, 76, 0.548)"});
             totalFacture.current.total = `Reste à payer - ${totalFacture.current.total}`;
         }
@@ -34,7 +35,10 @@ const FactureResa = ({ id_resa, is_paid }) => {
     return (  
         <div className="facture_resa">
             <ItemList name={'facture'} data={allPayments?.success} keys={keys} headers={headers} colorstyle={`blue`}/>
-            <p className="total_facture" ref={totalFacture} style={colorTotal} >{totalFacture?.current?.total}</p>
+            <div className="btn_dl_total">
+                <PdfCreator className="pdf_creator" allPayments={allPayments?.success} resaSalle={resaSalle} />
+                <p className="total_facture" ref={totalFacture} style={colorTotal} >{totalFacture?.current?.total}</p>
+            </div>
         </div>
     );
 }
