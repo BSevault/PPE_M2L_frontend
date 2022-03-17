@@ -5,13 +5,91 @@ div#complaint h1, div#complaint h2, div#complaint p {
 
 div#complaint form {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
-div#complaint form select {
-    margin: 15px;
+#complaint .scrollSelect {
+  display: flex;  
+  flex-direction: column;
+  margin: 15px;
+  max-width: 250px;
+}
+
+#complaint .scrollSelect label {
+margin-bottom: 5px;
 }
 
 div#complaint textarea {
     resize: both;
+}
+
+#submit-input {     
+  font-weight: bold;
+  outline: none;
+  margin: 10px;
+  padding: 5px;
+  width: 150px;
+  font-size: 1.1em;
+  border: 1px solid var(--blue);
+  border-radius: 7px;
+  background-color: whitesmoke;
+  color: var(--blue);
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+#submit-input:hover {
+    color: var(--blue);
+  background-color: var(--gold_light);
+  box-shadow: rgba(50, 50, 93, 0.062) 0px 30px 60px -12px     inset, rgba(0, 0, 0, 0.11) 0px 18px 36px -18px inset;
+  transition: all 0.3s ease-out;
+}
+
+#selects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#form-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 60%;
+}
+
+#description-container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  justify-content: center;
+}
+
+.comment-span {
+  font-size: 13.5px;
+  color: grey;
+}
+
+#description-container label {
+  margin: 10px;
+}
+
+#submit-container {
+  display: flex;
+  flex-direction: column;
+  height: 80px;
+  align-items: center;
+}
+
+#send-message {
+  /* display: none; */
+  padding: 8px;
+  color: var(--blue);
+  opacity: 0;
+  font-weight: 600;
+  font-style: italic;
+  transition: opacity 0.5s ease-in-out;
 }
