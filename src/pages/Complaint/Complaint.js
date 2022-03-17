@@ -81,7 +81,6 @@ const Complaint = () => {
     useEffect( ()=> {
         if (tickets && solvedTickets) {
             // on formate les dates => dd/mm/yyy
-            console.log('ticket dans useEffect',tickets);
             tickets?.forEach( (ticket) => {
                 if (ticket["date_ticket"][2] !== '/') {
                     ticket["date_ticket"] = dateFormatFromDB(ticket["date_ticket"]);
@@ -97,20 +96,9 @@ const Complaint = () => {
         }
     }
     ,[tickets, solvedTickets]);
-    
-    // console.log(solvedTickets.length);
-    // console.log(tickets.length);
+
     if (tickets?.length < 1) message = "Vous n'avez pas de réclamations en cours";
     if (solvedTickets?.length < 1) resolvedMessage = "Vous n'avez pas de réclamations traitées";
-
-    // useEffect( () => {
-    //     if (tickets) {
-    //         setSolvedTickets(tickets?.filter( (ticket) => ticket.is_resolved === 1 ));
-    //         setTickets(tickets?.filter( (ticket) => ticket.is_resolved === 0 ))
-    //         console.log(tickets);
-    //         console.log(solvedTickets);
-    //     }
-    // },[]);
 
     if (salles && produits) {
         // on controle la longueur de la liste des noms de salle pour eviter les duplications
@@ -153,10 +141,8 @@ const Complaint = () => {
         try {
             const send = await axios.post(`http://localhost:3001/users/${user.id}/tickets`,
                 {date_probleme: dateFormatToDB(jourSelected), description: description.current.value, id_user: user.id, id_salle: parseInt(id_salle.current.value)+1, id_produit: parseInt(id_produit.current.value)+1});
-            console.log(send.data.success[0]['id']);
             id_newTicket = send.data.success[0]['id'];
         } catch (error) {
-            console.log(error.message);
         }
 
         let newSalle = "";
@@ -175,7 +161,6 @@ const Complaint = () => {
         });
 
         let newTicket = ({ id: id_newTicket, date_ticket: dateFormatToDB(startDate), date_probleme: jourSelected, nom: newSalle, nom_produit: newProduit, description: description.current.value})
-        console.log('newTicket : ',newTicket);
         
         setTickets(prevstate => [...prevstate, newTicket]);
 
