@@ -10,7 +10,9 @@ import "./Complaint.css";
 import 'react-calendar/dist/Calendar.css';
 
 const Complaint = () => {
+    // contexte d'authentification
     const { user } = useAuth();
+
     // on définit les clés et les headers de la liste de tickets
     const keys = ["id", "date_ticket", "date_probleme", "nom", "nom_produit","description"];
     const headers = [
@@ -25,6 +27,7 @@ const Complaint = () => {
     // date de début du calendrier.
     let startDate = new Date();
 
+    // réference aux valeurs du nouveau ticket créé
     const description = useRef();
     const id_salle = useRef();
     const id_produit = useRef();
@@ -38,42 +41,45 @@ const Complaint = () => {
     // on requête la liste des produits sur la db via le backend pour en extraire les noms dans un tableau
     const { response : produits } = useAxios("get", "http://localhost:3001/produits");
 
-    
     // on définit un state des tickets pour manier la liste en local sans avoir à requêter à nouveau en cas de modifs
     const [tickets, setTickets] = useState();
-    // console.log('tickets : ', tickets);
-    // console.log('allUserTickets : ', allUserTickets);
+    const [solvedTickets, setSolvedTickets] = useState();
     
+    // on définit les states des noms des salles et des produits à afficher dans les select
     const [nom_salle, setNom_salle] = useState([]);
-    
     const [nom_produit, setNom_produit] = useState([]);
-    
-    // const [newTicket, setNewTicket] = useState();
 
+    // on définit le compteur de charactères du message
+    const [charCounter, setCharCounter] = useState(0);
+
+    // on définit un message si il n'y a pas de ticket 
+    let message = '';
+    let resolvedMessage = '';
+
+    // pour formatter les dates avant de les envoyer dnas la BDD
     const dateFormatToDB = (date) => {
         let jour = new Date(date).toLocaleString('en-GB').split(',')[0].split("/");
         jour = `${jour[2]}-${jour[1]}-${jour[0]}`;
         return jour;
     }
-    
+    // pour formater les dates venant de la BDD
     const dateFormatFromDB = (date) => {
-        // console.log(date);
-        // console.log(date instanceof Date);
-        
         let jour = new Date(date).toLocaleString('en-GB').split(',')[0].split("/");
         jour = `${jour[0]}/${jour[1]}/${jour[2]}`;
         return jour;
     }
 
+    // on récupère les tickets de la requête et on les tri selon qu'ils sont résolus ou non
     useEffect( () => {
         if(allUserTickets) {
-            setTickets(allUserTickets?.success);
+            setTickets(allUserTickets?.success.filter( (ticket) => ticket.is_resolved === 0 ));
+            setSolvedTickets(allUserTickets?.success.filter( (ticket) => ticket.is_resolved === 1 ));
         }
     }, [allUserTickets]);
 
-    
+    // on formate les dates avant de les afficher
     useEffect( ()=> {
-        if (tickets) {
+        if (tickets && solvedTickets) {
             // on formate les dates => dd/mm/yyy
             console.log('ticket dans useEffect',tickets);
             tickets?.forEach( (ticket) => {
@@ -81,10 +87,30 @@ const Complaint = () => {
                     ticket["date_ticket"] = dateFormatFromDB(ticket["date_ticket"]);
                     ticket["date_probleme"] = dateFormatFromDB(ticket["date_probleme"]);
                 }
-            });    
+            }); 
+            solvedTickets?.forEach( (ticket) => {
+                if (ticket["date_ticket"][2] !== '/') {
+                    ticket["date_ticket"] = dateFormatFromDB(ticket["date_ticket"]);
+                    ticket["date_probleme"] = dateFormatFromDB(ticket["date_probleme"]);
+                }
+            });
         }
     }
-    ,[tickets])
+    ,[tickets, solvedTickets]);
+    
+    // console.log(solvedTickets.length);
+    // console.log(tickets.length);
+    if (tickets?.length < 1) message = "Vous n'avez pas de réclamations en cours";
+    if (solvedTickets?.length < 1) resolvedMessage = "Vous n'avez pas de réclamations traitées";
+
+    // useEffect( () => {
+    //     if (tickets) {
+    //         setSolvedTickets(tickets?.filter( (ticket) => ticket.is_resolved === 1 ));
+    //         setTickets(tickets?.filter( (ticket) => ticket.is_resolved === 0 ))
+    //         console.log(tickets);
+    //         console.log(solvedTickets);
+    //     }
+    // },[]);
 
     if (salles && produits) {
         // on controle la longueur de la liste des noms de salle pour eviter les duplications
@@ -100,15 +126,10 @@ const Complaint = () => {
                 setNom_produit(prevstate => [...prevstate, produit.nom_produit])
             });
         }
-        // console.log(nom_salle);
-        // console.log(nom_produit);
     }
 
-
-    
-    // on définit un message si il n'y a pas de ticket 
-
-    
+    // compteur de caractères du message du ticket
+    const charCount = (e) => setCharCounter(e.target.value.length);
 
     // quand on clique sur une date du calendrier
     const selectDay = (e) => {
@@ -119,14 +140,14 @@ const Complaint = () => {
      // on stocke le jour cliqué sur le calendrier
     const [ jourSelected, setJourSelected] = useState(dateFormatToDB(startDate));
 
-    
+    const displaySendMessage = () => {
+        const sendMessage = document.getElementById('send-message');
+        sendMessage.style.opacity=1;
+        setTimeout( () => sendMessage.style.opacity=0, 3000);
+    }
+
     const sendTicket = async (e) => {
         e.preventDefault();
-        console.log('date probleme :', jourSelected);
-        console.log('description :', description.current.value);
-        console.log('user.id :', user.id);
-        console.log('id_salle :', id_salle.current.value);
-        console.log('id_produit :', id_produit.current.value);
         let id_newTicket = '';
          
         try {
@@ -156,21 +177,11 @@ const Complaint = () => {
         let newTicket = ({ id: id_newTicket, date_ticket: dateFormatToDB(startDate), date_probleme: jourSelected, nom: newSalle, nom_produit: newProduit, description: description.current.value})
         console.log('newTicket : ',newTicket);
         
-        
         setTickets(prevstate => [...prevstate, newTicket]);
 
-        // setTickets(prevstate =>  prevstate.success.push(newTicket));
-        // console.log('temp : ',temp);
-        // console.log('tickets.success : ',tickets.success);
-        // console.log('allUserTickets',allUserTickets);
-
-
-
-
-        
+        displaySendMessage();
 
     }
-
 
     // rendu
     return (
@@ -180,70 +191,97 @@ const Complaint = () => {
 
             <form id="create-ticket-form" onSubmit={sendTicket}>
 
-                <div>
-                    <p>Date de survenue du problème : </p>
-                    <Calendar 
-                    maxDate={startDate}
-                    onClickDay={selectDay}
-                    tileDisabled={({date}) => {
-                        if(date.getDay() === 0 || date.getDay() === 6) return true;
-                        }}
-                    
+                <div id='form-container'>
+                    <div>
+                        <p>Date de survenue du problème : </p>
+                        <Calendar 
+                            maxDate={startDate}
+                            onClickDay={selectDay}
+                            tileDisabled={({date, view}) => {
+                                if( (view === 'month' && date.getDay() === 0) || (view === 'month' && date.getDay() === 6)) return true;
+                            }}
+                        />
+                    </div>
+                    <div id="selects-container">
+                        <div id="selects">
+                            { salles &&
+                                <ScrollSelect 
+                                    id="salles"
+                                    name="salles"
+                                    label="Salle concernée (optionnel)"
+                                    values={nom_salle.slice(1)}
+                                    ref={id_salle}
+                                />
+                            }
+    
+                            { produits && 
+                                <ScrollSelect
+                                    id="produits"
+                                    name="produits"
+                                    label="Produit concerné (optionnel)"
+                                    values={nom_produit.slice(1)}
+                                    ref={id_produit}
+                                />
+                            }
+                        </div>
+                        <span className='comment-span'>*N.A. : non applicable</span>
+                        <div id='description-container'>
+                            <label htmlFor="description">
+                                Description du problème : <br />
+                                <span className='desc-comment-span'>1000 caractères max.</span>                        
+                            </label>
+                            <textarea
+                                name="description"
+                                id="description"
+                                maxLength={1000}
+                                required
+                                ref={description}
+                                onChange={charCount}
+                            ></textarea>
+                            <span id='char-counter'>{charCounter}/1000</span>
+                            <div id='submit-container'>
+                                <input id='submit-input'
+                                    className='btn_ticket' 
+                                    type="submit"
+                                    value="Envoyer le ticket"
                         
-                    />
-                </div>
-                { salles &&
-                    <ScrollSelect 
-                    id="salles"
-                    name="salles"
-                    label="Salle concernée"
-                    values={nom_salle.slice(1)}
-                    ref={id_salle}
-                />
-                }
-
-                { produits && 
-                    <ScrollSelect
-                        id="produits"
-                        name="produits"
-                        label="Produit concerné"
-                        values={nom_produit.slice(1)}
-                        ref={id_produit}
-                    />
-                }
-
-
-                <label htmlFor="description">Description du problème : (1000 caractères max.)</label>
-                <textarea
-                    name="description"
-                    id="description"
-                    maxLength={1000}
-                    required
-                    ref={description}
-                ></textarea> 
-
-
-                <input
-                    className='btn_ticket' 
-                    type="submit"
-                    value="Envoyer le ticket"
-                    
-                />
+                                />
+                                <span id='send-message'>Votre ticket est envoyé !</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
             </form>
 
-            <p>*N.A. : non applicable</p>
+            
 
-            <h2>Vos réclamations</h2>
+            <h2>Vos réclamations en cours</h2>
             
             { allUserTickets && salles && produits &&
-                <ItemList
-                    name="tickets"
-                    data={tickets}
-                    keys={keys}
-                    headers={headers}
-                />
+                <>
+                    <ItemList
+                        name="tickets"
+                        data={tickets}
+                        keys={keys}
+                        headers={headers}
+                    />
+                    <p className='if-empty-message'>{message}</p>
+                </>
             }
 
+            <h2>Vos réclamations traitées</h2>
+            
+            { allUserTickets && salles && produits &&
+                <>
+                    <ItemList
+                        name="solvedTickets"
+                        data={solvedTickets}
+                        keys={keys}
+                        headers={headers}
+                    />
+                    <p className='if-empty-message'>{resolvedMessage}</p>
+                </>
+            }
         </div>
     );
 };
