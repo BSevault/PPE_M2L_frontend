@@ -39,7 +39,7 @@ const PdfCreator = ({ allPayments, resaSalle }) => {
       { text: "57000 METZ", style: "header" },
       { text: `${user.prenom} ${user.nom}`, alignment: 'right', margin: [0, 20, 0, 8], style: "tableHeader"},
       { text: `${user.email}`, alignment: 'right', style: "tableHeader"},
-
+ 
       header,
       "Voici les différents produits commandé lors de la réunion",
       {
