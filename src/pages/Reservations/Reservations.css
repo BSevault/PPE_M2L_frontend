@@ -6,3 +6,9 @@
 #resa-wrapper {
     margin: 40px;
 }
+
+.display-history {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}

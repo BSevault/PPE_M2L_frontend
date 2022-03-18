@@ -70,7 +70,7 @@ const Reservations = () => {
                         headers={resaHeader}
                     />}
             </div>
-            <div className="return-resa">
+            <div className="display-history">
                 <ButtonBasic
                     handleClick={() => setDisplayHistory(true)}
                     buttonInnerText="Historique des réservations"
