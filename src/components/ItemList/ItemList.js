@@ -29,7 +29,9 @@ const ItemList = ({ name, data, keys, headers, ExtraContent, colorstyle }) => {
     }
 
     return (
+
         <div className={`item-list${color} ${name}-list`}>
+            {/* headers */}
             <ul className={`item headers ${name}-headers`}>
                 {headers &&
                     headers.map((header, index) => (
@@ -37,15 +39,17 @@ const ItemList = ({ name, data, keys, headers, ExtraContent, colorstyle }) => {
                     ))}
             </ul>
 
+            {/* item rows */}
             {items &&
                 items.map((item, index) => (
                     <>
                         <ul className={`item ${name}-item`} key={`item-${item.id}`} onClick={() => toggle(index)}>
+                            {/* item columns */}
                             {keys.map((key, index) => (
                                 <li key={`${name}-key-${index}`}> {item[key]} </li>
                             ))}
                         </ul>
-                        <div className="extra-content" key={`extraC-${item.id}`} style={{display: targetOpen===index ? "flex": "none"}}>{setExtraContent(item)} </div>
+                        <div className="extra-content" key={`extraC-${item.id}`} style={{ display: targetOpen === index ? "flex" : "none" }}>{setExtraContent(item)} </div>
                     </>
                 ))}
         </div>

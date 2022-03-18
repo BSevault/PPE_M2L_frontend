@@ -13,6 +13,8 @@ const Reunions = () => {
 
     const resaKeys = ["nom_salle", "email", "date_resa"];
     const resaHeader = ["Nom de la Salle", "Email de l'organisateur", "Date"];
+    // we can pass a button in resaHeader with handleclick that sort date, cf useEffect for sort function usage (inverse a & b to invert sorting)
+    // const resaHeader = ["Nom de la Salle", "Email de l'organisateur", <ButtonBasic handleClick={() => console.log('clicked in itemlist header')} buttonInnerText="Date"/>];
 
     // 2 request, first for future reunions then history of reunions -- next time setup that with a single request from backend
     const { response } = useAxios("get", `http://localhost:3001/users/${user.id}/participations`, null)
