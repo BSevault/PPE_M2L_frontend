@@ -48,7 +48,7 @@ const Reunions = () => {
                         style={{ width: '400px' }}
                     />
                 </div>
-                {response &&
+                {responseHistory &&
                     <ItemList
                         name="reservations"
                         data={responseHistory.success[0]}
