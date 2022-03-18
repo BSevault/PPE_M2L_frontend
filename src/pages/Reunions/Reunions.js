@@ -3,14 +3,13 @@ import ButtonBasic from '../../components/ButtonBasic/ButtonBasic';
 import { useAuth } from '../../components/contexts/AuthContext';
 import ItemList from '../../components/ItemList/ItemList';
 import useAxios from '../../hooks/useAxios/useAxios';
-import ReservationsHistory from '../ReservationsHistory/ReservationsHistory';
 import './Reunions.css';
 
 const Reunions = () => {
     const { user } = useAuth();
 
     const [displayHistory, setDisplayHistory] = useState(false);
-    const [isSorted, setIsSorted] = useState(false);
+    // const [isSorted, setIsSorted] = useState(false);
 
     const resaKeys = ["nom_salle", "email", "date_resa"];
     const resaHeader = ["Nom de la Salle", "Email de l'organisateur", "Date"];
