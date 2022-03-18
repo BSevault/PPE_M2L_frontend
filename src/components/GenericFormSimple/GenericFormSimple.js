@@ -1,4 +1,5 @@
 
+import ButtonBasic from '../ButtonBasic/ButtonBasic';
 import './GenericFormSimple.css';
 
 const GenericFormSimple = ({ props, handleSubmit, messageSuccess, messageError, type }) => {
@@ -11,7 +12,7 @@ const GenericFormSimple = ({ props, handleSubmit, messageSuccess, messageError, 
     };
 
     return (
-        <form className="generic-form-simple" onSubmit={handleSubmit}>
+        <form className="generic-form-simple">
             {
                 items.map((item, index) => (
                     <div className="mapped-input" key={`formKey-${index}`}>
@@ -28,7 +29,12 @@ const GenericFormSimple = ({ props, handleSubmit, messageSuccess, messageError, 
                     </div>
                 ))
             }
-            <button type='submit'>Envoyer !</button >
+            {/* <button type='submit'>Envoyer !</button > */}
+            <ButtonBasic
+                    handleClick={handleSubmit}
+                    buttonInnerText="Envoyer !"
+                    style={{ width: '200px' }}
+                />
             <div className="submit-message">
                 <p className="success">{messageSuccess}</p>
                 <p className="error">{messageError}</p>
