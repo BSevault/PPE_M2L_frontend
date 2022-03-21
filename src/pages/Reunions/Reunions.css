@@ -13,3 +13,7 @@
     justify-content: center;
     margin: 20px;
 }
+
+.sort-date {
+    cursor: pointer;
+}
