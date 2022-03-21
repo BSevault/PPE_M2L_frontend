@@ -20,31 +20,40 @@ const ProtectedRoute = () => {
   return user ? <Outlet /> : <Navigate to="/login" />;
 };
 
+const ProtectedRouteAdmin = () => {
+  const { user } = useAuth();
+  return user.is_admin ? <Outlet /> : <Navigate to="/" />;
+};
+
 const RoutesM2L = () => {
   return (
-    
-      <Routes>
-        <Route path="/" element={<Home />} />
 
-        <Route element={<ProtectedRoute />}>
-          <Route path="/compte" element={<Compte />} />
-          <Route path="/reservations" element={<Reservations />} />
-          <Route path="/reunions" element={<Reunions />} />
-          <Route path="/complaint" element={<Complaint />} />          
-          <Route path="/produits" element={<Produits />} />
-        </Route>
+    <Routes>
+      <Route path="/" element={<Home />} />
 
-        <Route path="/salles" element={<SallesContextProvider><Salles /></SallesContextProvider>} />
-      
-      
-        <Route path="/legals" element={<Legals />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/cgv" element={<Cgv />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/presentation" element={<Presentation />} />
-      </Routes>
-    
+      <Route element={<ProtectedRoute />}>
+        <Route path="/compte" element={<Compte />} />
+        <Route path="/reservations" element={<Reservations />} />
+        <Route path="/reunions" element={<Reunions />} />
+        <Route path="/complaint" element={<Complaint />} />
+        <Route path="/produits" element={<Produits />} />
+      </Route>
+
+      <Route element={<ProtectedRouteAdmin />} >
+        <Route path="/cgv2" element={<Legals />} />
+      </Route>
+
+      <Route path="/salles" element={<SallesContextProvider><Salles /></SallesContextProvider>} />
+
+
+      <Route path="/legals" element={<Legals />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signin" element={<SignIn />} />
+      <Route path="/cgv" element={<Cgv />} />
+      <Route path="/contact" element={<Contact />} />
+      <Route path="/presentation" element={<Presentation />} />
+    </Routes>
+
   );
 };
 

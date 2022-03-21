@@ -25,6 +25,9 @@ const Navbar = () => {
     { text: "Réclamations", chemin: "/complaint" },
   ];
 
+  // ajout le link vers la page admin si user.is_admin === 1
+  if (user && user.is_admin) navLinksLogged.push({ text: "Administration", chemin: "/cgv2" });
+
   // 2 rendu si le user est set ou pas
   if (!user || user === undefined || user === "undefined" || user === null) {
     return (
