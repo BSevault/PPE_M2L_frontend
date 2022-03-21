@@ -16,17 +16,20 @@ const SuppCompte = () => {
     const { response } = useAxios(method, adress)
 
     const inactiveCompte = (e) => {
+            //vérifie que l'email en DB == email taper par le user
         if (user.email === toSend[0].value) {
-            console.log(response);
+                //on active le toggle isActive en back pour inactive le user
             setAdress(`http://localhost:3001/users/${user.id}/active`);
         }
     }
 
     useEffect( () => {
+            //si la reponse = desactivé on logout le user
         if (response?.success === "Le compte a été desactivé") {
             setMethod("get");
             setAdress(`http://localhost:3001/users/logout`);
         }
+            //on check bien que la session est kill, donc le context user est reset
         checkLoginStatus();
     }, [response]);
     
