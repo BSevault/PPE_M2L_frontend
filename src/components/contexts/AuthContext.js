@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const AuthContext = createContext();
 
@@ -10,6 +10,9 @@ const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState('');
 
     const navigate = useNavigate();
+
+    // used to get adress submited in adressBar, later used in checkLoginStatus
+    const currentAdress = useLocation();
 
     useEffect(() => console.log('user is changed'), [user]);
 
@@ -28,7 +31,7 @@ const AuthContextProvider = ({ children }) => {
             const { data } = await axios.get(`http://localhost:3001/users/login`,
                 { withCredentials: true });
             setUser(data.success.logged_user);
-            navigate('/');
+            navigate(currentAdress.pathname);
         } catch (error) {
             navigate('/');
         }
