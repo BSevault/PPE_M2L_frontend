@@ -10,7 +10,7 @@ const Reunions = () => {
 
     const [displayHistory, setDisplayHistory] = useState(false);
     const [isSorted, setIsSorted] = useState(true);
-    const [sortDirection, setSortDirect] = useState('v')
+    const [sortDirection, setSortDirect] = useState('v');
 
     const resaKeys = ["nom_salle", "email", "date_resa_formated"];
     // const resaHeader = ["Nom de la Salle", "Email de l'organisateur", "Date"];
@@ -21,7 +21,6 @@ const Reunions = () => {
     const { response: responseHistory } = useAxios("get", `http://localhost:3001/users/${user.id}/participations/history`, null)
 
     
-    /* Marche pas à cause du formatage des dates à la con */
     const sortResponses = (isSorted) => {
         if (isSorted) {
             setIsSorted(false);

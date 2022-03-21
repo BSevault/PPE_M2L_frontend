@@ -90,7 +90,7 @@ const GestionResa = ({ reservation, setFocus }) => {
 
     return (
         <div className="gestion-resa">
-            <h1 className="info-resa">Réservation de la salle {reservation.nom} à la date du {reservation.date_resa}</h1>
+            <h1 className="info-resa">Réservation de la salle {reservation.nom} à la date du {reservation.date_resa_formated}</h1>
             <div className="return-resa">
                 <ButtonBasic
                     handleClick={() => setFocus()}
