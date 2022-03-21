@@ -1,5 +1,3 @@
-// si on décide d'utiliser emailjs
-// https://dev.to/daliboru/how-to-send-emails-from-a-form-in-react-emailjs-27d1
 
 import './GenericForm.css';
 
@@ -7,12 +5,16 @@ import './GenericForm.css';
 const GenericForm = ({ toSend, setToSend, input, par }) => {
 
     const handleChange = (e) => {
-        const id = e.target.name;                                       // on recupère l'id de l'input selectionné
-        const indexSend = toSend.findIndex((elem) => elem.id === id );  // on recupère l'index dans toSend
+            // on recupère l'id de l'input selectionné 
+        const id = e.target.name;
+            // on recupère l'index dans toSend             
+        const indexSend = toSend.findIndex((elem) => elem.id === id );  
         
         if (indexSend !== -1){
-            let newArray = toSend.slice();                              // on copie le tableau toSend
-            newArray[indexSend].value = e.target.value;                 // on insère la valeur de l'input au bon index dans le nouveau tableau et on setToSend
+                // on copie le tableau toSend
+            let newArray = toSend.slice();
+                // on insère la valeur de l'input au bon index dans le nouveau tableau et on setToSend
+            newArray[indexSend].value = e.target.value;
             setToSend(newArray);
         }
     };
