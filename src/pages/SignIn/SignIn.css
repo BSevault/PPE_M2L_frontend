@@ -33,7 +33,7 @@
   color: var(--gold);
   font-weight: bold;
   outline: none;
-  margin-top: 40px;
+  /* margin-top: 40px; */
   padding: 5px;
   width: 400px;
   font-size: 1em;
@@ -49,11 +49,18 @@
 }
 
 .signin .signin_form input[type="text"] {
-    font-weight: 700;
-    color: var(--blue);
-  }
+  font-weight: 700;
+  color: var(--blue);
+}
 
-.signin .signin_form p {
+.regle_mdp {
+  margin-top: 15px;
+  color: rgb(70, 66, 66);
+  cursor: text;
+  font-size: 0.73em;
+}
+
+.signin .signin_form .signin_ok {
   margin: 15px 0;
   width: 400px;
   word-wrap: break-word;

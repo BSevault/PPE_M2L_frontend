@@ -20,7 +20,7 @@ const useCheckSignIn = ( email, pwd, pwdVerif ) => {
     
         // REGEX pour pwd
         const patternPwd = new RegExp(
-          "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})"
+          "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{12,})"
         );
     
         if (patternPwd.test(pwd.current.value)) {
