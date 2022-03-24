@@ -1,3 +1,7 @@
+/**
+ * This function displays the user's previous reservations
+ * @returns The return is the `ReservationHistory` component.
+ */
 import './ReservationHistory.css';
 import { useEffect } from "react";
 import ButtonBasic from "../../components/ButtonBasic/ButtonBasic";

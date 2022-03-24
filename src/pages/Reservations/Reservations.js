@@ -36,7 +36,8 @@ const Reservations = () => {
             response.success[0].forEach((resa, index) => {
                 resa['date_resa'] = new Date(resa['date_resa']).toLocaleDateString('en-GB');
                 resa['gerer'] = <ButtonBasic handleClick={() => setFocus(resa)} buttonInnerText="Gérer" />;
-                resa['supprimer'] = <ButtonBasic handleClick={() => handleDelete(resa, index)} buttonInnerText="Yeet" colorstyle='red' />;
+                /* Creating a button that will delete the reservation when clicked. */
+                resa['supprimer'] = <ButtonBasic handleClick={() => handleDelete(resa, index)} buttonInnerText="Annuler" colorstyle='red' />;
                 // resa['id'] = index; // fake id, for keys in itemlist
             });
 
