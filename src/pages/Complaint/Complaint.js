@@ -128,43 +128,49 @@ const Complaint = () => {
      // on stocke le jour cliqué sur le calendrier
     const [ jourSelected, setJourSelected] = useState(dateFormatToDB(startDate));
 
+    const [sendMessage, setSendMessage] = useState('');
     const displaySendMessage = () => {
         const sendMessage = document.getElementById('send-message');
         sendMessage.style.opacity=1;
-        setTimeout( () => sendMessage.style.opacity=0, 3000);
+        setTimeout( () => sendMessage.style.opacity=0, 2500);
     }
 
     const sendTicket = async (e) => {
         e.preventDefault();
         let id_newTicket = '';
-         
+        let newSalle = "";
+        let newProduit = "";
         try {
             const send = await axios.post(`http://localhost:3001/users/${user.id}/tickets`,
                 {date_probleme: dateFormatToDB(jourSelected), description: description.current.value, id_user: user.id, id_salle: parseInt(id_salle.current.value)+1, id_produit: parseInt(id_produit.current.value)+1});
             id_newTicket = send.data.success[0]['id'];
+            nom_salle.forEach( (el, index) => {
+                if (index == id_salle.current.value) {
+                    newSalle = el;
+                }
+            });
+    
+            nom_produit.forEach( (el, index) => {
+                if (index == id_produit.current.value) {
+                    newProduit = el;
+                }
+            });
+    
+            let newTicket = ({ id: id_newTicket, date_ticket: dateFormatToDB(startDate), date_probleme: jourSelected, nom: newSalle, nom_produit: newProduit, description: description.current.value})
+            
+            setTickets(prevstate => [...prevstate, newTicket]);
+    
+            setSendMessage('Votre ticket est envoyé !')
+            displaySendMessage();
         } catch (error) {
+            setSendMessage('Une erreur est survenue')
+            displaySendMessage();
+
         }
 
-        let newSalle = "";
-        let newProduit = "";
-
-        nom_salle.forEach( (el, index) => {
-            if (index == id_salle.current.value) {
-                newSalle = el;
-            }
-        });
-
-        nom_produit.forEach( (el, index) => {
-            if (index == id_produit.current.value) {
-                newProduit = el;
-            }
-        });
-
-        let newTicket = ({ id: id_newTicket, date_ticket: dateFormatToDB(startDate), date_probleme: jourSelected, nom: newSalle, nom_produit: newProduit, description: description.current.value})
         
-        setTickets(prevstate => [...prevstate, newTicket]);
 
-        displaySendMessage();
+        
 
     }
 
@@ -231,7 +237,7 @@ const Complaint = () => {
                                     value="Envoyer le ticket"
                         
                                 />
-                                <span id='send-message'>Votre ticket est envoyé !</span>
+                                <span id='send-message'>{sendMessage}</span>
                             </div>
                         </div>
                     </div>
