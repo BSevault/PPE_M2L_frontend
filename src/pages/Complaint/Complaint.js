@@ -17,7 +17,7 @@ const Complaint = () => {
     const keys = ["id", "date_ticket", "date_probleme", "nom", "nom_produit","description"];
     const headers = [
         "N° ticket",
-        "Date de création du ticket",
+        "Date du ticket",
         "Date du problème",
         "Salle concernée",
         "Produit concerné",
