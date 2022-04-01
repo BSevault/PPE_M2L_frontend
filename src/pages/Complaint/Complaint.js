@@ -8,20 +8,22 @@ import Calendar from "react-calendar";
 
 import "./Complaint.css";
 import 'react-calendar/dist/Calendar.css';
+import ButtonBasic from '../../components/ButtonBasic/ButtonBasic';
 
 const Complaint = () => {
     // contexte d'authentification
     const { user } = useAuth();
 
     // on définit les clés et les headers de la liste de tickets
-    const keys = ["id", "date_ticket", "date_probleme", "nom", "nom_produit","description"];
+    const keys = ["id", "date_ticket", "date_probleme", "nom", "nom_produit","description", "suppr"];
     const headers = [
         "N° ticket",
         "Date du ticket",
         "Date du problème",
         "Salle concernée",
         "Produit concerné",
-        "Description"
+        "Description", 
+        ""
     ];
 
     // date de début du calendrier.
@@ -69,11 +71,23 @@ const Complaint = () => {
         return jour;
     }
 
+    // pour supprimer un ticket
+    const handleDelete = async (ticketToDelete) => {
+        try {
+            if (window.confirm(`Voulez-vous supprimer le ticket n°${ticketToDelete.id} ?`) == true) {
+            await axios.delete(`http://localhost:3001/users/${user.id}/tickets/${ticketToDelete.id}`, {withCredentials: true});
+            setTickets(tickets?.filter( ticket => ticket.id != ticketToDelete.id));
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+
     // on récupère les tickets de la requête et on les tri selon qu'ils sont résolus ou non
     useEffect( () => {
         if(allUserTickets) {
-            setTickets(allUserTickets?.success.filter( (ticket) => ticket.is_resolved === 0 ));
-            setSolvedTickets(allUserTickets?.success.filter( (ticket) => ticket.is_resolved === 1 ));
+            setTickets(allUserTickets?.success.filter( (ticket) => (ticket.is_resolved === 0 && ticket.is_active === 1)));
+            setSolvedTickets(allUserTickets?.success.filter( (ticket) => (ticket.is_resolved === 1  && ticket.is_active === 1)));
         }
     }, [allUserTickets]);
 
@@ -81,18 +95,23 @@ const Complaint = () => {
     useEffect( ()=> {
         if (tickets && solvedTickets) {
             // on formate les dates => dd/mm/yyy
-            tickets?.forEach( (ticket) => {
+            tickets?.forEach( (ticket, index) => {
                 if (ticket["date_ticket"][2] !== '/') {
                     ticket["date_ticket"] = dateFormatFromDB(ticket["date_ticket"]);
                     ticket["date_probleme"] = dateFormatFromDB(ticket["date_probleme"]);
                 }
-            }); 
+                // on affiche les boutons de suppression
+                ticket['suppr'] = <ButtonBasic handleClick={() => handleDelete(ticket)} buttonInnerText="Supprimer" colorstyle='red' />;
+            });
+
             solvedTickets?.forEach( (ticket) => {
                 if (ticket["date_ticket"][2] !== '/') {
                     ticket["date_ticket"] = dateFormatFromDB(ticket["date_ticket"]);
                     ticket["date_probleme"] = dateFormatFromDB(ticket["date_probleme"]);
                 }
             });
+
+            
         }
     }
     ,[tickets, solvedTickets]);
