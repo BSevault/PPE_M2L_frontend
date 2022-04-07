@@ -43,7 +43,7 @@ const ItemList = ({ name, data, keys, headers, ExtraContent, colorstyle }) => {
             {items &&
                 items.map((item, index) => (
                     <>
-                        <ul className={`item ${name}-item`} key={`item-${item.id}`} onClick={() => toggle(index)}>
+                        <ul className={`item ${name}-item`} key={`item-${item.id}`} onClick={() => toggle(index)} style={{ backgroundColor: item.is_covid ? "orangered" : "whitesmoke"}}>
                             {/* item columns */}
                             {keys.map((key, index) => (
                                 <li key={`${name}-key-${index}`}> {item[key]} </li>
