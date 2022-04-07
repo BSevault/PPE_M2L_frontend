@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import ButtonBasic from '../../components/ButtonBasic/ButtonBasic';
 import { useAuth } from '../../components/contexts/AuthContext';
+import CovidLegend from '../../components/CovidLegend/CovidLegend';
 import ItemList from '../../components/ItemList/ItemList';
 import useAxios from '../../hooks/useAxios/useAxios';
 import './Reunions.css';
@@ -52,6 +53,7 @@ const Reunions = () => {
                         style={{ width: '400px' }}
                     />
                 </div>
+                <CovidLegend />
                 {responseHistory &&
                     <ItemList
                         name="reservations"

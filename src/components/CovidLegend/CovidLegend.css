@@ -1,0 +1,8 @@
+.covid-legend {
+    background-color: orangered;
+    text-align: center;
+    width: 10%;
+    margin-bottom: 10px;
+    border: 1px black solid;
+    border-radius: 3px;
+}

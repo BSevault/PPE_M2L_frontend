@@ -9,6 +9,7 @@ import { useAuth } from "../../components/contexts/AuthContext";
 import useAxios from "../../hooks/useAxios/useAxios";
 import ItemList from "../../components/ItemList/ItemList";
 import ReservationHistoryDetails from '../../components/ReservationHistoryDetails/ReservationHistoryDetails';
+import CovidLegend from '../../components/CovidLegend/CovidLegend';
 
 const ReservationsHistory = ({ setDisplayHistory }) => {
     const { user } = useAuth();
@@ -37,6 +38,7 @@ const ReservationsHistory = ({ setDisplayHistory }) => {
                     style={{ width: '400px' }}
                 />
             </div>
+            <CovidLegend />
             {response &&
                 <ItemList
                     name="reservations"
@@ -45,6 +47,7 @@ const ReservationsHistory = ({ setDisplayHistory }) => {
                     headers={resaHeader}
                     ExtraContent={ReservationHistoryDetails}
                 />}
+            
         </div>
     );
 }
