@@ -1,6 +1,36 @@
+import { useSalles } from '../../components/contexts/SallesContext';
+
 import './PlanSalles.css';
 
 const PlanSalles = ( {selectSalle} ) => {
+    const { allSalles } = useSalles();
+    const listSalles = ["Majorelle", "Restauration et convivialité", "Grüber", "Lamour", "Amphithéâtre", "Longwy", "Daum", "Gallé", "Corbin", "Baccarat"];
+
+    const listDispos = [];
+    
+    if (allSalles) {
+            //extrait les noms des salles et push dans une list
+        allSalles.forEach(element => listDispos.push(element.nom)); 
+
+        const sallesAll = document.querySelectorAll(".salles_loc"); 
+
+            //boucle sur la totale des salles
+        listSalles.forEach((salle) => {
+                //vérifie si dans la liste des salles dispo ya le nom d'une salle, si faux
+            if(listDispos.includes(salle) === false) {
+                    //si faux, on parse les div avec la classe "salles_loc" 
+                sallesAll.forEach((element => {
+                        //si le nom de la salle qui return false = au texte contenu dans la div
+                    if (element.children[1].textContent === salle) {
+                        //remove cette classe et ajoute l'autre pour disabled cette div
+                        element.classList.remove("salles_loc");
+                        element.classList.add("salles_no_loc");
+                    }
+                }))
+            }
+        });
+    }
+
 
     return (  
         <div className="plan_salles">
