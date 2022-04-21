@@ -7,11 +7,8 @@ import 'react-calendar/dist/Calendar.css';
 import './SalleResa.css';
 
 const SalleResa = ( {idSalle, input} ) => {
-    const { user } = useAuth();
+    const { user, endpoint } = useAuth();
     const { setAllReservations, dateResevedSalle, setDateReservedSalle, resaConfirm, setResaConfirm, selectDay, jourSelected, setJourSelected } = useSalles();
-
-    const endpoint = 'http://localhost:3001';
-    // const endpoint = 'http://15.237.109.149:3001';
   
         // date de débout du calendrier.
     let startDate = new Date();

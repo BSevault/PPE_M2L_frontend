@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from '../../components/contexts/AuthContext';
 
 const useAxios = (method, adress, content) => {
+    const { endpoint } = useAuth();
     const [response, setResponse] = useState(null);
     const [error, setError] = useState(null);
     // tant que ni réponse ni erreur, loading = true
     const [loading, setloading] = useState(true);
-    const endpoint = 'http://localhost:3001';
+    // const endpoint = 'http://localhost:3001';
     // const endpoint = 'http://15.237.109.149:3001';
 
     const fetchData = () => {

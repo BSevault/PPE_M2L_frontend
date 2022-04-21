@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useRef } from "react";
+import { useAuth } from "../../components/contexts/AuthContext";
 import GenericForm from "../../components/GenericForm/GenericForm";
 import useCheckSignIn from "../../hooks/useCheckSignIn/useCheckSignIn";
 
@@ -7,6 +8,7 @@ import "./SignIn.css";
 
 const SignIn = () => {
   const signInText = useRef();
+  const { endpoint } = useAuth();
 
   const pwdVerif = useRef();
   const pwd = useRef();
