@@ -8,12 +8,12 @@ import useAxios from "../../hooks/useAxios/useAxios";
 import './GestionResa.css';
 
 const GestionResa = ({ reservation, setFocus }) => {
-    const { user } = useAuth();
+    const { user, endpoint } = useAuth();
 
     const [participants, setParticipants] = useState();
     const [partiEmail, setPartiEmail] = useState('');
     const [partiInfo, setPartiInfo] = useState();
-    const [listPartiAdress, setListPartiAdress] = useState(`http://localhost:3001/users/reservation/participants`);
+    const [listPartiAdress, setListPartiAdress] = useState( endpoint + `/users/reservation/participants`);
     const [crudPartiAdress, setCrudPartiAdress] = useState();
     const [method, setMethod] = useState();
     const partiKeys = ["nom", "prenom", "email", "supprimer"];

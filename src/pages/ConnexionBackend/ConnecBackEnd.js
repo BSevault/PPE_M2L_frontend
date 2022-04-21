@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
+import { useAuth } from "../../components/contexts/AuthContext";
 import useAxios from "../../hooks/useAxios/useAxios";
 
 
 
 const ConnecBackEnd = () => {
+    const { endpoint } = useAuth;
     const [salles, setSalles] = useState();
     const method = 'get';
-    const adress = 'http://localhost:3001/salles/all';
+    const adress = endpoint + '/salles/all';
     const content = {/* if post put object here */ };
 
     const { response, error, loading } = useAxios(method, adress, content);

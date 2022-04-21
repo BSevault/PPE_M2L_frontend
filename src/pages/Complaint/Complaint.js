@@ -11,7 +11,7 @@ import 'react-calendar/dist/Calendar.css';
 
 const Complaint = () => {
     // contexte d'authentification
-    const { user } = useAuth();
+    const { user, endpoint } = useAuth();
 
     // on définit les clés et les headers de la liste de tickets
     const keys = ["id", "date_ticket", "date_probleme", "nom", "nom_produit","description"];
@@ -141,7 +141,7 @@ const Complaint = () => {
         let newSalle = "";
         let newProduit = "";
         try {
-            const send = await axios.post(`http://localhost:3001/users/${user.id}/tickets`,
+            const send = await axios.post(endpoint + `/users/${user.id}/tickets`,
                 {date_probleme: dateFormatToDB(jourSelected), description: description.current.value, id_user: user.id, id_salle: parseInt(id_salle.current.value)+1, id_produit: parseInt(id_produit.current.value)+1});
             id_newTicket = send.data.success[0]['id'];
             nom_salle.forEach( (el, index) => {
