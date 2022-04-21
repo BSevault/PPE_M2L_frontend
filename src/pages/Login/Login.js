@@ -17,10 +17,13 @@ const Login = () => {
 
     let messageError = useRef();
 
+    const endpoint = 'http://localhost:3001';
+    // const endpoint = 'http://15.237.109.149:3001';
+
     const submitLogIn = async (e) => {
         e.preventDefault();
 
-        const result = await axios.post('http://localhost:3001/users/login', {
+        const result = await axios.post(endpoint + '/users/login', {
             email,
             password
         },

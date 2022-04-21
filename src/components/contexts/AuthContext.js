@@ -8,6 +8,8 @@ export const useAuth = () => useContext(AuthContext);
 
 const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState('');
+    const endpoint = 'http://localhost:3001';
+    // const endpoint = 'http://15.237.109.149:3001';
 
     const navigate = useNavigate();
 
@@ -18,7 +20,7 @@ const AuthContextProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await axios.get('http://localhost:3001/users/logout', { withCredentials: true });
+            await axios.get(endpoint + '/users/logout', { withCredentials: true });
             setUser()
             navigate('/');
         } catch (error) {
@@ -28,7 +30,7 @@ const AuthContextProvider = ({ children }) => {
 
     const checkLoginStatus = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:3001/users/login`,
+            const { data } = await axios.get(endpoint + `/users/login`,
                 { withCredentials: true });
             setUser(data.success.logged_user);
             navigate(currentAdress.pathname);

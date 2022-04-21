@@ -1,3 +1,6 @@
+// a modifier pour local <==> aws
+// useAxios + Signin + Login + SallesResa + AuthContext
+
 import Navbar from './components/Navbar/Navbar';
 import RoutesM2L from './components/Routes/RoutesM2L';
 import Footer from './components/Footer/Footer';

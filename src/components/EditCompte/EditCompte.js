@@ -44,7 +44,7 @@ const EditCompte = ({ user }) => {
         });
 
         // setup l'adresse, déclenche le hook axios & la requête
-        setAdress(`http://localhost:3001/users/${user.id}`);
+        setAdress(`/users/${user.id}`);
 
     }
 

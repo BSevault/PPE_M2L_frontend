@@ -9,6 +9,9 @@ import './SalleResa.css';
 const SalleResa = ( {idSalle, input} ) => {
     const { user } = useAuth();
     const { setAllReservations, dateResevedSalle, setDateReservedSalle, resaConfirm, setResaConfirm, selectDay, jourSelected, setJourSelected } = useSalles();
+
+    const endpoint = 'http://localhost:3001';
+    // const endpoint = 'http://15.237.109.149:3001';
   
         // date de débout du calendrier.
     let startDate = new Date();
@@ -21,7 +24,7 @@ const SalleResa = ( {idSalle, input} ) => {
 
         if (jourSelected) {
                 // on envoie la réservation au back
-            const result = await axios.post(`http://localhost:3001/users/${user.id}/reservation`,
+            const result = await axios.post(endpoint + `/users/${user.id}/reservation`,
                 {date: jourSelected, salle_id: idSalle, is_paid: 0}
             )
                 // set un objet pour l'ajouter au state

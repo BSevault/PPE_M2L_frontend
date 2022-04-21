@@ -48,7 +48,7 @@ const GestionResa = ({ reservation, setFocus }) => {
             });
 
             // trigger the request + reset the participants fetch
-            setCrudPartiAdress(`http://localhost:3001/users/${user.id}/participations`);
+            setCrudPartiAdress(`/users/${user.id}/participations`);
             setTimeout(() => setListPartiAdress(), 10);
             // setListPartiAdress();
 
@@ -64,14 +64,14 @@ const GestionResa = ({ reservation, setFocus }) => {
         });
 
         // // trigger the request + reset the participants fetch
-        setCrudPartiAdress(`http://localhost:3001/users/${user.id}/participations`)
+        setCrudPartiAdress(`/users/${user.id}/participations`)
         setTimeout(() => setListPartiAdress(), 10);
         // setListPartiAdress();
         // response?.success[0].splice(index, 1);
     }
 
     useEffect(() => {
-        setListPartiAdress(`http://localhost:3001/users/reservation/participants`);
+        setListPartiAdress(`/users/reservation/participants`);
         setPartiEmail('');
         setCrudPartiAdress();
         // setDelPartiAdress();

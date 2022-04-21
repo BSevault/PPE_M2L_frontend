@@ -51,8 +51,10 @@ const SignIn = () => {
 
   const signIn = async (e) => {
     e.preventDefault();
+    const endpoint = 'http://localhost:3001';
+    // const endpoint = 'http://15.237.109.149:3001';
 
-    const adress = "http://localhost:3001/users";
+    const adress = endpoint + "/users";
     const content = {
       nom: toSend[0].value,
       prenom: toSend[1].value,
