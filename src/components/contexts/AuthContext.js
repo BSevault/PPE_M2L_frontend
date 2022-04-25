@@ -10,7 +10,8 @@ const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState('');
     // const endpoint = 'http://localhost:3001';
     // const endpoint = 'http://127.0.0.1:3001';
-    const endpoint = 'http://15.237.109.149';
+    // const endpoint = 'http://15.237.109.149';
+    const endpoint = 'https://groupe-a.lemonravioli.ovh';
 
     const navigate = useNavigate();
 
