@@ -15,6 +15,15 @@ const useAxios = (method, adress, content) => {
         if (adress.charAt(0) == '/') {
             adress = endpoint + adress;
         }
+        // == can replace axios, pour tester
+        // fetch(adress, {
+        //     method: method,
+        //     body: content,
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     credentials: "same-origin",
+        // })
         axios({
             method: method,
             url: adress,
