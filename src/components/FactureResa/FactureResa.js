@@ -15,7 +15,7 @@ const FactureResa = ({ id_resa, resaSalle }) => {
     const { response : allPayments } = useAxios('get', adressPaiement);
 
     useEffect(() => {
-        setAdressPaiement(`http://localhost:3001/users/paiements/${id_resa}`);
+        setAdressPaiement(`/users/paiements/${id_resa}`);
 
         if (allPayments) {
             totalFacture.current.total = 0;

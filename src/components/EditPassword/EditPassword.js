@@ -49,7 +49,7 @@ const EditPassword = ({ user }) => {
                 "new_password": toSend.new_password
             })
             console.log(content);
-            setAdress(`http://localhost:3001/users/${user.id}`);
+            setAdress(`/users/${user.id}`);
         } else {
             setMessageError('Mot(s) de passe(s) invalide(s), have fun finding which part huehue');
         }

@@ -6,7 +6,7 @@ import { useAuth } from '../../components/contexts/AuthContext';
 import './Login.css'
 
 const Login = () => {
-    const { setUser } = useAuth();
+    const { setUser, endpoint } = useAuth();
     const navigate = useNavigate();
     const [email, setEmail] = useState();
     const [password, setPasswordUser] = useState();
@@ -19,8 +19,8 @@ const Login = () => {
 
     const submitLogIn = async (e) => {
         e.preventDefault();
-
-        const result = await axios.post('http://localhost:3001/users/login', {
+        console.log(endpoint);
+        const result = await axios.post(endpoint + '/users/login', {
             email,
             password
         },

@@ -16,7 +16,7 @@ const ReservationsHistory = ({ setDisplayHistory }) => {
 
     const resaKeys = ["nom", "description", "date_resa"];
     const resaHeader = ["Nom de la Salle", "Description", "Date"];
-    const { response } = useAxios("get", `http://localhost:3001/users/${user.id}/reservations/history`, null)
+    const { response } = useAxios("get", `/users/${user.id}/reservations/history`, null)
 
     useEffect(() => {
         if (response) {

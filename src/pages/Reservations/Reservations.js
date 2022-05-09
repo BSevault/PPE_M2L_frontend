@@ -14,7 +14,7 @@ const Reservations = () => {
     const [displayHistory, setDisplayHistory] = useState(false);
     const resaKeys = ["nom", "description", "date_resa", 'gerer', 'supprimer'];
     const resaHeader = ["Nom de la Salle", "Description", "Date", "Gérer", "Supprimer"];
-    const { response } = useAxios("get", `http://localhost:3001/users/${user.id}/reservations`, null)
+    const { response } = useAxios("get", `/users/${user.id}/reservations`, null)
 
     const [delResaAdress, setDelResaAdress] = useState();
     const [resaContent, setResaContent] = useState();
@@ -25,7 +25,7 @@ const Reservations = () => {
         // basic warning message, flemme de customiser
         if (window.confirm("On rend pas la monnaie.") == true) {
             setResaContent({ "resa_id": resa.id });
-            setDelResaAdress(`http://localhost:3001/users/${user.id}/reservation`);
+            setDelResaAdress(`/users/${user.id}/reservation`);
             response?.success[0].splice(index, 1);
         }
     }

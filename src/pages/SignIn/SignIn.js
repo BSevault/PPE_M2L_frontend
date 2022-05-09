@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useRef } from "react";
+import { useAuth } from "../../components/contexts/AuthContext";
 import GenericForm from "../../components/GenericForm/GenericForm";
 import useCheckSignIn from "../../hooks/useCheckSignIn/useCheckSignIn";
 
@@ -7,6 +8,7 @@ import "./SignIn.css";
 
 const SignIn = () => {
   const signInText = useRef();
+  const { endpoint } = useAuth();
 
   const pwdVerif = useRef();
   const pwd = useRef();
@@ -51,8 +53,10 @@ const SignIn = () => {
 
   const signIn = async (e) => {
     e.preventDefault();
+    // const endpoint = 'http://localhost:3001';
+    // const endpoint = 'http://15.237.109.149:3001';
 
-    const adress = "http://localhost:3001/users";
+    const adress = endpoint + "/users";
     const content = {
       nom: toSend[0].value,
       prenom: toSend[1].value,

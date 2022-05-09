@@ -6,7 +6,7 @@ import FactureResa from '../FactureResa/FactureResa';
 const ReservationHistoryDetails = ({ item: reservation }) => {
     const resaSalle = { is_paid: reservation.is_paid, nom: reservation.nom, date_resa: reservation.date_resa };
 
-    const listPartiAdress = `http://localhost:3001/users/reservation/participants`
+    const listPartiAdress = `/users/reservation/participants`
     const partiKeys = ["nom", "prenom", "email"];
     const partiHeader = ["Liste des participants"];
 

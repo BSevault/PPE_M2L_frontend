@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e21dcabf.css",
+    "main.js": "/static/js/main.f285aece.js",
+    "static/media/presentationM2L.pdf": "/static/media/presentationM2L.3f54f4403989f47445c2.pdf",
+    "static/media/runners.jpg": "/static/media/runners.8e2a6b0b7b4563e277ff.jpg",
+    "static/media/logo_M2L.png": "/static/media/logo_M2L.66fe7e26d03c268e040d.png",
+    "index.html": "/index.html",
+    "main.e21dcabf.css.map": "/static/css/main.e21dcabf.css.map",
+    "main.f285aece.js.map": "/static/js/main.f285aece.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e21dcabf.css",
+    "static/js/main.f285aece.js"
+  ]
+}
