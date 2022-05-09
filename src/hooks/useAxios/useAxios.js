@@ -10,12 +10,14 @@ const useAxios = (method, adress, content) => {
     const [loading, setloading] = useState(true);
     // const endpoint = 'http://localhost:3001';
     // const endpoint = 'http://15.237.109.149:3001';
+    
 
     const fetchData = () => {
         if (adress.charAt(0) == '/') {
             adress = endpoint + adress;
         }
         // == can replace axios, pour tester
+
         // fetch(adress, {
         //     method: method,
         //     body: content,
@@ -24,12 +26,14 @@ const useAxios = (method, adress, content) => {
         //     },
         //     credentials: "same-origin",
         // })
+
         axios({
             method: method,
             url: adress,
             data: content,
             withCredentials: true
         })
+
             .then((res) => {
                 setResponse(res.data);
             })
