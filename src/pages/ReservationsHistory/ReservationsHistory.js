@@ -1,3 +1,7 @@
+/**
+ * This function displays the user's previous reservations
+ * @returns The return is the `ReservationHistory` component.
+ */
 import './ReservationHistory.css';
 import { useEffect } from "react";
 import ButtonBasic from "../../components/ButtonBasic/ButtonBasic";
@@ -14,7 +18,7 @@ const ReservationsHistory = ({ setDisplayHistory }) => {
 
     const resaKeys = ["nom", "description", "date_resa_formated"];
     const resaHeader = ["Nom de la Salle", "Description",  <p className="sort-date" onClick={() => sortResponses(isSorted)}>Date: {sortDirection}</p>];
-    const { response } = useAxios("get", `http://localhost:3001/users/${user.id}/reservations/history`, null)
+    const { response } = useAxios("get", `/users/${user.id}/reservations/history`, null)
 
     const sortResponses = (isSorted) => {
         if (isSorted) {

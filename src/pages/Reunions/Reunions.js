@@ -13,14 +13,13 @@ const Reunions = () => {
     const [sortDirection, setSortDirect] = useState('v');
 
     const resaKeys = ["nom_salle", "email", "date_resa_formated"];
-    // const resaHeader = ["Nom de la Salle", "Email de l'organisateur", "Date"];
     const resaHeader = ["Nom de la Salle", "Email de l'organisateur", <p className="sort-date" onClick={() => sortResponses(isSorted)}>Date: {sortDirection}</p>];
 
     // 2 request, first for future reunions then history of reunions -- next time setup that with a single request from backend
-    const { response } = useAxios("get", `http://localhost:3001/users/${user.id}/participations`, null)
-    const { response: responseHistory } = useAxios("get", `http://localhost:3001/users/${user.id}/participations/history`, null)
+    const { response } = useAxios("get", `/users/${user.id}/participations`, null)
+    const { response: responseHistory } = useAxios("get", `/users/${user.id}/participations/history`, null)
 
-    
+
     const sortResponses = (isSorted) => {
         if (isSorted) {
             setIsSorted(false);

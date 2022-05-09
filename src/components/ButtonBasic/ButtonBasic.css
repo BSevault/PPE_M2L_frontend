@@ -18,10 +18,12 @@
   outline: none;
   padding: 5px;
   width: 150px;
+  max-height: 37px;
   font-size: 1.1em;
   border: none;
   border-radius: 7px;
   background-color: rgb(212, 102, 102);
+  border: 1px solid rgba(0, 0, 0, 0.267);
   color: whitesmoke;
   cursor: pointer;
   transition: all 0.3s ease-in;

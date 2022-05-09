@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useRef } from "react";
+import { useAuth } from "../../components/contexts/AuthContext";
 import GenericForm from "../../components/GenericForm/GenericForm";
 import useCheckSignIn from "../../hooks/useCheckSignIn/useCheckSignIn";
 
@@ -7,6 +8,7 @@ import "./SignIn.css";
 
 const SignIn = () => {
   const signInText = useRef();
+  const { endpoint } = useAuth();
 
   const pwdVerif = useRef();
   const pwd = useRef();
@@ -24,7 +26,7 @@ const SignIn = () => {
     { value: "", place: "Email", id: "email", type: "text", textRef: email },
     {
       value: "",
-      place: "Mot de passe",
+      place: "Mot de passe *",
       id: "pwd",
       type: "password",
       textRef: pwd,
@@ -51,15 +53,17 @@ const SignIn = () => {
 
   const signIn = async (e) => {
     e.preventDefault();
+    // const endpoint = 'http://localhost:3001';
+    // const endpoint = 'http://15.237.109.149:3001';
 
-    const adress = "http://localhost:3001/users";
+    const adress = endpoint + "/users";
     const content = {
       nom: toSend[0].value,
       prenom: toSend[1].value,
       email: toSend2[0].value,
       tel: toSend[4].value,
       password: toSend2[2].value,
-      ddn: toSend[2].value.split('T')[0],
+      ddn: toSend[2].value.split("T")[0],
       adresse: toSend[3].value,
     };
 
@@ -68,12 +72,14 @@ const SignIn = () => {
       pwd.current.pwdIsOk &&
       pwdVerif.current.pwdVerifIsOk
     ) {
-      const result = await axios.post(adress, content, { withCredentials: true }).catch((error) => {
-        if (error.response.status === 401) {
-          signInText.current.innerText =
-            "⚠️ Un compte existe déjà avec cet email";
-        }
-      });
+      const result = await axios
+        .post(adress, content, { withCredentials: true })
+        .catch((error) => {
+          if (error.response.status === 401) {
+            signInText.current.innerText =
+              "⚠️ Un compte existe déjà avec cet email";
+          }
+        });
 
       if (result.status === 200) {
         signInText.current.innerText = "Vous êtes bien inscrit";
@@ -82,18 +88,16 @@ const SignIn = () => {
       signInText.current.innerText =
         "⚠️ Il y a un problème avec votre email ou mot de passe. Veuillez les vérifier";
     }
-
   };
-  
+
   useCheckSignIn(email, pwd, pwdVerif);
-   
 
   return (
     <div className="signin">
       <h1>Inscription au portail M2L</h1>
 
       <div className="signin_form">
-        <GenericForm toSend={toSend} setToSend={setToSend} />
+        <GenericForm toSend={toSend} setToSend={setToSend} par />
 
         <div className="generic_form">
           {toSend2.map((item, index) => (
@@ -112,7 +116,10 @@ const SignIn = () => {
               />
             </div>
           ))}
-
+          <p className="regle_mdp">
+            *Mini 12 caractères, 1 minuscule, 1 majuscule, 1 chiffre et 1
+            caractère spécial
+          </p>
           <input type="submit" onClick={signIn} value="Envoyer !" />
           <p className="signin_ok" ref={signInText}></p>
         </div>

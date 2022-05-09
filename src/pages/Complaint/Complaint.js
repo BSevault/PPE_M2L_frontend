@@ -11,13 +11,13 @@ import 'react-calendar/dist/Calendar.css';
 
 const Complaint = () => {
     // contexte d'authentification
-    const { user } = useAuth();
+    const { user, endpoint } = useAuth();
 
     // on définit les clés et les headers de la liste de tickets
     const keys = ["id", "date_ticket", "date_probleme", "nom", "nom_produit","description"];
     const headers = [
         "N° ticket",
-        "Date de création du ticket",
+        "Date du ticket",
         "Date du problème",
         "Salle concernée",
         "Produit concerné",
@@ -33,13 +33,13 @@ const Complaint = () => {
     const id_produit = useRef();
 
     // on requête la liste des tickets sur la db via le backend
-    const { response: allUserTickets } = useAxios("get", `http://localhost:3001/users/${user.id}/tickets`);
+    const { response: allUserTickets } = useAxios("get", `/users/${user.id}/tickets`);
 
     // on requête la liste des salles sur la db via le backend pour en extraire les noms dans un tableau
-    const { response : salles } = useAxios("get", "http://localhost:3001/salles/all");
+    const { response : salles } = useAxios("get", "/salles/all");
 
     // on requête la liste des produits sur la db via le backend pour en extraire les noms dans un tableau
-    const { response : produits } = useAxios("get", "http://localhost:3001/produits");
+    const { response : produits } = useAxios("get", "/produits");
 
     // on définit un state des tickets pour manier la liste en local sans avoir à requêter à nouveau en cas de modifs
     const [tickets, setTickets] = useState();
@@ -128,43 +128,49 @@ const Complaint = () => {
      // on stocke le jour cliqué sur le calendrier
     const [ jourSelected, setJourSelected] = useState(dateFormatToDB(startDate));
 
+    const [sendMessage, setSendMessage] = useState('');
     const displaySendMessage = () => {
         const sendMessage = document.getElementById('send-message');
         sendMessage.style.opacity=1;
-        setTimeout( () => sendMessage.style.opacity=0, 3000);
+        setTimeout( () => sendMessage.style.opacity=0, 2500);
     }
 
     const sendTicket = async (e) => {
         e.preventDefault();
         let id_newTicket = '';
-         
-        try {
-            const send = await axios.post(`http://localhost:3001/users/${user.id}/tickets`,
-                {date_probleme: dateFormatToDB(jourSelected), description: description.current.value, id_user: user.id, id_salle: parseInt(id_salle.current.value)+1, id_produit: parseInt(id_produit.current.value)+1});
-            id_newTicket = send.data.success[0]['id'];
-        } catch (error) {
-        }
-
         let newSalle = "";
         let newProduit = "";
+        try {
+            const send = await axios.post(endpoint + `/users/${user.id}/tickets`,
+                {date_probleme: dateFormatToDB(jourSelected), description: description.current.value, id_user: user.id, id_salle: parseInt(id_salle.current.value)+1, id_produit: parseInt(id_produit.current.value)+1});
+            id_newTicket = send.data.success[0]['id'];
+            nom_salle.forEach( (el, index) => {
+                if (index == id_salle.current.value) {
+                    newSalle = el;
+                }
+            });
+    
+            nom_produit.forEach( (el, index) => {
+                if (index == id_produit.current.value) {
+                    newProduit = el;
+                }
+            });
+    
+            let newTicket = ({ id: id_newTicket, date_ticket: dateFormatToDB(startDate), date_probleme: jourSelected, nom: newSalle, nom_produit: newProduit, description: description.current.value})
+            
+            setTickets(prevstate => [...prevstate, newTicket]);
+    
+            setSendMessage('Votre ticket est envoyé !')
+            displaySendMessage();
+        } catch (error) {
+            setSendMessage('Une erreur est survenue')
+            displaySendMessage();
 
-        nom_salle.forEach( (el, index) => {
-            if (index == id_salle.current.value) {
-                newSalle = el;
-            }
-        });
+        }
 
-        nom_produit.forEach( (el, index) => {
-            if (index == id_produit.current.value) {
-                newProduit = el;
-            }
-        });
-
-        let newTicket = ({ id: id_newTicket, date_ticket: dateFormatToDB(startDate), date_probleme: jourSelected, nom: newSalle, nom_produit: newProduit, description: description.current.value})
         
-        setTickets(prevstate => [...prevstate, newTicket]);
 
-        displaySendMessage();
+        
 
     }
 
@@ -231,7 +237,7 @@ const Complaint = () => {
                                     value="Envoyer le ticket"
                         
                                 />
-                                <span id='send-message'>Votre ticket est envoyé !</span>
+                                <span id='send-message'>{sendMessage}</span>
                             </div>
                         </div>
                     </div>

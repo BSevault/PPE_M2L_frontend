@@ -7,7 +7,7 @@ const ButtonBasic = ({ handleClick, buttonInnerText, style, colorstyle }) => {
 
     return ( 
         <button className={`button-basic${color}`} onClick={handleClick} style={style}>
-            <p>{buttonInnerText}</p>
+            {buttonInnerText}
         </button>
      );
 }

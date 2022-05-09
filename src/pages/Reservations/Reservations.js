@@ -18,7 +18,7 @@ const Reservations = () => {
     const resaKeys = ["nom", "description", "date_resa_formated", 'gerer', 'supprimer'];
     // const resaHeader = ["Nom de la Salle", "Description", "Date", "Gérer", "Supprimer"];
     const resaHeader = ["Nom de la Salle", "Description", <p className="sort-date" onClick={() => sortResponses(isSorted)}>Date: {sortDirection}</p>, "Gérer", "Supprimer"];
-    const { response } = useAxios("get", `http://localhost:3001/users/${user.id}/reservations`, null)
+    const { response } = useAxios("get", `/users/${user.id}/reservations`, null)
 
     const [delResaAdress, setDelResaAdress] = useState();
     const [resaContent, setResaContent] = useState();
@@ -41,7 +41,7 @@ const Reservations = () => {
         // basic warning message, flemme de customiser
         if (window.confirm("On rend pas la monnaie.") == true) {
             setResaContent({ "resa_id": resa.id });
-            setDelResaAdress(`http://localhost:3001/users/${user.id}/reservation`);
+            setDelResaAdress(`/users/${user.id}/reservation`);
             response?.success[0].splice(index, 1);
         }
     }
@@ -52,7 +52,8 @@ const Reservations = () => {
             response.success[0].forEach((resa, index) => {
                 resa['date_resa_formated'] = new Date(resa['date_resa']).toLocaleDateString('en-GB');
                 resa['gerer'] = <ButtonBasic handleClick={() => setFocus(resa)} buttonInnerText="Gérer" />;
-                resa['supprimer'] = <ButtonBasic handleClick={() => handleDelete(resa, index)} buttonInnerText="Yeet" colorstyle='red' />;
+                /* Creating a button that will delete the reservation when clicked. */
+                resa['supprimer'] = <ButtonBasic handleClick={() => handleDelete(resa, index)} buttonInnerText="Annuler" colorstyle='red' />;
                 // resa['id'] = index; // fake id, for keys in itemlist
             });
 
