@@ -6,7 +6,7 @@ import useAxios from "../../hooks/useAxios/useAxios";
 const Logout = () => {
     const { setUser } = useAuth();
 
-    useAxios('get', `http://localhost:3001/users/logout`);
+    useAxios('get', `/users/logout`);
     setUser();
 
     // console.log(response);

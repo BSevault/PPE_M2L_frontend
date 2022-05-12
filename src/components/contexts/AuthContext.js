@@ -8,6 +8,11 @@ export const useAuth = () => useContext(AuthContext);
 
 const AuthContextProvider = ({ children }) => {
     const [user, setUser] = useState('');
+    // const endpoint = 'http://localhost:3001';
+    // const endpoint = 'http://127.0.0.1:3001';
+    // const endpoint = 'http://15.237.109.149';
+    // const endpoint = 'https://groupe-a.lemonravioli.ovh';
+    const endpoint = 'https://groupe-a-ben.lemonravioli.ovh';
 
     const navigate = useNavigate();
 
@@ -18,7 +23,7 @@ const AuthContextProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await axios.get('http://localhost:3001/users/logout', { withCredentials: true });
+            await axios.get(endpoint + '/users/logout', { withCredentials: true });
             setUser()
             navigate('/');
         } catch (error) {
@@ -28,7 +33,7 @@ const AuthContextProvider = ({ children }) => {
 
     const checkLoginStatus = async () => {
         try {
-            const { data } = await axios.get(`http://localhost:3001/users/login`,
+            const { data } = await axios.get(endpoint + `/users/login`,
                 { withCredentials: true });
             setUser(data.success.logged_user);
             navigate(currentAdress.pathname);
@@ -46,7 +51,8 @@ const AuthContextProvider = ({ children }) => {
         user,
         setUser,
         checkLoginStatus,
-        logout
+        logout,
+        endpoint
     }
 
     return <AuthContext.Provider value={value}>

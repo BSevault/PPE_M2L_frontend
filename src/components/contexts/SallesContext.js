@@ -1,11 +1,13 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
+import { useAuth } from "./AuthContext";
 
 
 const SallesContext = createContext();
 export const useSalles = () => useContext(SallesContext);
 
 const SallesContextProvider = ({ children }) => {
+    const { endpoint } = useAuth();
     const [ allSalles, setAllSalles ] = useState();
     const [ allReservations, setAllReservations ] = useState();
     const [ dateResevedSalle, setDateReservedSalle] = useState();
@@ -14,10 +16,10 @@ const SallesContextProvider = ({ children }) => {
     
     const fetchSallesReservations = async () => {
         try {
-            const resultSalles = await axios.get('http://localhost:3001/salles/', { withCredentials: true });
+            const resultSalles = await axios.get(endpoint + '/salles/', { withCredentials: true });
             setAllSalles(resultSalles.data.success);
 
-            const resultReservations = await axios.get('http://localhost:3001/users/all/reservations/', { withCredentials: true });
+            const resultReservations = await axios.get(endpoint + '/users/all/reservations/', { withCredentials: true });
             setAllReservations(resultReservations.data.success);
 
         } catch (error) {
