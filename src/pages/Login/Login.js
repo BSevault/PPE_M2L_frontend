@@ -24,7 +24,7 @@ const Login = () => {
             email,
             password
         },
-            { withCredentials: true }
+            // { withCredentials: true }
         )
             .catch((error) => {
 
