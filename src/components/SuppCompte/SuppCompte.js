@@ -5,7 +5,7 @@ import ButtonBasic from "../ButtonBasic/ButtonBasic";
 import GenericForm from "../GenericForm/GenericForm";
 
 const SuppCompte = () => {
-  const { user, checkLoginStatus } = useAuth();
+  const { user, checkLoginStatus, endpoint } = useAuth();
 
   const emailSupp = useRef("");
   const [method, setMethod] = useState("patch");
@@ -34,7 +34,7 @@ const SuppCompte = () => {
     //vérifie que l'email en DB == email taper par le user
     if (user.email === toSend[0].value) {
       //on active le toggle isActive en back pour inactive le user
-      setAdress(`http://localhost:3001/users/${user.id}/active`);
+      setAdress(`${endpoint}/users/${user.id}/active`);
     } else {
       //on enleve le refresh si le mail correspond pas et on set un message
       e.preventDefault();
@@ -47,7 +47,7 @@ const SuppCompte = () => {
     //si la reponse = desactivé on logout le user
     if (response?.success === "Le compte a été desactivé") {
       setMethod("get");
-      setAdress(`http://localhost:3001/users/logout`);
+      setAdress(`${endpoint}/users/logout`);
     }
     //on check bien que la session est kill, donc le context user est reset
     checkLoginStatus();
