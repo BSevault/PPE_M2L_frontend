@@ -1,7 +1,7 @@
 import { useAuth } from '../../components/contexts/AuthContext';
 import EditCompte from '../../components/EditCompte/EditCompte';
 import EditPassword from '../../components/EditPassword/EditPassword';
-
+import SuppCompte from '../../components/SuppCompte/SuppCompte';
 
 const Compte = () => {
   const { user } = useAuth();
@@ -10,6 +10,7 @@ const Compte = () => {
     <div className="compte">
       <EditCompte user={user} />
       <EditPassword user={user} />
+      <SuppCompte />
     </div>
   );
 };
