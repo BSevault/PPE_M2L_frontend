@@ -23,6 +23,7 @@ const SignIn = () => {
   ]);
 
   const [toSend2, setToSend2] = useState([
+    { value: "", place: "Ligue", id: "ligue", type: "text"},
     { value: "", place: "Email", id: "email", type: "text", textRef: email },
     {
       value: "",
@@ -60,11 +61,12 @@ const SignIn = () => {
     const content = {
       nom: toSend[0].value,
       prenom: toSend[1].value,
-      email: toSend2[0].value,
+      email: toSend2[1].value,
       tel: toSend[4].value,
-      password: toSend2[2].value,
+      password: toSend2[3].value,
       ddn: toSend[2].value.split("T")[0],
       adresse: toSend[3].value,
+      ligue: toSend2[0].value,
     };
 
     if (
