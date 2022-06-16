@@ -5,7 +5,7 @@ import GenericFormSimple from "../GenericFormSimple/GenericFormSimple";
 const EditCompte = ({ user }) => {
     // copy les données utilisateurs moins les données sensibles
     const userFiltered = { ...user };
-    ['id', 'is_active', 'is_admin', 'ddn'].forEach(e => delete userFiltered[e]);
+    ['id', 'is_active', 'is_admin', 'ddn', 'id_ligue'].forEach(e => delete userFiltered[e]);
 
     // définis les données qui vont transiter sur le back
     const [toSend, setToSend] = useState(userFiltered);
