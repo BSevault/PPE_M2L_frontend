@@ -14,6 +14,7 @@ import Complaint from "../../pages/Complaint/Complaint.js";
 import { useAuth } from "../../components/contexts/AuthContext.js";
 import SallesContextProvider from "../contexts/SallesContext.js";
 import Reunions from "../../pages/Reunions/Reunions.js";
+import ForgotPwd from "../../pages/ForgotPwd/ForgotPwd.js";
 
 const ProtectedRoute = () => {
   const { user } = useAuth();
@@ -52,6 +53,7 @@ const RoutesM2L = () => {
       <Route path="/cgv" element={<Cgv />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/presentation" element={<Presentation />} />
+      <Route path="/resetpwd" element={<ForgotPwd />} />
     </Routes>
 
   );
