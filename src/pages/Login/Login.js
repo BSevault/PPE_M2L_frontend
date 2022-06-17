@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 import { useAuth } from '../../components/contexts/AuthContext';
 
@@ -53,6 +53,7 @@ const Login = () => {
     const addActiveInput = (e) => {
         if (e.target.value !== "") {
             e.target.parentNode.classList.add("active_input");
+            messageError.current.innerText = "";
         } else if (e.target.value === "") {
             e.target.parentNode.classList.remove("active_input");
         }
@@ -73,6 +74,10 @@ const Login = () => {
                 </div>
                 <input type="submit" value="Login" id='submit' />
             </form>
+            <p style={{color: "black", padding: "10px 0 0 0"}}>
+                Vous avez oublié votre mot de passe ? 
+                <Link to={"/resetpwd"} style={{visited : "none", textDecoration: "none", color: "var(--blue)"}}> Cliquez ici.</Link>
+            </p>
             <p ref={messageError}></p>
         </div>
     );
